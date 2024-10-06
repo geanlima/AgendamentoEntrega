@@ -1,0 +1,43 @@
+@use "variables" as *;
+@use "theme" as *;
+
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: $popup-titulo-padding-y 25px;
+
+}
+
+.form-oportunidade {
+    width: 100%;
+}
+
+
+.form-oportunidade-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    mat-form-field {
+        width: 100%;
+    }
+
+}
+
+.cadastrar-button {
+    width: 250px;
+    height: 40px;
+    border: $sgm-primary-color;
+    color: $sgm-primary-color;
+}
+
+.autocomplete-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}

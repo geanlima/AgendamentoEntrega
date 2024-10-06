@@ -1,0 +1,83 @@
+@use "variables" as *;
+@import "mixins";
+
+form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.auth-form {
+  width: 441px;
+  display: flex;
+  flex-direction: column;
+
+  mat-form-field {
+    width: 441px;
+    color: $color-login-high-emphasis;
+  }
+
+  mat-form-field+mat-form-field {
+    margin-bottom: 18px;
+  }
+}
+
+.auth-actions {
+  width: 441px;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.auth-login {
+  button {
+    width: 243px;
+    height: 48px;
+    font-size: 18px;
+    // color: #FFFFFF;
+    border-radius: 24px;
+    // background-color: #14559F;
+  }
+}
+
+@include sm {
+  form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .auth-form {
+    display: flex;
+    flex-direction: column;
+
+    mat-form-field {
+      color: $color-login-high-emphasis;
+    }
+
+    mat-form-field+mat-form-field {
+      margin-bottom: 18px;
+    }
+  }
+
+  .auth-actions {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .auth-login {
+    // button {
+    //   font-size: 18px;
+    //   color: #FFFFFF;
+    //   border-radius: 24px;
+    //   background-color: #14559F;
+    // }
+  }
+}

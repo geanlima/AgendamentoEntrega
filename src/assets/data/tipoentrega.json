@@ -1,0 +1,18 @@
+[
+    {
+        "id": "RI",
+        "descricao": "Retira Imediata"
+    },
+    {
+        "id": "RP",
+        "descricao": "Retira Posterior"
+    },
+    {
+        "id": "EN",
+        "descricao": "Entrega"
+    },
+    {
+        "id": "EF",
+        "descricao": "Encomenda"
+    }
+]

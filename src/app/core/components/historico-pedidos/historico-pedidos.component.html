@@ -1,0 +1,101 @@
+<div class="main-container">
+  <div class="header-container">
+    <div class="search">
+      <mat-form-field appearance="fill" color="accent">
+        <mat-label>Data de Emissão</mat-label>
+        <mat-date-range-input [rangePicker]="pickeremissao">
+          <input matStartDate placeholder="De" (dateChange)="onSearchChanged()" [(ngModel)]="filterDataEmissaoInicio">
+          <input matEndDate placeholder="Até" (dateChange)="onSearchChanged()" [(ngModel)]="filterDataEmissaoFinal">
+        </mat-date-range-input>
+
+        <mat-datepicker-toggle matSuffix [for]="pickeremissao"></mat-datepicker-toggle>
+        <mat-date-range-picker #pickeremissao></mat-date-range-picker>
+      </mat-form-field>
+
+
+      <mat-form-field appearance="fill">
+        <mat-label>Nº do Pedido</mat-label>
+        <input matInput type="number" [(ngModel)]="filterNumeroPedido" (change)="onSearchChanged()">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Situação</mat-label>
+        <mat-select [(ngModel)]="filterSituacao" (selectionChange)="onSearchChanged()">
+          <mat-option *ngFor="let plano of situacoes" [value]="plano">
+            {{plano}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+  </div>
+  <div class="table-historico">
+    <table mat-table [dataSource]="dataSource" matSort [ngClass]="{'matHidden': !dataSource }">
+
+      <ng-container matColumnDef="dataPedido">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Data</th>
+        <td mat-cell *matCellDef="let historico">{{historico.dataPedido | date: 'dd/MM/yyyy'}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="numeroPedido">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nº Pedido</th>
+        <td mat-cell *matCellDef="let historico">{{historico.numeroPedido}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="valorTotal">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Valor Total</th>
+        <td mat-cell *matCellDef="let historico">{{historico.valorTotal | currency}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="quantidadeitens">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>QTD. Itens</th>
+        <td mat-cell *matCellDef="let historico">{{historico.quantidadeitens}}</td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="situacao">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Situação</th>
+        <td mat-cell *matCellDef="let historico">
+          <div [ngClass]="{
+              'situacao-liberado':historico.situacao === 'Liberado',
+              'situacao-em-carregamento':historico.situacao === 'Em Carregamento',
+              'situacao-bloqueado':historico.situacao === 'Bloqueado',
+              'situacao-faturado':historico.situacao === 'Faturado',
+              'situacao-cancelado':historico.situacao === 'Cancelado'
+            }">
+            <mat-icon>{{getIconSituacao(historico.situacao)}}</mat-icon>
+            {{historico.situacao}}
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let historico" (click)="$event.stopPropagation()">
+
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>view_cozy</mat-icon>
+          </button>
+
+          <mat-menu #menu="matMenu" xPosition="after">
+            <button mat-menu-item (click)="onVerItens(historico.numeroPedido)">
+              <mat-icon class="menu-icon">list_alt</mat-icon>
+              <span class="menu-span">Ver Itens</span>
+            </button>
+            <button mat-menu-item (click)="onVerNotas(historico.numeroPedido)">
+              <mat-icon class="menu-icon">receipt_long</mat-icon>
+              <span class="menu-span">Ver Notas</span>
+            </button>
+          </mat-menu>
+
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  <mat-paginator #paginator [pageSizeOptions]="[pageSize]" [hidePageSize]="true" [ngClass]="{'matHidden': !dataSource }"
+    [showFirstLastButtons]="true">
+  </mat-paginator>
+</div>

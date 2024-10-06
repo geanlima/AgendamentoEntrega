@@ -1,0 +1,214 @@
+<div class="background-container">
+  <mat-card class="route-card">
+    <mat-card-content class="route-card-content">
+      <span class="value-header">Pedidos</span>
+      <div class="route-path-content">
+        <span>Home</span>
+        <span class="route-separator">/</span>
+        <span class="route-sub-path">Pedidos</span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="pedidos-container">
+    <mat-card class="mat-card-filtro">
+      <mat-card-content>
+
+        <span class="title">Filtro</span>
+        <div class="space"></div>
+        <app-search (searchChanged)="onSearchChangedCliente($event)" [searchTerm]="filterOptions.cliente"
+          [label]="'Procurar Cliente'" (enterOnSearch)="onEnterOnSearch($event)"
+          [disabled]="searchDisabled"></app-search>
+        <!-- <button class="btn-cadastrar-cliente">
+          <span>Cadastrar Cliente</span>
+          <mat-icon class="btn-icon" iconPositionEnd>person</mat-icon>
+        </button> -->
+        <div class="button-container">
+
+          <button mat-flat-button (click)="onSearchChanged()">
+            Pesquisar
+            <mat-icon iconPositionEnd>
+              search
+            </mat-icon>
+          </button>
+          <button mat-flat-button (click)="onClearFilters()">
+            Limpar Filtros
+            <mat-icon iconPositionEnd>
+              cleaning_services
+            </mat-icon>
+          </button>
+        </div>
+
+        <mat-divider></mat-divider>
+        <div class="space"></div>
+        <div class="space"></div>
+        <mat-form-field appearance="fill" class="select-filter">
+          <mat-label>Ramo Atuação</mat-label>
+          <mat-select [(ngModel)]="filterOptions.ramoatuacao" (selectionChange)="onSearchChanged()"
+            [compareWith]="compareSelect">
+            <mat-option *ngFor="let ramo of ramoatuacao$ | async" [value]="ramo.id">
+              {{ ramo.id }} - {{ ramo.descricao }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="select-filter">
+          <mat-label>Estado</mat-label>
+          <mat-select [(ngModel)]="filterOptions.uf" (selectionChange)="onSearchChanged()"
+            [compareWith]="compareSelect">
+            <mat-option *ngFor="let estado of estado$ | async" [value]="estado.uf">
+              {{ estado.uf }} - {{ estado.nome }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <app-search (searchChanged)="onSearchChangedCidade($event)" [searchTerm]="filterOptions.cidade"
+          [label]="'Cidade'" (enterOnSearch)="onEnterOnSearch($event)" [disabled]="searchDisabled"></app-search>
+        <div class="space"></div>
+        <app-search (searchChanged)="onSearchChangedCNAE($event)" [searchTerm]="filterOptions.CNAE" [label]="'CNAE'"
+          (enterOnSearch)="onEnterOnSearch($event)" [disabled]="searchDisabled"></app-search>
+
+        <div class="space"></div>
+
+        <div class="check-conteiner">
+          <div class="check-list">
+            <mat-checkbox [(ngModel)]="filterOptions.checksugestadoatendimento" (change)="onSearchChanged()">
+              Sugestão de atendimento do dia
+            </mat-checkbox>
+            <mat-checkbox [(ngModel)]="filterOptions.checknaobloquequeados" (change)="onSearchChanged()">
+              Não Bloqueados
+            </mat-checkbox>
+            <mat-checkbox [(ngModel)]="filterOptions.checkbloqueados" (change)="onSearchChanged()">
+              Bloqueados
+            </mat-checkbox>
+            <mat-checkbox [(ngModel)]="filterOptions.checksemrestricao" (change)="onSearchChanged()">
+              Sem Restrição
+            </mat-checkbox>
+            <mat-checkbox [(ngModel)]="filterOptions.checkcomrestricao" (change)="onSearchChanged()">
+              Com Restrição
+            </mat-checkbox>
+            <div class="clientesemcompras">
+              <mat-checkbox [(ngModel)]="filterOptions.checksemcompras" (change)="onSearchChanged()">
+                Cliente sem compras a
+              </mat-checkbox>
+
+              <mat-form-field class="clientesemcomprasvalor">
+                <input matInput [(ngModel)]="filterOptions.semcomprasavalor" [value]="filterOptions.semcomprasavalor">
+              </mat-form-field>
+            </div>
+            <span>Classe de Venda</span>
+            <div class="classesvenda">
+              <mat-checkbox [(ngModel)]="filterOptions.checkclassevendaa" (change)="onSearchChanged()">
+                A
+              </mat-checkbox>
+              <mat-checkbox [(ngModel)]="filterOptions.checkclassevendab" (change)="onSearchChanged()">
+                B
+              </mat-checkbox>
+              <mat-checkbox [(ngModel)]="filterOptions.checkclassevendac" (change)="onSearchChanged()">
+                C
+              </mat-checkbox>
+              <mat-checkbox [(ngModel)]="filterOptions.checkclassevendad" (change)="onSearchChanged()">
+                D
+              </mat-checkbox>
+              <mat-checkbox [(ngModel)]="filterOptions.checkclassevendae" (change)="onSearchChanged()">
+                E
+              </mat-checkbox>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+
+    <mat-card class="mat-card-vendas">
+      <mat-card-content>
+        <div class="header">
+          <span class="title">Pedidos Recentes</span>
+          <div class="table-actions">
+            <button mat-flat-button color="accent" (click)="configTabela()">
+              <mat-icon class="center-icon">
+                settings
+              </mat-icon>
+            </button>
+          </div>
+        </div>
+        <div class="table-vendas">
+          <table mat-table [dataSource]="dataSource" matSort [ngClass]="{'matHidden': !dataSource }">
+
+            <ng-container matColumnDef="client_code">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Código Cliente</th>
+              <td mat-cell *matCellDef="let cliente">{{cliente.client_code}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="client_cnpj">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>CNPJ/CPF</th>
+              <td mat-cell *matCellDef="let cliente">{{cliente.client_cnpj}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="client_fantasy_name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome Fantasia</th>
+              <td mat-cell *matCellDef="let cliente">{{cliente.client_fantasy_name}}</td>
+            </ng-container>
+            <ng-container matColumnDef="client_business_name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Razão Social</th>
+              <td mat-cell *matCellDef="let cliente">{{cliente.client_business_name}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="cidade_comercial_cliente">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Cidade</th>
+              <td mat-cell *matCellDef="let cliente">{{cliente.cidade_comercial_cliente | currency}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="legenda">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header [mtxTooltip]="'after'" [mtxTooltip]="tooltipTpl"
+                [mtxTooltipClass]="'tooltipLegenda'">Legenda</th>
+              <td mat-cell *matCellDef="let cliente" class="text-center">
+                <mat-icon *ngIf="cliente.sefaz_block === 'S'" class="sefaz_block">
+                  lock
+                </mat-icon>
+                <mat-icon *ngIf="cliente.client_block === 'S'" class="client_block">
+                  lock
+                </mat-icon>
+                <mat-icon *ngIf="cliente.bloqueio_definitivo === 'S'" class="client_block_definitive">
+                  lock
+                </mat-icon>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+        <mat-paginator #paginator [pageSizeOptions]="[pageSize]" [hidePageSize]="true"
+          [ngClass]="{'matHidden': !dataSource }" [showFirstLastButtons]="true">
+        </mat-paginator>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<ng-template #tooltipTpl>
+  <div>
+    <mat-icon class="client_block">
+      lock
+    </mat-icon>
+    <span>
+      Cliente Bloqueado
+    </span>
+  </div>
+  <div>
+    <mat-icon class="sefaz_block">
+      lock
+    </mat-icon>
+    <span>
+      Cliente Bloqueado SEFAZ
+    </span>
+  </div>
+  <div>
+    <mat-icon class="client_block_definitive">
+      lock
+    </mat-icon>
+    <span>
+      Bloqueio Definitivo
+    </span>
+  </div>
+</ng-template>

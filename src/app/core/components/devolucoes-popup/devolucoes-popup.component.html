@@ -1,0 +1,81 @@
+<app-popup (closeModal)="onCloseModal()" [temp]="content" [title]="'Devoluções nos ultimos 30 dias'">
+  <ng-template #content>
+    <div class="main-container">
+      <div class="header-container">
+        <div class="search">
+
+
+          <mat-form-field appearance="fill" color="accent">
+            <mat-label>Data de Entrada</mat-label>
+            <mat-date-range-input [rangePicker]="pickerentrada">
+              <input matStartDate placeholder="De" (dateChange)="onSearchChanged()"
+                [(ngModel)]="filterDataEntradaInicial">
+              <input matEndDate placeholder="Até" (dateChange)="onSearchChanged()" [(ngModel)]="filterDataEntradaFinal">
+            </mat-date-range-input>
+
+            <mat-datepicker-toggle matSuffix [for]="pickerentrada"></mat-datepicker-toggle>
+            <mat-date-range-picker #pickerentrada></mat-date-range-picker>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Nota Origem</mat-label>
+            <input matInput [(ngModel)]="filterNotaOrigem" (change)="onSearchChanged()">
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Nº Nota</mat-label>
+            <input matInput [(ngModel)]="filterNumeroNota" (change)="onSearchChanged()">
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Produto</mat-label>
+            <input matInput [(ngModel)]="filterProduto" (change)="onSearchChanged()">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="table-devolucoes">
+        <table mat-table [dataSource]="dataSource" matSort>
+          <ng-container matColumnDef="dtEnt">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Dt. Entrada</th>
+            <td mat-cell *matCellDef="let devolucoes">{{devolucoes.dtEnt | date: 'dd/MM/yyyy'}}</td>
+          </ng-container>
+          <ng-container matColumnDef="numNota">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nº Nota</th>
+            <td mat-cell *matCellDef="let devolucoes">{{devolucoes.numNota}}</td>
+          </ng-container>
+          <ng-container matColumnDef="notaOrigem">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nota Origem</th>
+            <td mat-cell *matCellDef="let devolucoes">{{devolucoes.notaOrigem}}</td>
+          </ng-container>
+          <ng-container matColumnDef="codProd">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Cod. Produto</th>
+            <td mat-cell *matCellDef="let devolucoes">{{devolucoes.codProd}}</td>
+          </ng-container>
+          <ng-container matColumnDef="produto">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Produto</th>
+            <td mat-cell *matCellDef="let devolucoes">{{devolucoes.produto}}</td>
+          </ng-container>
+          <ng-container matColumnDef="qtd">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>QTD.</th>
+            <td mat-cell *matCellDef="let devolucoes">{{devolucoes.qtd}}</td>
+          </ng-container>
+          <ng-container matColumnDef="vlTotal">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Total</th>
+            <td mat-cell *matCellDef="let devolucoes">{{devolucoes.vlTotal | currency}}</td>
+          </ng-container>
+          <ng-container matColumnDef="motivo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Motivo</th>
+            <td mat-cell *matCellDef="let devolucoes">{{devolucoes.motivo}}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+      <div class="devolucoes-paginator">
+        <mat-paginator [hidePageSize]="true" [pageSize]="pageSize" [pageSizeOptions]="[pageSize]"
+          [ngClass]="{'matHidden': !dataSource }" [showFirstLastButtons]="true"></mat-paginator>
+      </div>
+    </div>
+  </ng-template>
+</app-popup>

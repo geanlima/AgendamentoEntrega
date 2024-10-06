@@ -1,0 +1,93 @@
+@use "variables" as *;
+@import 'mixins';
+
+/**
+ * /components/notification
+ */
+.override-shared-componentes-notification-custom-class {
+  background-color: white;
+  padding: 0px !important;
+
+  @include sm {
+    max-width: 356px !important;
+  }
+}
+
+.override-search-form-field, .override-inclusao-produto {
+  .mat-mdc-text-field-wrapper:not(.mdc-text-field--outlined) .mat-mdc-form-field-infix {
+    display: flex;
+    color: #009CD2;
+    text-align: center;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    label {
+      color: #808080;
+    }
+  }
+
+  .mat-mdc-form-field-subscript-wrapper {
+    display: none;
+  }
+
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: #FFF;
+  }
+}
+
+.override-navigation-menu {
+  .mat-mdc-tab-link .mdc-tab__text-label {
+    color: white;
+  }
+
+  .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label,
+  .mat-mdc-tab-link:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label {
+    color: white;
+  }
+
+  .mat-mdc-tab:not(.mat-mdc-tab-disabled) .mdc-tab-indicator__content--underline,
+  .mat-mdc-tab-link:not(.mat-mdc-tab-disabled) .mdc-tab-indicator__content--underline {
+    border-color: white;
+  }
+
+  .mdc-tab-indicator .mdc-tab-indicator__content {
+    border-color: white;
+  }
+}
+
+.override-modal-atendimento {
+  height: 780px;
+  width: 1072px;
+}
+
+.override-modal-ofertas {
+  width: 720px;
+  height: $popup-oferta-height;
+}
+
+.override-modal-validade {
+  width: 615px;
+  height: $popup-validade-height;
+}
+
+.override-filtro-atendimento {
+  mat-divider {
+    border-top-color: #14559F80;
+  }
+
+  mat-checkbox label {
+    font-size: 16px;
+    color: $color-search-font;
+  }
+}
+
+.override-spinner {
+  .mat-mdc-dialog-container .mdc-dialog__surface {
+    box-shadow: none;
+    background-color: transparent;
+  }
+  .mat-mdc-dialog-container {
+    --mdc-dialog-container-color: transparent;
+  }
+}

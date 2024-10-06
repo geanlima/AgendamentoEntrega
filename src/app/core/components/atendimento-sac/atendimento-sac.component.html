@@ -1,0 +1,50 @@
+<div class="main-container">
+  <div class="header-container">
+
+  </div>
+  <div class="table-sac">
+    <table mat-table [dataSource]="dataSource" matSort [ngClass]="{'matHidden': !dataSource }">
+
+      <ng-container matColumnDef="dataAbertura">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Data de Abertura</th>
+        <td mat-cell *matCellDef="let sac">{{sac.dataAbertura | date: 'dd/MM/yyyy'}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="atendente">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Atendente</th>
+        <td mat-cell *matCellDef="let sac">{{sac.atendente}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="protocolo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Protocolo</th>
+        <td mat-cell *matCellDef="let sac">{{sac.protocolo}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="assunto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Assunto</th>
+        <td mat-cell *matCellDef="let sac">{{sac.assunto}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="descricao">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Descrição</th>
+        <td mat-cell *matCellDef="let sac">{{sac.descricao}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="situacao">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Situação</th>
+        <td mat-cell *matCellDef="let sac">{{sac.situacao}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="providencia">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Providência</th>
+        <td mat-cell *matCellDef="let sac">{{sac.providencia}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  <mat-paginator #paginator [pageSizeOptions]="[pageSize]" [hidePageSize]="true" [ngClass]="{'matHidden': !dataSource }"
+    [showFirstLastButtons]="true">
+  </mat-paginator>
+</div>

@@ -1,0 +1,20 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div class="auth-form">
+    <mat-form-field>
+      <mat-label>Usuário</mat-label>
+      <input matInput placeholder="Usuário" formControlName="user">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Senha</mat-label>
+      <input matInput placeholder="Senha" type="password" formControlName="password">
+    </mat-form-field>
+  </div>
+  <div class="auth-actions">
+    <mat-checkbox [disabled]="true" *ngIf="false">Continuar Conectado</mat-checkbox>
+    <button mat-flat-button type="button" (click)="onOpenModalForgotPassword()" *ngIf="false">Esqueci minha
+      senha</button>
+  </div>
+  <div class="auth-login">
+    <button mat-raised-button color="primary" type="submit">Entrar</button>
+  </div>
+</form>

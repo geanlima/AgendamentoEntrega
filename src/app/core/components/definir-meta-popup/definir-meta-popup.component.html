@@ -1,0 +1,23 @@
+<app-popup (closeModal)="onCloseModal()" [temp]="content" [title]="'Definir Meta'">
+  <ng-template #content>
+    <div class="main-container">
+      <div class="meta-atual-content">
+        <span>Meta Atual</span>
+        <span class="label-valor">{{valorMetaAtual | currency}}</span>
+      </div>
+      <div class="valor-faturado-content">
+        <span>Valor Faturado</span>
+        <span class="label-valor">{{valorFaturado | currency}}</span>
+      </div>
+      <mat-form-field appearance="fill" class="input-novo-valor">
+        <mat-label>Novo Valor</mat-label>
+        <input matInput type="number" [(ngModel)]="valorMetaAtualizar" [value]="valorMetaAtualizar">
+        <mat-icon matSuffix>attach_money</mat-icon>
+      </mat-form-field>
+      <button class="btn-alterar-meta" (click)="alterarMeta()">
+        <span>Alterar Meta</span>
+        <mat-icon class="btn-icon" iconPositionEnd>attach_money</mat-icon>
+      </button>
+    </div>
+  </ng-template>
+</app-popup>

@@ -1,0 +1,143 @@
+<div class="main-container">
+  <div class="filtros-input" *ngIf="modoConsulta">
+    <mat-form-field appearance="fill">
+      <mat-label>Região</mat-label>
+      <mat-select [(ngModel)]="filtro.codigoRegiao" (selectionChange)="updateFilter()" [compareWith]="compareSelect">
+        <mat-option *ngFor="let regiao of regioes" [value]="regiao.codigo_regiao">
+          {{regiao.codigo_regiao}} - {{regiao.descricao_regiao}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Plano de Pagamento</mat-label>
+      <mat-select [(ngModel)]="codigoPlanoPagamento" (selectionChange)="updateFilter()">
+        <mat-option *ngFor="let plano of planoPagamentos" [value]="plano.codigo_plano_pagamento">
+          {{plano.descricao_plano_pagamento}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="override-filtro-atendimento container-filtros">
+    <div class="action">
+      <span *ngIf="!modoConsulta">Filtrar</span>
+      <button mat-flat-button (click)="onPesquisar()" *ngIf="modoConsulta">
+        Pesquisar
+        <mat-icon iconPositionEnd>
+          search
+        </mat-icon>
+      </button>
+      <button mat-flat-button (click)="onClearFilters()">
+        Limpar Filtros
+        <mat-icon iconPositionEnd>
+          cleaning_services
+        </mat-icon>
+      </button>
+    </div>
+    <app-search (searchChanged)="onSearchChanged($event)" [searchTerm]="searchTerm" [label]="'Procurar produtos'"
+      (enterOnSearch)="onEnterOnSearch($event)" [disabled]="searchDisabled"></app-search>
+    <mat-divider></mat-divider>
+    <div class="filtros-input">
+      <mat-form-field appearance="fill">
+        <mat-label>Departamento</mat-label>
+        <mat-select [(ngModel)]="filtro.codigoDepartamento" (selectionChange)="updateFilterDepartamento()"
+          [compareWith]="compareSelect">
+          <mat-option *ngFor="let departamento of departamentos" [value]="departamento.codigo_departamento">
+            {{departamento.descricao_departamento}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Seção</mat-label>
+        <mat-select [(ngModel)]="filtro.codigoSecao" (selectionChange)="updateFilterSecao()"
+          [compareWith]="compareSelect">
+          <mat-option *ngFor="let secao of secoes" [value]="secao.codigosecao">
+            {{secao.descricaosecao}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Categoria</mat-label>
+        <mat-select [(ngModel)]="filtro.codigoCategoria" (selectionChange)="updateFilterCategoria()"
+          [compareWith]="compareSelect">
+          <mat-option *ngFor="let categoria of categorias" [value]="categoria.codigo_categoria">
+            {{categoria.descricao_categoria}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Sub Categoria</mat-label>
+        <mat-select [(ngModel)]="filtro.codigoSubCategoria" (selectionChange)="updateFilter()"
+          [compareWith]="compareSelect">
+          <mat-option *ngFor="let subCategoria of subCategorias" [value]="subCategoria.codigosubcategoria">
+            {{subCategoria.descricaosubcategoria}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Fornecedor</mat-label>
+        <mat-select [(ngModel)]="filtro.codigoFornecedor" (selectionChange)="updateFilter()"
+          [compareWith]="compareSelect">
+          <mat-option *ngFor="let fornecedor of fornecedores" [value]="fornecedor.codigo">
+            {{fornecedor.fantasia}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Marca</mat-label>
+        <mat-select [(ngModel)]="filtro.codigoMarca" (selectionChange)="updateFilter()" [compareWith]="compareSelect">
+          <mat-option *ngFor="let marca of marcas" [value]="marca.codigo_marca_produto">
+            {{marca.descricao_marca_produto}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-checkbox [ngModel]="prioridade" [checked]="prioridade" (change)="onChangePrioridade()">
+        Prioridade de Venda
+      </mat-checkbox>
+      <mat-checkbox [ngModel]="emPromocao" [checked]="emPromocao" (change)="onChangeEmPromocao()">
+        Em Promoção
+      </mat-checkbox>
+      <mat-checkbox [ngModel]="comEstoque" [checked]="comEstoque" (change)="onChangeComEstoque()">
+        Com Estoque
+      </mat-checkbox>
+      <mat-checkbox [ngModel]="mixCliente" [checked]="mixCliente" (change)="onChangeMixCliente()">
+        Mix do Cliente
+      </mat-checkbox>
+    </div>
+    <div class="container-legenda">
+      <span>Legenda</span>
+      <mat-divider></mat-divider>
+      <div class="legenda">
+        <div class="left">
+          <span>
+            <span class="iconify icon-novo-produto" data-icon="mdi-clock-in"></span>
+            Produto Novo
+          </span>
+          <span>
+            <mat-icon class="icon-percent">
+              percent
+            </mat-icon>
+            Produto com Política de Desconto
+          </span>
+          <span>
+            <span class="iconify icon-oferta" data-icon="mdi-sale"></span>
+            Produto em Oferta
+          </span>
+        </div>
+        <div class="right">
+          <span>
+            <mat-icon class="icon-paid material-icons-outlined">
+              paid
+            </mat-icon>
+            Produto Positivado no Mês
+          </span>
+          <span>
+            <mat-icon class="icon-remove">
+              remove_circle
+            </mat-icon>
+            Produto Sem Estoque
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

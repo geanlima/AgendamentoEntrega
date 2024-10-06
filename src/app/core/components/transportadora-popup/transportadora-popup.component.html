@@ -1,0 +1,36 @@
+<app-popup (closeModal)="onCloseModal()" [temp]="content" [title]="'Transportadora'">
+  <ng-template #content>     
+      <div class="main-container">
+        <div class="header-container">
+          <div class="search">
+            <app-search (searchChanged)="onSearchChanged()" [searchTerm]="searchTerm"
+              [placeholder]="'Nome da Transportadora'" [label]="'Procurar Transportadora'" (enterOnSearch)="onEnterOnSearch($event)"
+              [disabled]="false"></app-search>
+          </div>
+        </div>
+        <div class="table-transportadora">
+         <table mat-table [dataSource]="dataSource" matSort>
+          
+            <ng-container matColumnDef="codFornec">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Cód. Trans.</th>
+              <td mat-cell *matCellDef="let transportadoras">{{transportadoras.codFornec}}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="fantasia">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Fantasia</th>
+              <td mat-cell *matCellDef="let transportadoras">{{transportadoras.fantasia}}</td>
+            </ng-container>
+            
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowClicked(row)"></tr>            
+          </table>
+        </div>
+        <div class="atendimento-paginator">
+          <mat-paginator [hidePageSize]="true" [pageSize]="pageSize" [pageSizeOptions]="[pageSize]"
+            [ngClass]="{'matHidden': !dataSource }" [showFirstLastButtons]="true"></mat-paginator>
+        </div>
+      </div>
+    </ng-template>    
+  </app-popup>
+  
+  

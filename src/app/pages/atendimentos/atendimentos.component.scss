@@ -1,0 +1,452 @@
+@use "variables" as *;
+@use "theme" as *;
+
+$color-label-total: #808080;
+
+.background-container {
+    background-color: $default_background;
+    height: calc(100vh - 85px);
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.route-card {
+    margin: 0 120px 20px 120px;
+}
+
+.top-header-content {
+    padding-top: 10px;
+}
+
+.route-card-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.route-path-content {
+    display: flex;
+    flex-direction: row;
+}
+
+.route-separator {
+    font-weight: bold;
+    padding-left: 9px;
+    padding-right: 9px;
+}
+
+.route-sub-path {
+    font-style: italic;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    margin: 0 120px 50px 120px;
+    justify-content: space-between;
+}
+
+.header-card {
+    width: 35%;
+}
+
+.itens-card {
+    width: 64%;
+}
+
+.row-top-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 5px;
+}
+
+.row-top-header-align-start {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.label-header {
+    font-size: 12px;
+}
+
+.label-header {
+    font-size: 12px;
+}
+
+.value-header {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.value-header-big {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.id-razaosocial {
+    padding-right: 30px;
+}
+
+.label-field-start {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.label-field-end {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.field-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.field-group>* {
+    margin: 0 5px;
+}
+
+.field-group mat-form-field {
+    flex: 1;
+}
+
+.panel-saldo-conta-corrente-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #F6F6F6;
+}
+
+.panel-saldo-conta-corrente-bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #F6F6F6;
+    height: 30px;
+}
+
+.saldo-label {
+    color: #50BB87;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.saldo-valor {
+    color: #50BB87;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.fields-after-conta-corrente {
+    padding-top: 20px;
+}
+
+mat-card-header {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.form-atendimento {
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+
+    mat-form-field label {
+        color: $sgm-accent-color;
+    }
+}
+
+.filler {
+    padding-left: 5px;
+}
+
+.table-itenpedido {
+    height: 500px;
+    overflow-y: auto;
+
+    table {
+        width: 100%;
+
+
+
+        th {
+            color: $font-table-header;
+            background-color: $background-table-header;
+        }
+    }
+
+    tr:hover {
+        td {
+            color: white;
+            cursor: pointer;
+        }
+
+        background-color: $sgm-primary-color;
+    }
+}
+
+.header-resumo-itens {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.btn-adicionar-itens-container {
+    padding-top: 5px;
+    padding-right: 15px;
+}
+
+.btn-adicionar-itens {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    color: $sgm-primary-color;
+    width: 256px;
+    height: 32px;
+}
+
+.btn-text {
+    text-align: left;
+    font-weight: bold;
+}
+
+.btn-icon {
+    margin-left: auto;
+}
+
+mat-paginator {
+    display: flex;
+    justify-content: center;
+}
+
+.divider {
+    background-color: #CCCCCC !important;
+}
+
+.btn-avancar-retornar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    color: $sgm-primary-color;
+    width: 256px;
+    height: 48px;
+}
+
+.btn-retornar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    color: #9f1414;
+    width: 256px;
+    height: 48px;
+}
+
+.item-pedido-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+}
+
+.item-pedido-bottom-right {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding-left: 10px;
+}
+
+.valor-total-container {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    padding-left: 20px;
+}
+
+.mat-icon-cart {
+    transform: scale(2);
+    color: $color-label-total;
+}
+
+.valor-total-label {
+    font-size: 14px;
+    color: $color-label-total;
+}
+
+.field-group-valor {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.valor-total-r {
+    font-size: 22px;
+    color: $color-label-total;
+}
+
+.valor-total-valor {
+    font-size: 22px;
+    color: $sgm-primary-color;
+}
+
+.finalizar-pedido-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 64%;
+    height: 770px;
+    justify-content: space-between;
+}
+
+.dados-adicionais-fields {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding-top: 20px;
+}
+
+.dados-transportadora-fields {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding-top: 20px;
+}
+
+.dados-transportadora-fields {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    padding-top: 20px;
+    justify-content: space-between;
+
+}
+
+.campo-codigo {
+    width: 18%;
+}
+
+.campo-principal {
+    width: 80%;
+}
+
+.totais-conteiner {
+    display: flex;
+    flex-direction: row;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    justify-content: space-around;
+}
+
+.col-totais {
+    display: flex;
+    flex-direction: row;
+    padding-right: 40px;
+
+    border-right: 1px solid #E8E8E8;
+}
+
+
+.col-sub-totais {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+}
+
+.col-finalizar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 35%;
+}
+
+.col-finalizar-valores {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-right: 30px;
+
+    span {
+        color: $sgm-primary-color;
+        font-size: 18px;
+    }
+}
+
+.row-finalizar-valores {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    span {
+        font-weight: bold;
+    }
+
+    mat-icon {
+        color: $sgm-primary-color;
+        padding-right: 10px;
+    }
+
+}
+
+.finalizar-total-label {
+    color: $color-label-total;
+    font-size: 12px;
+}
+
+.finalizar-total-valor {
+    font-size: 12px;
+    font-weight: bold;
+    padding-bottom: 2px;
+}
+
+.finalizar-total-valor-col1 {
+    font-size: 12px;
+    font-weight: bold;
+    padding-bottom: 2px;
+    color: #18A762;
+}
+
+.btn-finalizar-pedido-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.btn-finalizar-pedido-content {
+    padding-right: 110px;
+}
+
+.btn-finalizar-pedido {
+    background-color: white;
+    color: $sgm-primary-color;
+    width: 256px;
+    height: 32px;
+    border: 1px solid $sgm-primary-color;
+}
+
+.subtitle-option-pagamento {
+    color: gray;
+}
+
+.option-pagamento-content {
+    display: flex;
+    flex-direction: column;
+}

@@ -1,0 +1,84 @@
+<div class="dashboard-container">
+
+  <div class="mat-card-top-group">
+
+    <mat-card class="mat-card-messages">
+
+      <mat-card-content class="mat-card-content-messages">
+
+        <div class="aviso">
+          <div class="header-content-messages">
+            <mat-icon>notifications</mat-icon><span>Aviso Recente</span>
+          </div>
+          <span>{{avisorecente}}</span>
+          <span class="footer-text-messages">{{dataviso}}</span>
+        </div>
+
+        <div class="divisor">
+
+        </div>
+
+        <div class="inbox">
+          <div class="inbox-header">
+            <img class="mailbox" src="assets/img/mailbox.svg">
+            <span>Você possui </span>
+            <span class="mail-count-text">{{mensagensNaoLidas}}</span>
+            <span> não lidas</span>
+          </div>
+          <div class="mail-itens">
+            <app-dashboard-mail-item *ngFor="let mensagem of mensagens" [de]="mensagem.de" [assunto]="mensagem.assunto"
+              [lido]="mensagem.lido" [id]="mensagem.id"></app-dashboard-mail-item>
+
+          </div>
+        </div>
+
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="mat-card-meta">
+      <mat-card-content class="mat-card-meta-content">
+        <mat-slider class="slider-meta" [max]="100" [min]="0" [discrete]="true" disabled [style.opacity]="'0.8'">
+          <input matSliderThumb [(ngModel)]="porcentagemMeta">
+        </mat-slider>
+        <div class="meta-values-content">
+          <div class="meta-values-content-sub">
+            <span class="meta-label">Faturamento</span>
+            <span class="meta-value-faturamento">{{valorFaturamentoDia | currency }}</span>
+          </div>
+          <div class="meta-values-content-sub">
+            <span class="meta-label">Meta do Dia</span>
+            <span class="meta-value-metadodia">{{valorMetaDia | currency }}</span>
+          </div>
+          <button class="btn-definir-meta" mat-fab extended (click)="onDefinirMeta()">
+            <span class="btn-text-meta">Definir Meta</span>
+            <mat-icon class="btn-icon" iconPositionEnd>chevron_right</mat-icon>
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+
+  <div class="mat-card-group">
+    <app-dashboard-card [imagePath]="'assets/img/wallet.svg'" [cardText]='"Valor Faturado"' [cardValue]="valorFaturado"
+      color="#45D493" [porcentagem]="porcentagemFaturado"></app-dashboard-card>
+    <app-dashboard-card [imagePath]="'assets/img/file-chart.svg'" [cardText]="'Positivação'"
+      [cardValue]="valorPositivaCao" color="#828282" [porcentagem]="porcentagemPositivacao"></app-dashboard-card>
+    <app-dashboard-card [imagePath]="'assets/img/cart-percent.svg'" [cardText]="'Ticket Médio'"
+      [cardValue]="valorTicketMedio" color="#FB9927"></app-dashboard-card>
+    <app-dashboard-card [imagePath]="'assets/img/chart-gantt.svg'" [cardText]="'Projeção de Resultado'"
+      [cardValue]="valorProjecaoResultado" color="#794DF6"></app-dashboard-card>
+  </div>
+
+  <mat-card class="mat-card-vendas">
+    
+    <mat-card-content>
+      <div class="table-vendas">
+        
+      </div>
+      <mat-paginator #paginator [pageSizeOptions]="[pageSize]" [hidePageSize]="true"
+        [ngClass]="{'matHidden': !dataSource }" [showFirstLastButtons]="true">
+      </mat-paginator>
+    </mat-card-content>
+  </mat-card>
+</div>

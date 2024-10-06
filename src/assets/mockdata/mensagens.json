@@ -1,0 +1,102 @@
+[
+    {
+        "id": 1,
+        "de": "João Silva",
+        "para": "Maria Gomes",
+        "assunto": "Reunião de equipe",
+        "texto": "Olá Maria, gostaria de confirmar sua presença na reunião de equipe que será realizada amanhã às 10h. A pauta da reunião será a apresentação do novo projeto.",
+        "lido": false,
+        "data": "2024-05-25T10:00:00Z",
+        "tipo": "mensagem"
+    },
+    {
+        "id": 2,
+        "de": "Maria Gomes",
+        "para": "João Silva",
+        "assunto": "Re: Reunião de equipe",
+        "texto": "Olá João, confirmo minha presença na reunião de equipe de amanhã. Aguardo ansiosamente a apresentação do novo projeto.",
+        "lido": false,
+        "data": "2024-05-25T11:00:00Z",
+        "tipo": "mensagem"
+    },
+    {
+        "id": 3,
+        "de": "Márcio Barbosa",
+        "para": "Todos",
+        "assunto": "Comunicado importante",
+        "texto": "Prezados colaboradores, informamos que o sistema estará indisponível para manutenção no dia 10 de março das 10h às 12h. Pedimos desculpas por qualquer inconveniente.",
+        "lido": false,
+        "data": "2024-03-09T09:00:00Z",
+        "tipo": "aviso"
+    },
+    {
+        "id": 4,
+        "de": "Ana Gomes",
+        "para": "João Silva",
+        "assunto": "Dúvida sobre o projeto",
+        "texto": "Olá João, tenho uma dúvida sobre o novo projeto. Você poderia me explicar melhor a parte X?",
+        "lido": false,
+        "data": "2024-05-24T15:00:00Z",
+        "tipo": "mensagem"
+    },
+    {
+        "id": 5,
+        "de": "João Silva",
+        "para": "Ana Gomes",
+        "assunto": "Re: Dúvida sobre o projeto",
+        "texto": "Olá Ana, claro que posso te ajudar. A parte X do projeto funciona da seguinte maneira...",
+        "lido": false,
+        "data": "2024-05-24T16:00:00Z",
+        "tipo": "mensagem"
+    },
+    {
+        "id": 6,
+        "de": "Márcio Barbosa",
+        "para": "João Silva",
+        "assunto": "Feedback sobre a reunião",
+        "texto": "Olá João, gostaria de te dar um feedback sobre a reunião de equipe de ontem. Achei a apresentação do novo projeto muito interessante e tenho algumas sugestões para melhorar...",
+        "lido": false,
+        "data": "2024-05-26T14:00:00Z",
+        "tipo": "mensagem"
+    },
+    {
+        "id": 7,
+        "de": "João Silva",
+        "para": "Márcio Barbosa",
+        "assunto": "Re: Feedback sobre a reunião",
+        "texto": "Olá Márcio, obrigado pelo feedback. Agradeço pelas sugestões e vou considerá-las para a próxima etapa do projeto.",
+        "lido": false,
+        "data": "2024-05-26T15:00:00Z",
+        "tipo": "mensagem"
+    },
+    {
+        "id": 8,
+        "de": "Maria Gomes",
+        "para": "João Silva",
+        "assunto": "Solicitação de ajuda",
+        "texto": "Olá João, estou com dificuldades para realizar a tarefa X. Você poderia me ajudar?",
+        "lido": false,
+        "data": "2024-05-27T09:00:00Z",
+        "tipo": "mensagem"
+    },
+    {
+        "id": 9,
+        "de": "João Silva",
+        "para": "Maria Gomes",
+        "assunto": "Re: Solicitação de ajuda",
+        "texto": "Olá Maria, claro que posso te ajudar. Vamos agendar uma reunião para discutirmos a tarefa X e te dar o suporte necessário.",
+        "lido": false,
+        "data": "2024-05-27T10:00:00Z",
+        "tipo": "mensagem"
+    },
+    {
+        "id": 10,
+        "de": "Márcio Barbosa",
+        "para": "Todos",
+        "assunto": "Enquete de satisfação",
+        "texto": "Prezados colaboradores, gostaríamos de convidá-los a participar de uma enquete de satisfação sobre o ambiente de trabalho. Sua opinião é muito importante para nós.",
+        "lido": false,
+        "data": "2024-05-28T08:00:00Z",
+        "tipo": "aviso"
+    }
+]

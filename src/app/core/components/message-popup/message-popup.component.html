@@ -1,0 +1,41 @@
+<app-popup (closeModal)="onCloseModal()" [temp]="content" [title]="'Nova Mensagem'">
+  <ng-template #content>
+    <div class="main-container">
+      <form [formGroup]="mensagemForm" #mensagemFormNgForm="ngForm">
+        <div class="tipo-para">
+          <mat-form-field appearance="fill" color="accent" class="tipo">
+            <mat-label>Tipo</mat-label>
+            <mat-select [(value)]="tipoSelecionado">
+              <mat-option value="mensagem">Mensagem</mat-option>
+              <mat-option value="aviso">Aviso</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="fill" color="accent" class="para">
+            <mat-label>Para</mat-label>
+            <input matInput type="text">
+          </mat-form-field>
+        </div>
+        <div class="assunto">
+          <mat-form-field appearance="fill" color="accent" class="assunto">
+            <mat-label>Assunto</mat-label>
+            <input matInput type="text">
+          </mat-form-field>
+        </div>
+        <div class="texto"></div>
+        <mat-form-field appearance="fill" class="texto">
+          <mat-label>Texto</mat-label>
+          <textarea matInput placeholder="Digite sua mensagem"></textarea>
+        </mat-form-field>
+        <div class="button-container">
+          <button mat-button class="cancel-button" (click)="onCloseModal()">Cancelar</button>
+          <div class="button-enviar">
+            <button mat-stroked-button>
+              Enviar
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </ng-template>
+</app-popup>

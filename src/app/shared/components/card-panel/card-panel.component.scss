@@ -1,0 +1,28 @@
+.card-main {
+    width: 29vh; //320px;
+    height: 9vh; //95px;
+}
+
+.card-content {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.field-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.label-valor {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.label-titulo {
+    font-size: 12px;
+    font-weight: bold;
+}

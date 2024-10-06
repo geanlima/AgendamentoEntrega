@@ -1,0 +1,4 @@
+<span class="rounded-span" [ngClass]="{'positive': value, 'negative': !value}">
+  <mat-icon class="arrow-icon">{{ value ? 'arrow_upward' : 'arrow_downward' }}</mat-icon>
+  {{ value ? 'Positivo' : 'Negativo' }}
+</span>

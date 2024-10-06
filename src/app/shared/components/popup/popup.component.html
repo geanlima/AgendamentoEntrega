@@ -1,0 +1,11 @@
+<div>
+  <div class="top-container">
+    <span class="title">
+      {{ title }}
+    </span>
+    <button mat-icon-button (click)="onClosePopUp()" [autofocus]="false">
+      <mat-icon class="close-icon material-icons-outlined">cancel</mat-icon>
+    </button>
+  </div>
+  <ng-content *ngTemplateOutlet="temp" class="main-container"></ng-content>
+</div>

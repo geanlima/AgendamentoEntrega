@@ -1,0 +1,13 @@
+<div class="main-container">
+  <mat-icon class="material-icons-outlined cart" [inline]="true">
+    shopping_cart
+  </mat-icon>
+  <span>Valor Total Produtos</span>
+  <span class="label-valor">{{venda.total_pedido | currency}}</span>
+  <button mat-stroked-button class="button-back" (click)="onRetornar()">
+    Retornar
+    <mat-icon iconPositionEnd>
+      arrow_back_ios
+    </mat-icon>
+  </button>
+</div>

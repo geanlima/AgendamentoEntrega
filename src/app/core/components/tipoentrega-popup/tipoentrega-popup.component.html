@@ -1,0 +1,29 @@
+<app-popup (closeModal)="onCloseModal()" [temp]="content" [title]="'Tipo de Entrega'">
+    <ng-template #content>
+        <div class="main-container">
+            <div class="header-container">
+              <div class="title">
+                Selecione o tipo de entrega que deseja realizar para a Venda Assistida:
+
+                <div class="radio-container">
+                  <label class="form-control" *ngFor="let item of tipoentrega$ | async">
+                    <input type="radio" 
+                           id="{{item.id}}" 
+                           name="radioentrega"  
+                           (change)="onEntregaChange($event)"> <!--[checked]="item.id == 'RI'"-->
+                    {{item.descricao}}
+                  </label>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="button-container">
+                <!--<button mat-button class="cancel-button" (click)="onCloseModal()">Cancelar</button>-->
+                <div class="button-confirmar">
+                  <button mat-stroked-button (click)="onConfirm()" [disabled]="!isSelected">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+  </app-popup>

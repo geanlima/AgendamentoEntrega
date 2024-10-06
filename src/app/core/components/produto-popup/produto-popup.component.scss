@@ -1,0 +1,50 @@
+@use 'variables' as *;
+@use "theme" as *;
+
+$right-width: 550px;
+
+.border {
+  margin-right: 14px;
+  border-radius: 20px;
+  margin-bottom: 14.5px;
+  border: 1px solid #E6E6E6;
+}
+
+.main-container {
+  display: flex;
+  padding: 20px;
+  padding-top: 0px;
+  flex-direction: row;
+}
+
+.informacao {
+  width: 456px;
+  max-height: 800px;
+}
+
+.descricao {
+  width: $right-width;
+  height: 242px;
+}
+
+.validade-produto {
+  width: $right-width;
+  height: 57px;
+}
+
+.filial-entrega {
+  width: $right-width;
+  height: 80px;
+}
+
+.tipo-entrega {
+  width: $right-width;
+  height: 80px;
+}
+
+.inclusao {
+  background: linear-gradient(180deg, #FFFFFF 85%, $sgm-primary-color 15%);
+
+  width: $right-width;
+  height: 244px;
+}

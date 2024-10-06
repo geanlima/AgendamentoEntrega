@@ -1,0 +1,17 @@
+<div class="toast-main">
+  <div class="color" [ngClass]="{success: success, warning: warning, error: error}"></div>
+  <div class="icon">
+    <mat-icon class="success" *ngIf="success">check_circle_24px</mat-icon>
+    <mat-icon class="warning" *ngIf="warning">warning_24px</mat-icon>
+    <mat-icon class="error" *ngIf="error">error_24px</mat-icon>
+  </div>
+  <div class="message-box">
+    <div class="mat-body-strong message" [ngClass]="{success: success, warning: warning, error: error}">
+      {{ data.message }}
+    </div>
+    <div class="mat-small font-medium-emphasis">{{ data.description }}</div>
+  </div>
+  <div class="action">
+    <mat-icon (click)="dismiss()">clear_24px</mat-icon>
+  </div>
+</div>

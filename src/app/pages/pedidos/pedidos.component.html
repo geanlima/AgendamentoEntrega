@@ -1,0 +1,222 @@
+<div class="background-container">
+  <mat-card class="route-card">
+    <mat-card-content class="route-card-content">
+      <span class="value-header">Pedidos</span>
+      <div class="route-path-content">
+        <span>Home</span>
+        <span class="route-separator">/</span>
+        <span class="route-sub-path">Pedidos</span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="pedidos-container">
+    <mat-card class="mat-card-filtro">
+      <mat-card-content>
+        <span class="title">Filtro</span>
+        <div class="space"></div>
+        <app-search (searchChanged)="onSearchChangedNumPedidoFV($event)" [searchTerm]="filterOptions.numPedidoFV"
+          [label]="'Número Pedido FV'" (enterOnSearch)="onEnterOnSearch($event)" [disabled]="searchDisabled"></app-search>
+        <div class="space"></div>
+        <app-search (searchChanged)="onSearchChangednumPedidoERP($event)" [searchTerm]="filterOptions.numPedidoERP"
+          [label]="'Número Pedido ERP'" (enterOnSearch)="onEnterOnSearch($event)" [disabled]="searchDisabled"></app-search>
+        <div class="space"></div>
+        <app-search (searchChanged)="onSearchChangedCodCliente($event)" [searchTerm]="filterOptions.codCliente"
+          [label]="'Código Cliente'" (enterOnSearch)="onEnterOnSearch($event)" [disabled]="searchDisabled"></app-search>
+        <div class="space"></div>
+        <div class="button-container">
+          <button mat-flat-button (click)="onSearchChanged()">
+            Pesquisar
+            <mat-icon iconPositionEnd>search</mat-icon>
+          </button>
+          <button mat-flat-button (click)="onClearFilters()">
+            Limpar Filtros
+            <mat-icon iconPositionEnd>cleaning_services</mat-icon>
+          </button>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="filtros-input">
+          <mat-form-field appearance="fill">
+            <mat-label>Tipo de Venda</mat-label>
+            <mat-select [(ngModel)]="filterOptions.tipoVenda" (selectionChange)="onSearchChanged()"
+              [compareWith]="compareSelect">
+              <mat-option *ngFor="let tipo of tipovenda$ | async" [value]="tipo.id">
+                {{ tipo.id }} - {{ tipo.descricao }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="fill" color="accent">
+            <mat-label>Período Emissão</mat-label>
+            <mat-date-range-input [rangePicker]="pickervencimento">
+              <input matStartDate placeholder="De" (dateChange)="onSearchChanged()" [(ngModel)]="filterOptions.dataEmissaoInicial">
+              <input matEndDate placeholder="Até" (dateChange)="onSearchChanged()" [(ngModel)]="filterOptions.dataEmissaoFinal">
+            </mat-date-range-input>
+
+            <mat-datepicker-toggle matSuffix [for]="pickervencimento"></mat-datepicker-toggle>
+            <mat-date-range-picker #pickervencimento></mat-date-range-picker>
+          </mat-form-field>
+        </div>
+
+        <div class="check-conteiner">
+          <div class="check-list">
+            <span>Situação</span>
+            <mat-checkbox [(ngModel)]="filterOptions.checkEmCarregamento" (change)="onSearchChanged()">Em Carregamento</mat-checkbox>
+            <mat-checkbox [(ngModel)]="filterOptions.checkFaturado" (change)="onSearchChanged()">Faturado</mat-checkbox>
+            <mat-checkbox [(ngModel)]="filterOptions.checkLiberado" (change)="onSearchChanged()">Liberado</mat-checkbox>
+            <mat-checkbox [(ngModel)]="filterOptions.checkBloqueado" (change)="onSearchChanged()">Bloqueado</mat-checkbox>
+            <mat-checkbox [(ngModel)]="filterOptions.checkCancelado" (change)="onSearchChanged()">Cancelado</mat-checkbox>
+          </div>
+          <div class="check-list">
+            <span>Status</span>
+            <mat-checkbox [(ngModel)]="filterOptions.checkAberto" (change)="onSearchChanged()">Aguardando Envio</mat-checkbox>
+            <mat-checkbox [(ngModel)]="filterOptions.checkTrasmitido" (change)="onSearchChanged()">Transmitido</mat-checkbox>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="mat-card-vendas">
+      <mat-card-content>
+        <div class="header">
+          <span class="title">Pedidos Recentes</span>
+          <div class="table-actions">
+            <button mat-flat-button color="accent" (click)="showProcessamentoPedidos()">
+              <mat-icon class="center-icon">cloud_upload</mat-icon>
+            </button>
+            <button mat-flat-button color="accent" (click)="configTabela()">
+              <mat-icon class="center-icon">settings</mat-icon>
+            </button>
+          </div>
+        </div>
+        <div class="table-vendas">
+          <table mat-table [dataSource]="dataSource" matSort [ngClass]="{'matHidden': !dataSource }">
+            <ng-container matColumnDef="select">
+              <th mat-header-cell *matHeaderCellDef>
+                <mat-checkbox (change)="selectAllRows()" [checked]="isAllSelected()" [indeterminate]="isIndeterminate()"
+                  *ngIf="hasAguardandoEnvio"></mat-checkbox>
+              </th>
+              <td mat-cell *matCellDef="let venda">
+                <mat-checkbox (click)="$event.stopPropagation()" (change)="toggleSelection(venda)" [checked]="isSelected(venda)"
+                  *ngIf="venda.status === 'AGUARDANDO ENVIO'"></mat-checkbox>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="rca_order_id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Número Pedido FV</th>
+              <td mat-cell *matCellDef="let venda">{{venda.rca_order_id}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="date">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Data Pedido</th>
+              <td mat-cell *matCellDef="let venda">{{venda.date | date: 'dd/MM/yyyy':'UTC'}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="client_code">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Código Cliente</th>
+              <td mat-cell *matCellDef="let venda">{{venda.client_code}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="fantasy_name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Razão Social</th>
+              <td mat-cell *matCellDef="let venda">{{venda.fantasy_name}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="order_number_erp">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Número ERP</th>
+              <td mat-cell *matCellDef="let venda">{{venda.order_number_erp}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="type_sale">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Tipo Venda</th>
+              <td mat-cell *matCellDef="let venda">{{getTipoVenda(venda.type_sale)}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="total_order_amount">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Valor</th>
+              <td mat-cell *matCellDef="let venda">{{venda.total_order_amount | currency}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+              <td mat-cell *matCellDef="let venda">{{venda.status}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="payment_situation_erp">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Situação</th>
+              <td mat-cell *matCellDef="let venda">
+
+                <div class="situacao-bloqueado-texto" *ngIf="venda.payment_situation_erp === 'BLOQUEADO'">
+                  <span><img src="assets/img/ic_bloqueado.png"> {{venda.payment_situation_erp}}</span>
+                </div>
+
+                <!-- LIBERADO -->
+                <div class="situacao-liberado-texto" *ngIf="venda.payment_situation_erp === 'LIBERADO'">
+                  <span><img src="assets/img/ic_liberado.png"> {{venda.payment_situation_erp}}</span>
+                </div>
+
+                <!-- EM CARREGAMENTO -->
+                <div class="situacao-em-carregamento-texto" *ngIf="venda.payment_situation_erp === 'EM CARREGAMENTO'">
+                  <span><img src="assets/img/ic_carregamento.png"> {{venda.payment_situation_erp}}</span>
+                </div>
+
+                <!-- FATURADO -->
+                <div class="situacao-faturado-texto" *ngIf="venda.payment_situation_erp === 'FATURADO'">
+                  <span><img src="assets/img/ic_faturado.png"> {{venda.payment_situation_erp}}</span>
+                </div>
+
+                <!-- CANCELADO -->
+                <div class="situacao-cancelado-texto" *ngIf="venda.payment_situation_erp === 'CANCELADO'">
+                  <span><img src="assets/img/ic_cancelado.png"> {{venda.payment_situation_erp}}</span>
+                </div>
+
+                <!-- REJEITADO -->
+                <div class="situacao-cancelado-texto" *ngIf="venda.payment_situation_erp === 'REJEITADO'">
+                  <span><img src="assets/img/ic_cancelado.png"> {{venda.payment_situation_erp}}</span>
+                </div>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let venda" (click)="$event.stopPropagation()">
+
+
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                  <mat-icon>view_cozy</mat-icon>
+                </button>
+
+                <mat-menu #menu="matMenu" xPosition="after">
+                  <button mat-menu-item (click)="onConsultarVenda(venda)">
+                    <mat-icon class="menu-icon">attach_money</mat-icon>
+                    <span class="menu-span">Consultar</span>
+                  </button>
+                  <button mat-menu-item (click)="onImprimirVenda(venda)">
+                    <mat-icon class="menu-icon">print</mat-icon>
+                    <span class="menu-span">Imprimir</span>
+                  </button>
+
+                  <button mat-menu-item (click)="onEditPedido(venda)">
+                    <mat-icon class="menu-icon">edit</mat-icon>
+                    <span class="menu-span">Editar</span>
+                  </button>
+
+                  <button mat-menu-item (click)="onTransmitirPedido(venda)">
+                    <mat-icon class="menu-icon">cloud_upload</mat-icon>
+                    <span class="menu-span">Transmissão</span>
+                  </button>
+                </mat-menu>
+
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+        <mat-paginator #paginator [pageSizeOptions]="[pageSize]" [hidePageSize]="true" [ngClass]="{'matHidden': !dataSource }"
+          [showFirstLastButtons]="true">
+        </mat-paginator>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

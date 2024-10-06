@@ -1,0 +1,75 @@
+@use 'variables' as *;
+@use "theme" as *;
+
+:host {
+  overflow-y: scroll;
+}
+
+.main-container {
+  padding-top: 10px;
+  padding-right: 30px;
+  height: calc(100vh - 280px);
+}
+
+.action {
+  display: flex;
+  // margin-top: 47px;
+  margin-bottom: 15px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  span {
+    font-size: 14px;
+    color: $sgm-primary-color;
+    font-weight: bold;
+  }
+
+  button {
+    color: $sgm-primary-color;
+  }
+}
+
+mat-divider+div {
+  margin-top: 31px;
+}
+
+.container-filtros {
+  display: flex;
+  flex-direction: column;
+}
+
+.filtros-input {
+  display: flex;
+  margin-bottom: 17px;
+  flex-direction: column;
+}
+
+.container-legenda {
+  display: flex;
+  flex-direction: column;
+
+  .legenda {
+    display: flex;
+    font-size: 9px;
+    flex-direction: row;
+    color: $color-search-font;
+  }
+
+  .left {
+    display: flex;
+    margin-right: 6.99px;
+    flex-direction: column;
+  }
+
+  .right {
+    display: flex;
+    flex-direction: column;
+  }
+
+  span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+}

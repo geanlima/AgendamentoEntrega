@@ -1,0 +1,35 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+
+$primary-color: #192C6A;
+$accent-color: #192C6A;
+
+$mat-primary-custom: (
+    500: $primary-color,
+    A100: #307BF4,
+    contrast: (500: #ffffff, A100: #000000, )
+);
+
+$mat-accent-custom: (
+    500: $accent-color,
+    A100: #ffffff,
+    contrast: (500: #ffffff, A100: #000000, )
+);
+
+$primary-palette: mat.define-palette($mat-primary-custom, 500, A100, 500);
+$accent-palette: mat.define-palette($mat-accent-custom, 500, A100, 500);
+$warn-palette: mat.define-palette(mat.$red-palette);
+
+$typography: mat.define-typography-config($font-family: 'Roboto, "Helvetica Neue", sans-serif');
+
+$logo: url('../../../../assets/img/logo_dellys.png');
+$logo_inside: url('../../../../assets/img/logo_inside_dellys.png');
+$bg_image: url('../../../assets/img/bg_dellys.png');
+
+// $success: mat.define-palette(mat.$green-palette);
+// $info: mat.define-palette(mat.$blue-palette);
+
+// $variants: (
+//     success: $success,
+//     info: $info,
+// );

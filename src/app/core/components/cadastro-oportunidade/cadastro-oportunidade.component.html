@@ -1,0 +1,53 @@
+<app-popup (closeModal)="onCloseModal()" [temp]="content" [title]="'Nova Oportunidade'">
+  <ng-template #content>
+    <div class="main-container">
+
+
+      <form [formGroup]="oportunidadeForm" #oportunidadeFormNgForm="ngForm" class="form-oportunidade">
+
+        <div class="form-oportunidade-container">
+          <mat-form-field appearance="fill">
+            <mat-label>Tipo</mat-label>
+            <mat-select formControlName="tipo" (selectionChange)="onTipoChanged($event)">
+              <mat-option *ngFor="let tipo of tipos" [value]="tipo">
+                {{tipo}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <ng-container *ngIf="tipoSelecionado === 'Produto'; else inputComponent">
+            <mat-form-field appearance="fill" color="accent">
+              <mat-label>Descrição</mat-label>
+              <input matInput [formControlName]="'descricaoProduto'" [matAutocomplete]="auto">
+              <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelectionProdutoChanged($event)">
+                <mat-option *ngFor="let produto of filteredOptionsProdutos | async" [value]="produto">
+                  {{produto.descricao_produto}}
+                </mat-option>
+              </mat-autocomplete>
+              <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+          </ng-container>
+
+          <ng-template #inputComponent>
+
+            <mat-form-field appearance="fill" color="accent">
+              <mat-label>Descrição</mat-label>
+              <input matInput formControlName="descricao" type="text">
+            </mat-form-field>
+
+          </ng-template>
+
+          <mat-form-field appearance="fill" color="accent">
+            <mat-label>Observação</mat-label>
+            <input matInput formControlName="observacao" type="text">
+          </mat-form-field>
+
+        </div>
+      </form>
+      <button mat-stroked-button class="cadastrar-button" (click)="addOportunidade(oportunidadeForm.value)">
+        Cadastrar
+      </button>
+
+    </div>
+  </ng-template>
+</app-popup>

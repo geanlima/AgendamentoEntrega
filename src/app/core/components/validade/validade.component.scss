@@ -1,0 +1,25 @@
+.main-container {
+  display: flex;
+  padding: 13px 28px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.validade {
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid #E6E6E6;
+}
+
+.icon-color {
+  color: #FB9927;
+}
+
+.validade-shelf-button {
+  background-color: #FB9927;
+}

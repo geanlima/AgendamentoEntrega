@@ -1,0 +1,48 @@
+@use "variables" as *;
+@use "theme" as *;
+
+.content {
+    width: 360px;
+    height: 46px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 20px;
+    background-color: #F5F6FA;
+    color: $sgm-primary-color;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $sgm-primary-color;
+        color: white;
+
+        mat-icon {
+            color: white;
+        }
+    }
+}
+
+.mensagem {
+    display: flex;
+    flex-direction: column;
+    width: 235px;
+
+}
+
+.de {
+    font-size: 8px;
+}
+
+.assunto {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.icon-end {
+    padding-right: 10px;
+}
+
+.icon-start {
+    padding-left: 10px;
+}

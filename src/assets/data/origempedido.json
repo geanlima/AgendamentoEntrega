@@ -1,0 +1,18 @@
+[
+    {
+        "id": "F",
+        "descricao": "Força de Venda"
+    },
+    {
+        "id": "R",
+        "descricao": "Balcão Reserva"
+    },
+    {
+        "id": "C",
+        "descricao": "Call Center"
+    },
+    {
+        "id": "T",
+        "descricao": "Telemarketing"
+    }
+]

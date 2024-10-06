@@ -1,0 +1,12 @@
+<div class="main-container">
+  <div class="tipoentrega">
+    <mat-form-field appearance="fill">
+      <mat-label>Tipo de Entrega</mat-label>
+      <mat-select class="select" [(ngModel)]="itemVenda.tipo_entrega">
+        <mat-option *ngFor="let tipoentrega of tipoentrega$ | async" [value]="tipoentrega.id" ngDefaultControl>
+          {{tipoentrega.descricao}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>

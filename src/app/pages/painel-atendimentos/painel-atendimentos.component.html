@@ -1,0 +1,315 @@
+<div class="background-container">
+  <mat-card class="route-card">
+    <mat-card-content class="route-card-content">
+      <span class="value-header">Novo Atendimento</span>
+      <div class="route-path-content">
+        <span>Home</span>
+        <span class="route-separator">/</span>
+        <span class="route-sub-path">Clientes</span>
+        <span class="route-separator">/</span>
+        <span class="route-sub-path">Novo Atendimento</span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-tab-group class="tab_atendimento">
+    <mat-tab label="Resumo">
+      <div class="main-container">
+        <div class="cards-container-left">
+
+          <mat-card class="card-resumo">
+            <div class="header-resumo">
+              <mat-card-header>Resumo</mat-card-header>
+            </div>
+            <mat-card-content>
+              <div>
+
+                <div class="row-top-header">
+                  <div class="label-field-start">
+                    <span class="label-header">Cliente</span>
+                    <span class="value-header-big">{{fantasia_cliente}}</span>
+                  </div>
+                </div>
+
+                <div class="row-top-header-align-start">
+                  <span class="id-razaosocial">{{idCliente}}</span>
+                  <span>{{razao_social}}</span>
+                </div>
+              </div>
+
+              <div class="row-top-header">
+                <div class="label-field-start">
+                  <span class="label-header">Endereço</span>
+                  <span class="value-header">{{endereco_cliente}}</span>
+                </div>
+              </div>
+
+              <div class="row-top-header">
+                <div class="label-field-start">
+                  <span class="label-header">CPF/CNPJ</span>
+                  <span class="value-header">{{cnpj_cpf_cliente}}</span>
+                </div>
+              </div>
+
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="card-detalhe">
+            <mat-card-content>
+              <div>
+                <div class="row-top-header">
+
+                  <div class="label-field-start">
+                    <span class="label-header">Limite de Crédito</span>
+                    <span class="value-header">{{limiteCredito | currency }}</span>
+                  </div>
+
+                  <div class="label-field-start">
+                    <span class="label-header">Valor de Crédito</span>
+                    <span class="value-header">{{valorCredito | currency }}</span>
+                  </div>
+
+                  <app-status-credito [value]="true"></app-status-credito>
+
+                </div>
+                <br>
+                <div class="panel-saldo">
+                  <span class="saldo-label">Saldo disponível</span>
+                  <span class="saldo-valor">{{saldoDisponivel | currency }}</span>
+                </div>
+                <br>
+                <div class="panel-detalhe-compra">
+                  <div class="panel-detalhe-col">
+
+                    <div class="label-field-start">
+                      <span class="label-header">Primeira Compra</span>
+                      <span class="value-header">{{dtPrimeiraCompra | date: 'dd/MM/yyyy'}}</span>
+                    </div>
+                    <br>
+                    <div class="label-field-start">
+                      <span class="label-header">Tempo de Relacionamento</span>
+                      <span class="value-header">{{tempoRelacionamento}}</span>
+                    </div>
+                    <br>
+                    <div class="label-field-start">
+                      <span class="label-header">Maior Compra</span>
+                      <div class="compra-content">
+                        <mat-icon class="icon-maior-compra">upload</mat-icon>
+                        <span class="value-header">{{maiorCompra | currency }}</span>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="panel-detalhe-col">
+                    <div class="label-field-start">
+                      <span class="label-header">Ultima Compra</span>
+                      <span class="value-header">{{dtUltimaCompra | date: 'dd/MM/yyyy'}}</span>
+                    </div>
+                    <br>
+                    <div class="label-field-start">
+                      <span class="label-header">Ticket Médio</span>
+                      <span class="value-header">{{ticketMedio | currency }}</span>
+                    </div>
+                    <br>
+                    <div class="label-field-start">
+                      <span class="label-header">Menor Compra</span>
+                      <div class="compra-content">
+                        <mat-icon class="icon-menor-compra">download</mat-icon>
+                        <span class="value-header">{{menorCompra | currency }}</span>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="panel-detalhe-col">
+                    <app-card-panel-small valor={{titulosEmAberto}} titulo="Títulos em Aberto" corValor="#FB9927"
+                      (click)="onTitulosEmAbertoClick()"></app-card-panel-small>
+                    <app-card-panel-small valor={{titulosVencidos}} titulo="Títulos Vencidos" corValor="#D32B46"
+                      (click)="onTitulosVencidosClick()"></app-card-panel-small>
+                  </div>
+                </div>
+
+                <br>
+                <div style="text-align:center">
+                  <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
+                    [yaxis]="chartOptions.yaxis" [title]="chartOptions.title"></apx-chart>
+                </div>
+
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+
+        <div class="cards-container-middle">
+          <div class="cards-top-middle">
+
+            <app-card-panel valor1={{prazoMedioPagamento}} titulo1="Prazo Médio Pagamento"
+              corValor="#45A4C0"></app-card-panel>
+
+            <app-card-panel valor1={{mediaAtraso}} titulo1="Média Atraso" corValor="#FB9927"></app-card-panel>
+
+          </div>
+
+          <div class="cards-top-middle">
+
+            <app-card-panel valor1={{mixIdeal}} titulo1="Mix do Cliente" corValor="#18A762"
+              class="cards-top-middle-interact" (click)="onMixIdealClick()"></app-card-panel>
+
+            <app-card-panel valor1={{qtdDevolucoes}} titulo1="QTD. Devoluções" valor2={{valorTotalDevolvido}}
+              titulo2="Valor Total Devolvido" corValor="#D32B46" class="cards-top-middle-interact"
+              (click)="onDevolucoesClick()"></app-card-panel>
+
+
+          </div>
+
+
+          <div class="card-grid-middle">
+            <mat-card class="mat-card-grid">
+              <mat-card-header>Vendas neste Atendimento</mat-card-header>
+              <mat-card-content>
+                <div class="historico-content">
+                  <div class="table-vendas">
+                    <table mat-table [dataSource]="dataSourceAtendimento" matSort
+                      [ngClass]="{'matHidden': !dataSourceAtendimento }">
+
+                      <ng-container matColumnDef="descricaoCondVenda">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Tipo</th>
+                        <td mat-cell *matCellDef="let historico">
+                          <div [ngClass]="{
+                          'situacao-venda':historico.descricaoCondVenda === '1 - VENDA NORMAL',
+                          'situacao-bonificacao':historico.descricaoCondVenda === '2 - BONIFICAÇÃO',
+                        }">
+                            {{historico.descricaoCondVenda.slice(3)}}
+                          </div>
+                        </td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="numeroPedido">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nº Pedido</th>
+                        <td mat-cell *matCellDef="let historico">{{historico.numeroPedido}}</td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="valorTotal">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Valor</th>
+                        <td mat-cell *matCellDef="let historico">{{historico.valorTotal | currency}}</td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="quantidadeitens">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>QTD. Itens</th>
+                        <td mat-cell *matCellDef="let historico">{{historico.quantidadeitens}}</td>
+                      </ng-container>
+
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                  </div>
+                  <div class="paginator-empty"></div>
+                  <!-- <mat-paginator #paginator [pageSizeOptions]="[pageSize]" [hidePageSize]="true"
+                    [ngClass]="{'matHidden': !mostrarPaginator }" [showFirstLastButtons]="true">
+                  </mat-paginator> -->
+
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+
+        </div>
+
+        <div class="cards-container-right">
+
+          <div class="buttons-top-right">
+
+            <button class="btn-finalizar-atendimento" (click)="onFinalizarAtendimento()">
+              <span>Finalizar Atendimento</span>
+              <mat-icon class="btn-icon" iconPositionEnd>close</mat-icon>
+            </button>
+
+            <button class="btn-iniciar-venda" color="primary" (click)="onIniciarVenda()">
+              <span>Iniciar Venda</span>
+              <mat-icon class="btn-icon" iconPositionEnd>navigate_next</mat-icon>
+            </button>
+
+
+          </div>
+
+          <div class="card-oportunidade">
+            <mat-card class="mat-card-oportunidade">
+              <mat-card-header>Oportunidades</mat-card-header>
+              <div *ngIf="oportunidades.length == 0; else comOportunidades">
+                <mat-card-content class="mat-card-content-oportunidade">
+                  <div class="novas-oportunidades-content">
+
+                    <img class="img-oportunidade" src="assets/img/oportunidade.png">
+
+                    <span class="label-cadastre-novas">Cadastre Novas</span>
+                    <span class="label-opotunidades">Oportunidades</span>
+                    <span class="label-opotunidades-sub">Realize o cadastro de</span>
+                    <span class="label-opotunidades-sub">oportunidades agora mesmo!</span>
+                    <button class="btn-adicionar-oportunidade" mat-fab extended (click)="onOportunidades()">
+                      <span class="btn-text">Adicionar Oportunidade</span>
+                    </button>
+                  </div>
+                </mat-card-content>
+              </div>
+
+              <ng-template #comOportunidades>
+                <mat-card-content class="mat-card-content-oportunidade-cadastrada">
+                  <br>
+                  <div class="oportunidade-botoes">
+                    <div class="inside-label-oportunidade-botoes">
+                      <span class="qtd-oportunidades">{{oportunidades.length }}</span>
+                      <span class="label-oportunidades-cadastradas"> {{getTextoOportunidadeCadastrada()}}</span>
+                    </div>
+
+                    <button class="btn-iniciar-oportunidade" (click)="onOportunidades()">
+                      <span>Nova Oportunidade </span>
+                      <mat-icon class="btn-icon-add-oportunidade" iconPositionEnd>error</mat-icon>
+                    </button>
+                  </div>
+
+                  <div class="oportunidade-list">
+
+                    <mat-card *ngFor="let oportunidade of oportunidades" class="mat-card-oportunidade-list">
+                      <div class="card-item-oportunidade-header">
+                        <div class="inner-card-item-oportunidade-header">
+                          <img class="icon-oportunidade-tipo" *ngIf="oportunidade.tipo === 'PRODUTO'"
+                            src="assets/img/oportunidade_produto.svg">
+                          <img class="icon-oportunidade-tipo" *ngIf="oportunidade.tipo === 'CAMPANHA'"
+                            src="assets/img/oportunidade_campanha.svg">
+                          <img class="icon-oportunidade-tipo" *ngIf="oportunidade.tipo === 'PROMOTOR'"
+                            src="assets/img/oportunidade_merch.svg">
+                          <div class="label-oportunidade-header-tittle">
+                            <span
+                              class="inner-label-oportunidade-header-tittle">{{obterNomeTipo(oportunidade.tipo)}}</span>
+                          </div>
+                        </div>
+                        <button mat-icon-button color="primary" (click)="deleteOrtunidade(oportunidade)">
+                          <mat-icon>delete</mat-icon>
+                        </button>
+
+                      </div>
+                      <mat-card-content>
+                        <span class="label-oportunidade-descricao">{{oportunidade.descricao}}</span>
+                        <p> <span class="label-oportunidade-obs-tittle">Observação:</span> <span
+                            class="label-oportunidade-obs-value">{{oportunidade.observacao}}</span></p>
+                      </mat-card-content>
+                    </mat-card>
+                  </div>
+
+                </mat-card-content>
+              </ng-template>
+
+            </mat-card>
+          </div>
+        </div>
+
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Pedidos"> <app-historico-pedidos></app-historico-pedidos>
+    </mat-tab>
+    <mat-tab label="SAC"> <app-atendimento-sac></app-atendimento-sac> </mat-tab>
+    <mat-tab label="Histórico de Cobrança"><app-historico-cobranca></app-historico-cobranca> </mat-tab>
+  </mat-tab-group>
+
+</div>

@@ -1,0 +1,8 @@
+@use '../../src/themes/theme' as *;
+
+.logo {
+  width: 278px;
+  height: 69px;
+  background-size: cover;
+  background-image: $sgm-logo;
+}

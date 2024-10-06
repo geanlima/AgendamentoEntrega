@@ -1,0 +1,10 @@
+@use "variables" as *;
+
+mat-form-field {
+  width: 100%;
+  color: $color-search-font;
+
+  mat-label {
+    font-size: 16px;
+  }
+}

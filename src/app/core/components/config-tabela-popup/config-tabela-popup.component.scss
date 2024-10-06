@@ -1,0 +1,38 @@
+@use "variables" as *;
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    height: 10px;
+}
+
+.header-container {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 17px;
+
+    .title {
+        display: flex;
+        margin-top: 25px;
+        margin-left: 25px;
+        flex-direction: column;
+
+        .item-number {
+            font-size: 12px;
+            color: rgba(176, 202, 209, 1);
+        }
+
+        .item-name {
+            font-size: 14px;
+            font-weight: bold;
+            color: rgba(69, 69, 69, 1);
+        }
+    }
+}
+
+.actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}

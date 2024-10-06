@@ -1,0 +1,63 @@
+@use "variables" as *;
+@use "theme" as *;
+
+.content {
+    width: 100%;
+    height: 90px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    color: #808080;
+}
+
+.mensagem {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.data {
+    font-size: 8px;
+    font-style: italic;
+}
+
+.de {
+    font-size: 8px;
+}
+
+.texto {
+    font-size: 8px;
+}
+
+.assunto {
+    font-size: 12px;
+    font-weight: bold;
+    color: $sgm-primary-color;
+}
+
+.icon-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #6793af;
+    color: #fff;
+}
+
+.icon-circle.nao-lido {
+    background-color: #002b7f;
+}
+
+.mat-icon {
+    font-size: 24px;
+}

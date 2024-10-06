@@ -1,0 +1,20 @@
+.main-container {
+    display: flex;
+    padding: 13px 28px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+  
+.filial {
+    display: flex;
+    flex-direction: column;
+    height: 56px;
+    width: 100%;
+}
+
+.select {
+    height: 24px;
+    width: 100%;
+    font-size: 16px;
+}

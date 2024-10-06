@@ -1,0 +1,117 @@
+@use "theme" as *;
+
+.main-container {
+  display: flex;
+  padding: 13px 28px;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  span {
+    font-size: 18px;
+    color: #454545;
+    font-weight: bold;
+  }
+}
+
+.inputs {
+  display: flex;
+  padding: 8px 0px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  .valores {
+    display: flex;
+    flex-direction: column;
+
+    mat-form-field {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    mat-form-field+mat-form-field {
+      margin-top: 8px;
+    }
+  }
+}
+
+.quantidade {
+  display: flex;
+  font-size: 24px;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  color: $sgm-primary-color;
+
+  span {
+    color: $sgm-accent-color;
+  }
+
+  .icon-package {
+    margin-bottom: 8px;
+  }
+}
+
+.add-quantidade {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.add-pedido {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  button {
+    color: $sgm-primary-color;
+    border-radius: 21px;
+    border: 1px solid $sgm-primary-color;
+  }
+}
+
+.icon-color {
+  color: $sgm-primary-color;
+}
+
+.add-button {
+  background-color: white;
+}
+
+.quantidade-field {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  input {
+    text-align: center;
+  }
+}
+
+.cabecalho-quantidade {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .title {
+    color: #808080;
+    font-size: 14px;
+  }
+}
+
+:host ::ng-deep .mdc-text-field--filled {
+  background-color: white !important;
+}

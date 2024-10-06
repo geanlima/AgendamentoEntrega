@@ -1,0 +1,35 @@
+<div class="main-container">
+  <div class="title">
+    <span class="principal">
+      {{produto?.descricao_produto}}
+    </span>
+    <div class="detalhe">
+
+      <div class="texto-detalhe">
+        <span class="texto">
+          {{texto_detalhe}}
+        </span>
+      </div>
+
+      <div class="imagem-produto" [mtxTooltip]="'after'" [mtxTooltip]="tooltipTpl" [mtxTooltipClass]="'tooltipImg'">
+        <img [src]="base64Image">
+      </div>
+
+
+    </div>
+    <div class="descricao">
+      <span class="color">
+
+      </span>
+      <pre class="color">
+
+    </pre>
+    </div>
+  </div>
+</div>
+
+<ng-template #tooltipTpl>
+  <div class="img-tooltip-big">
+    <img [src]="base64Image">
+  </div>
+</ng-template>

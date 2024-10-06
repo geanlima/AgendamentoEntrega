@@ -1,0 +1,38 @@
+@use "variables" as *;
+@use "theme" as *;
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    padding: $popup-titulo-padding-y 25px;
+    height: calc($popup-titulo-height - calc($popup-titulo-padding-y * 2));
+}
+
+
+
+.table-mix-ideal {
+    table {
+        th {
+            color: $font-table-header;
+            background-color: $background-table-header;
+        }
+    }
+
+    tr:hover {
+        td {
+            color: white;
+            cursor: pointer;
+        }
+
+        background-color: $sgm-primary-color;
+    }
+}
+
+.mix-ideal-paginator {
+    margin-top: auto;
+}
+
+mat-paginator {
+    display: flex;
+    justify-content: center;
+}

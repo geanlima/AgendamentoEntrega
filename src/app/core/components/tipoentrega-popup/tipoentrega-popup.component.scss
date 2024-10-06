@@ -1,0 +1,86 @@
+@use 'variables' as *;
+@use "theme" as *;
+
+$right-width: 550px;
+
+.border {
+  margin-right: 14px;
+  border-radius: 20px;
+  margin-bottom: 14.5px;
+  border: 1px solid #E6E6E6;
+}
+
+.main-container {
+  display: flex;
+  padding: 20px;
+  padding-top: 0px;
+  flex-direction: column;
+}
+
+.header-container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 17px;
+
+  .title {
+    display: flex;
+    margin-top: 25px;
+    margin-left: 10px;
+    flex-direction: column;
+  }
+
+  .radios {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+.radio-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  .form-control {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 16px;
+    font-weight: 400;
+    font-size: 16px;
+  }
+
+  input {
+    margin-right: 20px;
+  };
+
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.cancel-button {
+  background-color: #e0e0e0;
+  color: #707070;
+  border-radius: 20px;
+  width: 250px;
+  height: 40px;
+}
+
+.button-confirmar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  button {
+      color: $sgm-primary-color;
+      border-radius: 20px;
+      border: 1px solid $sgm-primary-color;
+      width: 250px;
+      height: 40px;
+  }
+}

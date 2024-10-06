@@ -1,0 +1,565 @@
+@use "variables" as *;
+@use "theme" as *;
+
+@mixin ajustaTamanhoFonte($tamanho) {
+    font-size: $tamanho;
+}
+
+$color-label-total: #808080;
+$icon-size-grid-situacao: 16px;
+$max-resolution: 1400px;
+$tiny-font: 12px;
+$small-font: 12px;
+$medium-font: 14px;
+$big-font: 16px;
+
+
+.background-container {
+    height: calc(100vh - 85px);
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    background-color: $default_background;
+}
+
+.route-card {
+    margin: 0 120px 20px 120px;
+}
+
+.route-card-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.value-header {
+    font-weight: bold;
+
+    @include ajustaTamanhoFonte($medium-font);
+
+    @media (min-width: $max-resolution) {
+        @include ajustaTamanhoFonte($small-font);
+    }
+}
+
+.route-path-content {
+    display: flex;
+    flex-direction: row;
+}
+
+.route-separator {
+    font-weight: bold;
+    padding-left: 9px;
+    padding-right: 9px;
+}
+
+.route-sub-path {
+    font-style: italic;
+}
+
+.header-card {
+    width: 35%;
+}
+
+.row-top-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.label-field-start {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.label-header {
+    @include ajustaTamanhoFonte($small-font);
+
+    @media (min-width: $max-resolution) {
+        @include ajustaTamanhoFonte($tiny-font);
+    }
+}
+
+.value-header-big {
+    font-weight: bold;
+    @include ajustaTamanhoFonte($big-font);
+
+    @media (min-width: $max-resolution) {
+        @include ajustaTamanhoFonte($medium-font);
+    }
+}
+
+.row-top-header-align-start {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+}
+
+.id-razaosocial {
+    padding-right: 30px;
+}
+
+mat-card-header {
+    font-weight: bold;
+
+    @include ajustaTamanhoFonte($big-font); // Tamanho padrão
+
+    @media (min-width: $max-resolution) {
+        @include ajustaTamanhoFonte($medium-font); // Tamanho para telas maiores
+    }
+}
+
+.mat-chip-positivo {
+    color: green;
+}
+
+.cards-container-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30%;
+}
+
+.cards-container-middle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 40%;
+}
+
+.cards-container-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28%;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: row;
+    height: 80%;
+    margin: 15px 0px 50px 0px;
+    justify-content: space-between;
+}
+
+.panel-saldo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F6F6F6;
+    height: 30px;
+}
+
+.saldo-label {
+    color: #50BB87;
+    font-weight: bold;
+    padding-left: 5px;
+
+    @include ajustaTamanhoFonte($big-font);
+
+    @media (min-width: $max-resolution) {
+        @include ajustaTamanhoFonte($medium-font);
+    }
+}
+
+.saldo-valor {
+    font-weight: bold;
+    padding-right: 5px;
+
+    @include ajustaTamanhoFonte($big-font);
+
+    @media (min-width: $max-resolution) {
+        @include ajustaTamanhoFonte($medium-font);
+    }
+}
+
+.panel-detalhe-compra {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.panel-detalhe-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.header-resumo {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.column-top-header {
+    display: flex;
+    flex-direction: column;
+}
+
+.cards-top-middle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+.card-grid-middle {
+    height: 70%;
+}
+
+.mat-card-grid {
+    height: 100%;
+}
+
+.card-oportunidade {
+    height: 90%;
+
+}
+
+.mat-card-oportunidade {
+    height: 100%;
+}
+
+.buttons-top-right {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 15%;
+}
+
+.btn-finalizar-atendimento {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: white;
+    color: $sgm-primary-color;
+    width: 45%;
+    height: 60px;
+    border: 1px solid $sgm-primary-color;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-iniciar-venda {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: $sgm-primary-color;
+    color: white;
+    width: 45%;
+    height: 60px;
+    border: 1px solid $sgm-primary-color;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-adicionar-oportunidade {
+    background-color: #18A762;
+    color: white;
+    width: 256px;
+    height: 32px;
+    border: 1px solid#18A762;
+}
+
+.btn-text {
+    text-align: left;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.img-oportunidade {
+    height: 100px;
+    width: 80px;
+    padding-bottom: 20px;
+}
+
+.novas-oportunidades-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.mat-card-content-oportunidade {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.mat-card-content-oportunidade-cadastrada {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    border-color: #E8E8E8;
+}
+
+.label-cadastre-novas {
+    color: $sgm-primary-color;
+    font-size: 18px;
+    padding-bottom: 5px;
+}
+
+.label-opotunidades {
+    font-size: 32px;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.label-opotunidades-sub {
+    color: #999999;
+    font-size: 18px;
+    padding-bottom: 3px;
+}
+
+.table-vendas {
+    padding-top: 10px;
+    height: 51vh;
+    width: 100%;
+
+    overflow-y: auto;
+
+    table {
+
+        th {
+            color: $font-table-header;
+            background-color: $background-table-header;
+
+        }
+    }
+
+    tr:hover {
+        td {
+            color: white;
+            cursor: pointer;
+
+        }
+
+        background-color: $sgm-primary-color;
+    }
+
+
+    .situacao-venda {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding-top: 5px;
+        color: #45D493;
+        background-color: #DEF7EC;
+    }
+
+    .situacao-bonificacao {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        color: #FF6233;
+        background-color: #FFDCD1;
+
+    }
+}
+
+.paginator-empty {
+    height: 100px;
+}
+
+.historico-content {
+    height: 70%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-historico-completo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    border: 1px solid#808080;
+    border-radius: 5px;
+    color: #808080;
+    font-size: 12px;
+    width: 180px;
+    height: 32px;
+    cursor: pointer;
+}
+
+mat-paginator {
+    display: flex;
+    justify-content: center;
+}
+
+.mat-column-situacao {
+    flex: none;
+    width: 200px;
+}
+
+.compra-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.icon-menor-compra {
+    font-size: 20px;
+    color: red;
+}
+
+.icon-maior-compra {
+    font-size: 20px;
+    color: green;
+}
+
+.cards-top-middle-interact {
+    cursor: pointer;
+}
+
+.card-resumo {
+    height: 20vh;
+}
+
+.card-detalhe {
+    height: 70%;
+}
+
+.btn-iniciar-oportunidade {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: #808080;
+    font-size: 10px;
+    width: 50%;
+    cursor: pointer;
+    border: none;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    height: 40px;
+
+    &:hover {
+        background-color: $sgm-accent-color;
+        color: white;
+
+        mat-icon {
+            color: white;
+        }
+    }
+}
+
+.oportunidade-botoes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    align-items: center;
+    background-color: #E8E8E8;
+    border-radius: 20px;
+
+    width: 360px;
+}
+
+.inside-label-oportunidade-botoes {
+    padding-left: 20px;
+}
+
+.qtd-oportunidades {
+    font-weight: bold;
+    font-size: $small-font;
+}
+
+.label-oportunidades-cadastradas {
+    font-size: 10px;
+}
+
+.btn-icon-add-oportunidade {
+    margin-left: auto;
+    color: $sgm-accent-color;
+}
+
+
+.oportunidade-list {
+    padding-top: 10px;
+    max-height: 75%;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.mat-card-oportunidade-list {
+    margin-bottom: 10px;
+    min-width: 390;
+    min-height: 110;
+}
+
+.card-item-oportunidade-header {
+    padding-top: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.inner-card-item-oportunidade-header {
+    display: flex;
+    flex-direction: row;
+}
+
+.label-oportunidade-header-tittle {
+    background-color: $sgm-accent-color;
+    border-radius: 20px;
+}
+
+.inner-label-oportunidade-header-tittle {
+    font-size: 10px;
+    color: white;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.label-oportunidade-descricao {
+    color: $sgm-accent-color;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.label-oportunidade-obs-tittle {
+    color: #9E9E9E;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.label-oportunidade-obs-value {
+    padding-left: 5px;
+    color: #9E9E9E;
+    font-size: 10px;
+}
+
+.icon-oportunidade-tipo {
+    width: 20px;
+    height: 20px;
+    padding-right: 10px;
+}
+
+.tab_atendimento {
+    margin: 0px 120px 0px 120px;
+
+    ::ng-deep .mat-mdc-tab-header {
+        background-color: white;
+        border-radius: 16px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+}

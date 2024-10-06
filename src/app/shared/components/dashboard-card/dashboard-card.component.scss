@@ -1,0 +1,63 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 400px;
+    height: 140px;
+}
+
+.image-container {
+    width: 56px;
+    height: 56px;
+}
+
+.content {
+    height: 100px;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.label-card-text {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.label-card-value {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.porcentagem {
+    width: 110px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.image-porcentagem {
+    width: 23px;
+    height: 17px;
+}
+
+.label-porcentagem {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.label-mensal {
+    font-size: 12px;
+}
+
+.bar {
+    height: 4px;
+    width: 230px;
+}
+
+.porcentagemvazia {
+    height: 20px;
+}

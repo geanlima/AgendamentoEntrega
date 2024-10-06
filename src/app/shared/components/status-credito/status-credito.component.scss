@@ -1,0 +1,21 @@
+.rounded-span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    border-radius: 20px;
+    color: white;
+    height: 15px;
+}
+
+.positive {
+    background-color: green;
+}
+
+.negative {
+    background-color: red;
+}
+
+.arrow-icon {
+    margin-right: 5px;
+}

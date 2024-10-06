@@ -1,0 +1,21 @@
+<mat-card class="container">
+    <img [src]="imagePath" class="image-container">
+    <div class="content">
+        <span class="label-card-text">{{ cardText }}</span>
+        <span class="label-card-value" [style.color]="color">{{ cardValue }}</span>
+        <div class="bar" [style.background-color]="color"></div>
+        <div class="porcentagem" *ngIf="porcentagem !== undefined">
+            <img *ngIf="porcentagem >= 0; else negativeImage" [src]="'assets/img/dashboard_card_up.svg'"
+                class="image-porcentagem">
+            <ng-template #negativeImage>
+                <img [src]="'assets/img/dashboard_card_down.svg'" class="image-porcentagem">
+            </ng-template>
+            <span class="label-porcentagem"> {{porcentagem}}%</span>
+            <span class="label-mensal"> Mensal</span>
+        </div>
+
+        <div class="porcentagemvazia" *ngIf="porcentagem === undefined">
+
+        </div>
+    </div>
+</mat-card>

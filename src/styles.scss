@@ -1,0 +1,214 @@
+@use '@angular/material' as mat;
+@use "variables" as *;
+@use "overrides" as *;
+@use '../src/themes/theme' as *;
+@use 'sass:map';
+@import 'mixins';
+
+$default-theme: $sgm-theme;
+
+@include mat.core();
+
+@include mat.typography-hierarchy($sgm-typography);
+
+@include mat.core-theme($default-theme);
+@include mat.all-component-themes($default-theme);
+
+:root {
+  --primary: $sgm-primary-color;
+  --accent: $sgm-accent-color;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.main-dialog {
+  min-width: auto;
+}
+
+.mat-elevation-z0 {
+  box-shadow: none !important;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  border-radius: var(--mdc-dialog-container-shape, var(--mdc-shape-medium, 20px)) !important;
+}
+
+// .tooltipLegenda {
+//   padding: 17px;
+//   border-radius: 8px;
+//   background-color: white;
+//   border: 1px solid #EAEAEA;
+
+//   div {
+//     display: flex;
+//     flex-direction: row;
+//     align-items: center;
+//   }
+
+//   div+div {
+//     margin-bottom: 6px;
+//   }
+
+//   span {
+//     color: $color-search-font;
+//   }
+// }
+
+.icon-paid {
+  color: #45D493;
+}
+
+.icon-remove {
+  color: #D32B46;
+}
+
+.icon-percent {
+  color: #009CD2;
+}
+
+.icon-oferta {
+  font-size: 24px;
+  color: #FB9927;
+}
+
+.icon-novo-produto {
+  font-size: 24px;
+  color: #000000;
+}
+
+.backdrop {
+  background-color: #0000004b;
+}
+
+.img-thumbnail {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #E6E6E6;
+  border-radius: 50%; // Isso faz com que a div seja circular
+  overflow: hidden; // Para garantir que a imagem não ultrapasse os limites da div
+  position: relative; // Para posicionar a imagem dentro da div
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; // Isso faz com que a imagem se adapte ao tamanho da div, mantendo a proporção e cortando se necessário
+    position: absolute; // Para que a imagem fique dentro da div circular
+    top: 0; // Alinha a imagem no topo da div
+    left: 0; // Alinha a imagem à esquerda da div
+  }
+
+}
+
+.tooltipImg {
+  padding: 5px;
+  border-radius: 8px;
+  background-color: white;
+  border: 1px solid #EAEAEA;
+
+  div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  div+div {
+    margin-bottom: 6px;
+  }
+
+  span {
+    color: $color-search-font;
+  }
+}
+
+.img-tooltip {
+  width: 150px;
+  height: 150px;
+  padding: 5px;
+  border-radius: 8px;
+  background-color: white;
+  border: 1px solid #c4c2c2;
+
+  div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  div+div {
+    margin-bottom: 6px;
+  }
+
+  span {
+    color: $color-search-font;
+  }
+
+  overflow: hidden; // Para garantir que a imagem não ultrapasse os limites da div
+  position: relative; // Para posicionar a imagem dentro da div
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; // Isso faz com que a imagem se adapte ao tamanho da div, mantendo a proporção e cortando se necessário
+    position: absolute; // Para que a imagem fique dentro da div circular
+    top: 0; // Alinha a imagem no topo da div
+    left: 0; // Alinha a imagem à esquerda da div
+  }
+
+}
+
+
+.img-tooltip-big {
+  width: 250px;
+  height: 250px;
+  padding: 5px;
+  border-radius: 8px;
+  background-color: white;
+  border: 1px solid #c4c2c2;
+
+  div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  div+div {
+    margin-bottom: 6px;
+  }
+
+  span {
+    color: $color-search-font;
+  }
+
+  overflow: hidden; // Para garantir que a imagem não ultrapasse os limites da div
+  position: relative; // Para posicionar a imagem dentro da div
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; // Isso faz com que a imagem se adapte ao tamanho da div, mantendo a proporção e cortando se necessário
+    position: absolute; // Para que a imagem fique dentro da div circular
+    top: 0; // Alinha a imagem no topo da div
+    left: 0; // Alinha a imagem à esquerda da div
+  }
+
+}

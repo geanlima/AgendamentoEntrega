@@ -1,0 +1,9 @@
+<div class="content" (click)="CallPainelMensagens()">
+  <mat-icon class="icon-start" *ngIf="lido; else naoLido">drafts</mat-icon>
+  <ng-template #naoLido><mat-icon class="icon-start">mail</mat-icon></ng-template>
+  <div class="mensagem">
+    <span class="de">DE: {{de}}</span>
+    <span class="assunto">{{assunto}}</span>
+  </div>
+  <mat-icon class="icon-end">navigate_next</mat-icon>
+</div>

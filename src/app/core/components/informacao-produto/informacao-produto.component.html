@@ -1,0 +1,199 @@
+<div class="main-container">
+  <div class="container">
+    <span class="title">
+      Informações do Produto
+    </span>
+    <div>
+      <div class="cabecalho" style="display:flex; flex-direction: row; width: 100%; justify-content: space-between; align-items: center; ">
+        <div>
+          <span class="margin">
+            Código de Barras
+          </span>
+          <span class="informacaoleft">
+            {{produto?.codigo_ean}}
+          </span>
+        </div>
+        <div>
+          <span class="margin">
+            QTD. EMB Master
+          </span>   
+          <span class="informacaocenter">
+            {{produto?.qt_embalagem_compra}}
+          </span>   
+        </div>
+        <div>
+          <button mat-stroked-button style="height: 50px; display: flex;">
+            <div class="cabecalho" style="gap: 10px; width: 100%;">
+              <div style="display:flex; flex-direction:column;">
+                <span class="margin">
+                  Estoque
+                </span>
+                <span class="informacaoright">
+                  {{produto?.estoque_disponivel}}
+                </span>
+              </div>
+              <div style="display: flex; align-items: center; width: 100%;">
+                <mat-icon iconPositionEnd class="icon-color">search</mat-icon>
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <div class="cabecalho" style="display:flex; flex-direction: row; margin-top: 10px; width: 100%; justify-content: space-between; align-items: center; ">
+        <div>
+          <span class="margin">
+            Embalagem
+          </span>
+          <span class="informacaoleft">
+            {{produto?.embalagem_produto}}
+          </span>
+        </div>
+        <div>
+          <span class="margin">
+            Un. Venda
+          </span>   
+          <span class="informacaocenter">
+            {{produto?.unidade_venda}}
+          </span>   
+        </div>
+        <div>
+          <span class="margin">
+            Preço
+          </span>
+          <span class="informacaoright">
+            {{dadoComercial.precoTabela | currency}}
+          </span>
+        </div>
+      </div>     
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+  
+  <div class="container">
+    <span class="title">
+      Negociação
+    </span>
+    <div>
+      <div class="cabecalho">
+        <span>
+          Preço Mínimo
+        </span>
+        <span>
+          Preço Tabela
+        </span>
+        <span>
+          Preço Máximo
+        </span>
+      </div>
+      <div class="informacao">
+        <div class="min-max">
+          <span class="money margin">
+            {{dadoComercial.precoMinimo | currency}}
+          </span>
+          <span class="percent">
+            {{dadoComercial.percentualDescontoFlexivel}}%
+          </span>
+        </div>
+        <span class="money margin">
+          {{dadoComercial.precoTabela | currency}}
+        </span>
+        <div class="min-max">
+          <span class="money">
+            {{dadoComercial.precoMaximo | currency}}
+          </span>
+          <span class="percent">
+            {{dadoComercial.percentualAcrescimoMaximo}}%
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="container">
+    <span class="title">
+      Histórico
+    </span>
+    <div>
+      <div class="cabecalho">
+        <span>
+          Data ULT. Compra
+        </span>
+        <span>
+          QTD. ULT Compra
+        </span>
+        <span>
+          Preço. ULT Compra
+        </span>
+      </div>
+      <div class="informacao" *ngIf="dadoHistorico !== undefined">
+        <div>
+          <span class="margin">
+            {{dadoHistorico.DataUltCompra}}
+          </span>
+        </div>
+        <span class="margin">
+          {{dadoHistorico.QTDUltimaCompra}}
+        </span>
+        <span class="margin">
+          {{dadoHistorico.PrecoUltimaCompra | currency}}
+        </span>
+      </div>
+
+      <div class="informacao" *ngIf="dadoHistorico === undefined">
+        <div>
+          <span class="margin">
+            -
+          </span>
+        </div>
+        <div>
+          <span class="margin">
+            -
+          </span>
+        </div>
+        <div>
+          <span class="margin">
+            -
+          </span>
+        </div>
+      </div>
+
+      <div class="cabecalho">
+        <span>
+          QTD Média
+        </span>
+        <span>
+          % Participação
+        </span>
+      </div>
+      <div class="informacao" *ngIf="dadoHistorico !== undefined">
+        <div>
+          <span class="margin">
+            {{dadoHistorico.QuantidadeMedia}}
+          </span>
+        </div>
+        <span>
+          {{dadoHistorico.percentualParticipacao}}
+        </span>
+      </div>
+
+      <div class="informacao" *ngIf="dadoHistorico === undefined">
+        <div>
+          <span class="margin">
+            -
+          </span>
+        </div>
+        <span>
+          -
+        </span>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div style="text-align:center">
+    <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
+      [yaxis]="chartOptions.yaxis" [title]="chartOptions.title"></apx-chart>
+  </div>  
+</div>
+

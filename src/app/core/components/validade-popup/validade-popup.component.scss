@@ -1,0 +1,69 @@
+@use "variables" as *;
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  height: calc($popup-validade-height - $popup-fixed-title-height);
+}
+
+.header-container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 17px;
+
+  .title {
+    display: flex;
+    margin-top: 25px;
+    margin-left: 25px;
+    flex-direction: column;
+
+    .item-number {
+      font-size: 12px;
+      color: rgba(176, 202, 209, 1);
+    }
+
+    .item-name {
+      font-size: 14px;
+      font-weight: bold;
+      color: rgba(69, 69, 69, 1);
+    }
+  }
+}
+
+.success {
+  color: #4CAF50;
+}
+
+.money {
+  color: #18A762;
+}
+
+.table-validades {
+  table {
+    th {
+      color: $font-table-header;
+      background-color: $background-table-header;
+    }
+
+    td {
+      border-bottom: none;
+      border-right: 1px solid $table-vertical-row;
+    }
+  }
+
+  .desconto {
+    color: $color-desconto;
+  }
+
+  button {
+    color: #EAEAEA;
+  }
+
+  button:hover {
+    color: #174290;
+  }
+}
+
+.oferta-paginator {
+  margin-top: auto;
+}

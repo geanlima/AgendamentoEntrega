@@ -1,0 +1,36 @@
+@use "theme" as *;
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cart {
+  margin-right: 4px;
+}
+
+mat-icon,
+span {
+  font-size: 12px;
+  color: $sgm-primary-color;
+}
+
+.label-valor {
+  font-size: 22px;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+.button-back {
+  display: flex;
+  margin-left: 41px;
+  flex-direction: row;
+  border-radius: 23px;
+  justify-content: flex-end;
+}
+
+.mat-mdc-outlined-button:not(:disabled) {
+  border-color: $sgm-primary-color;
+}

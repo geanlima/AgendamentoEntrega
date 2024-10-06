@@ -1,0 +1,67 @@
+@use "variables" as *;
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: $popup-titulo-padding-y 25px;
+}
+
+.meta-atual-content {
+    font-size: 12px;
+    color: #808080;
+    background-color: #F7F7F7;
+    width: 412px;
+    height: 32px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.valor-faturado-content {
+    font-size: 12px;
+    color: #808080;
+    width: 412px;
+    height: 32px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.label-valor {
+    color: black;
+    font-weight: bold;
+    padding-right: 10px;
+}
+
+.btn-alterar-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: white;
+    color: #14559F;
+    width: 256px;
+    height: 42px;
+    border: 1px solid #14559F;
+    font-size: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+        color: white;
+        background-color: #174290;
+    }
+}
+
+.btn-icon {
+    margin-left: auto;
+}
+
+.input-novo-valor {
+    width: 412px;
+    font-size: 12px;
+    color: #878787;
+}

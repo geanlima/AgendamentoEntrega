@@ -1,0 +1,214 @@
+@use "variables" as *;
+@use "theme" as *;
+
+@mixin ajustaTamanhoFonte($tamanho) {
+    font-size: $tamanho;
+}
+
+$color-label-total: #808080;
+$icon-size-grid-situacao: 16px;
+$max-resolution: 1400px;
+$tiny-font: 12px;
+$small-font: 12px;
+$medium-font: 14px;
+$big-font: 16px;
+
+
+.background-container {
+    height: calc(100vh - 85px);
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    background-color: $default_background;
+}
+
+.route-card {
+    margin: 0 120px 20px 120px;
+}
+
+.route-card-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.value-header {
+    font-weight: bold;
+
+    @include ajustaTamanhoFonte($medium-font);
+
+    @media (min-width: $max-resolution) {
+        @include ajustaTamanhoFonte($small-font);
+    }
+}
+
+.route-path-content {
+    display: flex;
+    flex-direction: row;
+}
+
+.route-separator {
+    font-weight: bold;
+    padding-left: 9px;
+    padding-right: 9px;
+}
+
+.route-sub-path {
+    font-style: italic;
+}
+
+
+.main-container {
+    height: 100%;
+    margin: 0 120px 50px 120px;
+}
+
+.main-card-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100%;
+    width: 97%;
+}
+
+.messages-main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+}
+
+.message-list {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 96%;
+    padding-right: 10px;
+}
+
+.message-detail {
+    height: 100%;
+    width: 96%;
+}
+
+.divider {
+    height: 100%;
+    width: 2px;
+    background-color: #0000000D;
+}
+
+.search-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.add-messages {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: white;
+    width: 55px;
+    height: 55px;
+    background-color: $sgm-primary-color;
+    border: 1px solid $sgm-primary-color;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.search-field {
+    width: 550px;
+}
+
+.tab_mensagensavisos {
+    //margin: 0px 120px 0px 120px;
+
+    ::ng-deep .mat-mdc-tab-header {
+        background-color: white;
+        border-radius: 16px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+}
+
+.scroll-mensagens {
+    padding-top: 10px;
+    max-height: 600px; // ajuste a altura conforme necessário
+    overflow-y: auto;
+    overflow-x: hidden; // opcional
+}
+
+.message-item {
+    background-color: white;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.message-item.selected.selected {
+    border-radius: 20px;
+    background-color: #CAD7DF;
+}
+
+.icon-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #C4C4C4;
+    color: #fff;
+}
+
+.message-detail {
+    display: flex;
+    flex-direction: column;
+    color: #808080;
+}
+
+.message-datail-container {
+    padding: 20px 50px;
+}
+
+.message-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.message-sub-header {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.data {
+    font-size: 8px;
+    font-style: italic;
+}
+
+.de {
+    font-size: 8px;
+}
+
+.texto {
+    font-size: 8px;
+}
+
+.assunto {
+    font-size: 12px;
+    font-weight: bold;
+    color: $sgm-primary-color;
+}
+
+.no-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+}

@@ -1,0 +1,20 @@
+<app-popup (closeModal)="onCloseModal()" [temp]="content" [title]="'Colunas visíveis'">
+  <ng-template #content>
+    <div class="main-container">
+      <div class="header-container">
+        <div class="title">
+
+          <div *ngFor="let coluna of colunastabela">
+            <mat-checkbox *ngIf="coluna.editavel" [(ngModel)]="coluna.selecionado">
+              {{ coluna.titulo }}
+              <!-- - {{ coluna.selecionado }} -->
+            </mat-checkbox>
+          </div>
+        </div>
+      </div>
+      <div class="actions">
+        <button mat-flat-button color="accent" (click)="onSalvar()">Salvar</button>
+      </div>
+    </div>
+  </ng-template>
+</app-popup>

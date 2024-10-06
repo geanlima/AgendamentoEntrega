@@ -1,0 +1,80 @@
+@use "variables" as *;
+@use "theme" as *;
+
+@mixin ajustaTamanhoFonte($tamanho) {
+  font-size: $tamanho;
+}
+
+$medium-font: 14px;
+$max-resolution: 1400px;
+$small-font: 12px;
+
+.background-container {
+  padding: 5px 0;
+  //display: flex;
+  //flex-direction: column;
+  background-color: $default_background;
+}
+
+.mat-card-popup {
+  margin: 20px;
+  padding: 15px;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 18px;
+  color: #454545;
+  font-weight: bold;
+  margin-bottom: 24px;
+}
+
+.table-vendas {
+  height: 550px;
+  overflow-y: auto;
+
+  table {
+      width: 100%;
+
+      th {
+          color: $font-table-header;
+          background-color: $background-table-header;
+      }
+  }
+
+  tr:hover {
+      td {
+          color: white;
+          cursor: pointer;
+      }
+
+      background-color: $sgm-primary-color;
+  }
+}
+
+.popup-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+
+  button {
+    margin-left: 10px; 
+  }
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+
+
+

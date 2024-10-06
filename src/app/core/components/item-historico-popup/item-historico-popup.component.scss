@@ -1,0 +1,150 @@
+@use "variables" as *;
+@use "theme" as *;
+
+$fontesizelabel: 10px;
+$fontesizevalue: 12px;
+
+.main-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding: $popup-titulo-padding-y 25px;
+
+}
+
+.left-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 35%;
+    padding-left: 10px;
+    padding-right: 20px;
+
+}
+
+.right-panel {
+    width: 65%;
+    padding-right: 10px;
+}
+
+.card-resumo {
+    height: 500px;
+
+}
+
+.card-detalhe {
+    height: 500px;
+}
+
+
+
+.panel-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between
+}
+
+.panel-row-label {
+    font-size: $fontesizelabel;
+}
+
+.panel-row-value {
+    font-weight: bold;
+    font-size: $fontesizevalue;
+}
+
+
+.field-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.table-item {
+    height: 30vh;
+
+    table {
+        th {
+            color: $font-table-header;
+            background-color: $background-table-header;
+        }
+    }
+
+    tr:hover {
+        td {
+            color: white;
+            cursor: pointer;
+        }
+
+        background-color: $sgm-primary-color;
+    }
+}
+
+.item-paginator {
+    margin-top: auto;
+}
+
+mat-paginator {
+    display: flex;
+    justify-content: center;
+}
+
+.field-group-footer-total {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 25%;
+    padding-left: 10px;
+
+}
+
+.field-group-footer-dados {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 10px;
+    width: 100%;
+}
+
+
+.right-panel-footer {
+    padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.inner-field-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    width: 100%;
+
+}
+
+.field-group-footer-peso {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 20%;
+
+}
+
+.field-group-footer-qtd {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 20%;
+
+}
+
+.field-group-footer-obs {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    width: 60%;
+
+}

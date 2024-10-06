@@ -1,0 +1,102 @@
+<app-popup (closeModal)="onCloseModal()" [temp]="content" [title]="'Títulos'">
+  <ng-template #content>
+    <div class="main-container">
+      <div class="header-container">
+        <div class="search">
+
+          <mat-form-field appearance="fill" color="accent">
+            <mat-label>Data de Emissão</mat-label>
+            <mat-date-range-input [rangePicker]="pickeremissao">
+              <input matStartDate placeholder="De" (dateChange)="onSearchChanged()"
+                [(ngModel)]="filterDataEmissaoInicial">
+              <input matEndDate placeholder="Até" (dateChange)="onSearchChanged()" [(ngModel)]="filterDataEmissaoFinal">
+            </mat-date-range-input>
+
+            <mat-datepicker-toggle matSuffix [for]="pickeremissao"></mat-datepicker-toggle>
+            <mat-date-range-picker #pickeremissao></mat-date-range-picker>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" color="accent">
+            <mat-label>Data de Vencimento</mat-label>
+            <mat-date-range-input [rangePicker]="pickervencimento">
+              <input matStartDate placeholder="De" (dateChange)="onSearchChanged()"
+                [(ngModel)]="filterDataVencimentoInicial">
+              <input matEndDate placeholder="Até" (dateChange)="onSearchChanged()"
+                [(ngModel)]="filterDataVencimentoFinal">
+            </mat-date-range-input>
+
+            <mat-datepicker-toggle matSuffix [for]="pickervencimento"></mat-datepicker-toggle>
+            <mat-date-range-picker #pickervencimento></mat-date-range-picker>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Tipo de Cobrança</mat-label>
+            <mat-select placeholder="Tipo de Pagamento" [(ngModel)]="filterTipoPagamento"
+              (selectionChange)="onSearchChanged()">
+              <mat-option> </mat-option>
+              <mat-option *ngFor="let cobranca of tipoCobranca" [value]="cobranca.codigoCobranca">
+                {{ cobranca.cobranca }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-slide-toggle [(ngModel)]="checkedAVencer" color="primary" (change)="onSearchChanged()">
+            A Vencer
+          </mat-slide-toggle>
+
+          <mat-slide-toggle [(ngModel)]="checkedVencido" color="primary" (change)="onSearchChanged()">
+            Vencido
+          </mat-slide-toggle>
+
+          <mat-slide-toggle [(ngModel)]="checkedBaixado" color="primary" (change)="onSearchChanged()">
+            Baixado
+          </mat-slide-toggle>
+
+        </div>
+      </div>
+      <div class="table-titulos">
+        <table mat-table [dataSource]="dataSource" matSort>
+          <ng-container matColumnDef="duplicata">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nº Título</th>
+            <td mat-cell *matCellDef="let titulos">{{titulos.duplicata}}</td>
+          </ng-container>
+          <ng-container matColumnDef="parcela">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Parcelas</th>
+            <td mat-cell *matCellDef="let titulos">{{titulos.parcela}}</td>
+          </ng-container>
+          <ng-container matColumnDef="cobranca">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Cobrança</th>
+            <td mat-cell *matCellDef="let titulos">{{titulos.cobranca}}</td>
+          </ng-container>
+          <ng-container matColumnDef="valorOriginal">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Valor</th>
+            <td mat-cell *matCellDef="let titulos">{{titulos.valorOriginal | currency}}</td>
+          </ng-container>
+          <ng-container matColumnDef="situacao">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Situação</th>
+            <td mat-cell *matCellDef="let titulos">{{titulos.situacao}}</td>
+          </ng-container>
+          <ng-container matColumnDef="dataEmissao">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Emissão</th>
+            <td mat-cell *matCellDef="let titulos">{{titulos.dataEmissao | date: 'dd/MM/yyyy'}}</td>
+          </ng-container>
+          <ng-container matColumnDef="dataVencimento">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Vencimento</th>
+            <td mat-cell *matCellDef="let titulos">{{titulos.dataVencimento | date: 'dd/MM/yyyy'}}</td>
+          </ng-container>
+          <ng-container matColumnDef="codBarrasBoleto">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Linha Digitável</th>
+            <td mat-cell *matCellDef="let titulos">{{titulos.codBarrasBoleto}}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+      <div class="titulo-paginator">
+        <mat-paginator [hidePageSize]="true" [pageSize]="pageSize" [pageSizeOptions]="[pageSize]"
+          [ngClass]="{'matHidden': !dataSource }" [showFirstLastButtons]="true"></mat-paginator>
+      </div>
+    </div>
+  </ng-template>
+</app-popup>

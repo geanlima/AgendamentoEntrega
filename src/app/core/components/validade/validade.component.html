@@ -1,0 +1,20 @@
+<div class="main-container">
+  <div class="validade">
+    <span>
+      Validade
+    </span>
+    <span>
+      {{itemVenda.data_validade_campanha_shelf != undefined ? (itemVenda.data_validade_campanha_shelf |
+      date:'dd/MM/yyyy':'UTC') : '-'}}
+      <button mat-stroked-button (click)="excluirValidadeShelf()"
+        *ngIf="itemVenda?.data_validade_campanha_shelf != undefined">
+        <span class="iconify icon-color" data-icon="mdi-close"></span>
+      </button>
+    </span>
+  </div>
+  <button mat-stroked-button (click)="onOpenModalValidade()">
+    <!-- [ngClass]="{'validade-shelf-button': produto?.possui_campanha_shelf=='S'}"> -->
+    Validades
+    <span class="iconify icon-color" data-icon="mdi-sale"></span>
+  </button>
+</div>

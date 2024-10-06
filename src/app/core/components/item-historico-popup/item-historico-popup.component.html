@@ -1,0 +1,192 @@
+<app-popup (closeModal)="onCloseModal()" [temp]="content" [title]="'Item Histórico'">
+  <ng-template #content>
+    <div class="main-container">
+      <div class="left-panel">
+        <mat-card class="card-resumo">
+          <mat-card-content>
+            <h1>Resumo</h1>
+            <div class="panel-row">
+
+              <div class="field-group">
+                <span class="panel-row-label">Nº do Pedido</span>
+                <span class="panel-row-value">{{historicoPedido?.numeroPedido}}</span>
+              </div>
+
+              <div class="field-group">
+                <span class="panel-row-label">Nº Pedido Cliente</span>
+                <span class="panel-row-value">{{historicoPedido?.numeroPedidoCliente}}</span>
+              </div>
+
+              <div class="field-group">
+                <span class="panel-row-label">Status</span>
+                <span class="panel-row-value">{{historicoPedido?.situacao}}</span>
+              </div>
+
+            </div>
+
+            <div class="panel-row">
+
+              <div class="field-group">
+                <span class="panel-row-label">CPF/CNPJ</span>
+                <span class="panel-row-value">{{painelatendimento?.cnpj}}</span>
+              </div>
+
+              <div class="field-group">
+                <span class="panel-row-label">Data</span>
+                <span class="panel-row-value">{{historicoPedido?.dataPedido | date: 'dd/MM/yyyy'}}</span>
+              </div>
+
+            </div>
+
+            <div class="panel-row">
+              <span class="panel-row-label">Cliente</span>
+            </div>
+
+            <div class="panel-row">
+              <h2>{{painelatendimento?.fantasia}}</h2>
+            </div>
+
+            <div class="panel-row">
+              <span class="panel-row-label">{{painelatendimento?.codigo_cliente}}</span>
+              <span class="panel-row-label">{{painelatendimento?.razao_social}}</span>
+            </div>
+
+            <div class="panel-row">
+
+              <div class="field-group">
+                <span class="panel-row-label">Endereço</span>
+                <span class="panel-row-value">{{painelatendimento?.endereco_entrega}}</span>
+              </div>
+
+            </div>
+
+            <!-- <div class="panel-row">
+    
+              <div class="field-group">
+                <span class="panel-row-label">Filial</span>            
+                <span class="panel-row-value">{{painelatendimento?}}</span>
+              </div>
+    
+            </div> -->
+
+            <div class="panel-row">
+
+              <div class="field-group">
+                <span class="panel-row-label">Tipo de Venda</span>
+                <span class="panel-row-value">{{historicoPedido?.descricaoCondVenda}}</span>
+              </div>
+
+              <div class="field-group">
+                <span class="panel-row-label">Origem Venda</span>
+                <span class="panel-row-value">{{historicoPedido?.origemVenda}}</span>
+              </div>
+
+            </div>
+
+            <div class="panel-row">
+
+              <div class="field-group">
+                <span class="panel-row-label">Tipo de Pagamento</span>
+                <span class="panel-row-value">{{historicoPedido?.cobranca}}</span>
+              </div>
+
+              <div class="field-group">
+                <span class="panel-row-label">Plano de Pagamento</span>
+                <span class="panel-row-value">{{historicoPedido?.descricaoPlanoPagamento}}</span>
+              </div>
+
+            </div>
+          </mat-card-content>
+
+        </mat-card>
+
+      </div>
+      <div class="right-panel">
+        <mat-card class="card-detalhe">
+          <mat-card-content>
+            <div class="table-item">
+              <table mat-table [dataSource]="dataSource" matSort>
+                <ng-container matColumnDef="codigoProduto">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Código</th>
+                  <td mat-cell *matCellDef="let itemhistorico">{{itemhistorico.codigoProduto }}</td>
+                </ng-container>
+                <ng-container matColumnDef="descricao">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome</th>
+                  <td mat-cell *matCellDef="let itemhistorico">{{itemhistorico.descricao}}</td>
+                </ng-container>
+                <ng-container matColumnDef="preco">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Preço</th>
+                  <td mat-cell *matCellDef="let itemhistorico">{{itemhistorico.preco | currency}}</td>
+                </ng-container>
+                <ng-container matColumnDef="unidade">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Unidade.</th>
+                  <td mat-cell *matCellDef="let itemhistorico">{{itemhistorico.unidade}}</td>
+                </ng-container>
+                <ng-container matColumnDef="embalagem">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Embalagem.</th>
+                  <td mat-cell *matCellDef="let itemhistorico">{{itemhistorico.embalagem}}</td>
+                </ng-container>
+                <ng-container matColumnDef="total">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Total</th>
+                  <td mat-cell *matCellDef="let itemhistorico">{{itemhistorico.total | currency}}</td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+            </div>
+            <div class="item-paginator">
+              <mat-paginator [hidePageSize]="true" [pageSize]="pageSize" [pageSizeOptions]="[pageSize]"
+                [ngClass]="{'matHidden': !dataSource }" [showFirstLastButtons]="true"></mat-paginator>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="right-panel-footer">
+              <div class="field-group-footer-total">
+                <h3>Total</h3>
+                <span class="panel-row-label">Valor Pedido</span>
+                <span class="panel-row-value">{{historicoPedido?.valorTotal | currency}}</span>
+              </div>
+
+              <div class="field-group-footer-dados">
+                <h3>Dados Adicionais</h3>
+                <div class="inner-field-group">
+
+                  <div class="field-group-footer-peso">
+
+                    <span class="panel-row-label">Peso Bruto</span>
+                    <span class="panel-row-value">{{pesoBruto}} Kg</span>
+
+                  </div>
+
+                  <div class="field-group-footer-qtd">
+
+                    <span class="panel-row-label">Quantidade de Itens</span>
+                    <span class="panel-row-value">{{qtditens}} un</span>
+
+                  </div>
+
+                  <div class="field-group-footer-obs">
+
+                    <span class="panel-row-label">Observações</span>
+
+                    <span class="panel-row-value">{{historicoPedido?.observacoes}}</span>
+
+                  </div>
+                </div>
+
+
+
+              </div>
+
+            </div>
+          </mat-card-content>
+
+        </mat-card>
+
+
+
+      </div>
+
+    </div>
+  </ng-template>
+</app-popup>

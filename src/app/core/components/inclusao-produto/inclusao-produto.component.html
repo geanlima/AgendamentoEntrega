@@ -1,0 +1,56 @@
+<div class="main-container">
+  <div class="header">
+    <span>Inclusão</span>
+    <button mat-stroked-button (click)="onOpenModalOfertas()">
+      <mat-icon iconPositionEnd class="icon-color">
+        percent
+      </mat-icon>
+      Ofertas
+    </button>
+  </div>
+  <div class="inputs">
+    <div class="quantidade override-inclusao-produto">
+      <div class="cabecalho-quantidade">
+        <span class="iconify icon-package" data-icon="mdi-package-variant"></span>
+        <span class="title">Quantidade</span>
+      </div>
+      <div class="add-quantidade">
+        <button mat-icon-button (click)="removeQuantidade()">
+          <mat-icon>
+            remove_circle_outline
+          </mat-icon>
+        </button>
+        <mat-form-field appearance="fill" class="quantidade-field">
+          <input matInput type="number" [(ngModel)]="itemVenda.quantidade" [value]="itemVenda.quantidade">
+        </mat-form-field>
+        <button mat-icon-button (click)="addQuantidade()">
+          <mat-icon>
+            add_circle_outline
+          </mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="valores override-inclusao-produto">
+      <mat-form-field appearance="fill">
+        <mat-label>Desconto/Acréscimo</mat-label>
+        <input matInput type="number" [(ngModel)]="itemVenda.percentual_desconto"
+          [value]="itemVenda.percentual_desconto" (blur)="calculaPrecoVenda()">
+        <span class="iconify" data-icon="mdi-ticket-percent"></span>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Preço Venda</mat-label>
+        <input matInput type="number" [(ngModel)]="itemVenda.preco_venda" [value]="itemVenda.preco_venda"
+          (blur)="calculaDescontoAcrescimo()">
+        <span class="iconify" data-icon="mdi-currency-usd"></span>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="add-pedido">
+    <button mat-stroked-button class="add-button" (click)="addItem()">
+      <mat-icon iconPositionEnd class="material-icons-outlined">
+        shopping_cart
+      </mat-icon>
+      Adicionar ao Pedido
+    </button>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+<div class="background-container">
+  <mat-card class="route-card">
+    <mat-card-content class="route-card-content">
+      <span class="value-header">Mensagens e Avisos</span>
+      <div class="route-path-content">
+        <span>Home</span>
+        <span class="route-separator">/</span>
+        <span class="route-sub-path">Perfil</span>
+        <span class="route-separator">/</span>
+        <span class="route-sub-path">Mensagens e Avisos</span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="main-container">
+    <mat-card-content class="main-card-content">
+      <div class="messages-main">
+        <div class="message-list">
+          <div class="search-header">
+            <mat-form-field class="search-field">
+              <mat-label>Procurar</mat-label>
+              <mat-icon matPrefix>search</mat-icon>
+              <input type="search" matInput>
+            </mat-form-field>
+            <button class="add-messages" color="primary" (click)="onNovaMensagemClick()">
+              <mat-icon class="btn-icon">add_comment</mat-icon>
+            </button>
+
+          </div>
+
+          <mat-tab-group class="tab_mensagensavisos" [(selectedIndex)]="selectedTabIndex">
+            <mat-tab label="({{ countUnreadMessages() }}) Mensagens">
+
+            </mat-tab>
+            <mat-tab label="({{ countUnreadAvisos() }}) Avisos">
+            </mat-tab>
+            <mat-tab label="Ambos">
+            </mat-tab>
+          </mat-tab-group>
+          <div class="scroll-mensagens">
+            <div *ngFor="let mensagem of getFilteredMessages()" class="message-item"
+              [class.selected]="selectedMessageId === mensagem.id" (click)="selectMessage(mensagem.id)">
+              <app-messages-mail-item [de]="mensagem.de" [assunto]="mensagem.assunto" [data]="mensagem.data"
+                [texto]="mensagem.texto" [lido]="mensagem.lido" [tipo]="mensagem.tipo">
+              </app-messages-mail-item>
+            </div>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="message-detail">
+          <div class="message-datail-container">
+            <div *ngIf="selectedMessage; else noMessage" class="message">
+              <div class="message-header">
+                <div class="icon-circle">
+                  <mat-icon>person</mat-icon>
+                </div>
+                <div class="message-sub-header">
+                  <span class="assunto">{{ selectedMessage.assunto }}</span>
+                  <div class="de">DE: {{ selectedMessage.de }}</div>
+                </div>
+                <span class="data">{{ selectedMessage.data | date: 'dd/MM/yyyy' }}</span>
+              </div>
+              <br>
+              <div class="texto">{{ selectedMessage.texto }}</div>
+            </div>
+            <ng-template #noMessage>
+              <div class="no-message">Nenhuma mensagem selecionada</div>
+            </ng-template>
+          </div>
+        </div>
+
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+
+</div>

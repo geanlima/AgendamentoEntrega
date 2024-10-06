@@ -1,0 +1,12 @@
+<div class="main-container">
+    <div class="filial">
+      <mat-form-field appearance="fill" >
+        <mat-label>Filial Retira</mat-label>
+        <mat-select class="select" [(ngModel)]="itemVenda.codigo_unidade_retirada">
+          <mat-option *ngFor="let filial of filiaisRetira" [value]="filial.codigo_unidade"  ngDefaultControl>
+            {{filial.razao_social_unidade}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+</div>

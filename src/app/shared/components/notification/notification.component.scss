@@ -1,0 +1,72 @@
+@use 'variables' as *;
+
+.toast-main {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.color {
+    min-width: 6px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+
+    &.success {
+        background-color: #4CAF50;
+    }
+
+    &.warning {
+        background-color: #FF8F00;
+    }
+
+    &.error {
+        background-color: #FF0F0F;
+    }
+}
+
+.message {
+    flex: 1;
+}
+
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    color: rgba(0, 0, 0, .54);
+}
+
+.action mat-icon {
+    cursor: pointer;
+}
+
+.message-box {
+    display: flex;
+    flex: 5;
+    flex-direction: column;
+    padding: 12px 0px;
+}
+
+.top-message {
+    display: flex;
+    flex: 1;
+}
+
+.success {
+    color: #4CAF50;
+}
+
+.warning {
+    color: #FF8F00;
+}
+
+.error {
+    color: #FF0F0F;
+}

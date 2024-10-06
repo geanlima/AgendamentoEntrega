@@ -1,0 +1,20 @@
+<div class="content" (click)="CallPainelMensagens()">
+  <div [ngClass]="{'icon-circle': true, 'nao-lido': !lido}">
+    <ng-container *ngIf="tipo === 'aviso'; else defaultIcon">
+      <mat-icon *ngIf="lido; else naoLido">notifications</mat-icon>
+      <ng-template #naoLido><mat-icon>notifications_active</mat-icon></ng-template>
+    </ng-container>
+    <ng-template #defaultIcon>
+      <mat-icon *ngIf="lido; else naoLido">drafts</mat-icon>
+      <ng-template #naoLido><mat-icon>mail</mat-icon></ng-template>
+    </ng-template>
+  </div>
+  <div class="mensagem">
+    <div class="header">
+      <span class="assunto"> {{assunto}}</span>
+      <span class="data"> {{data | date: 'dd/MM/yyyy' }}</span>
+    </div>
+    <div class="de">DE: {{de}}</div>
+    <div class="texto">{{texto | truncatetext:200 }}</div>
+  </div>
+</div>

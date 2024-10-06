@@ -1,0 +1,77 @@
+@use 'variables' as *;
+@use "theme" as *;
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.center-icon {
+  padding-left: 12px;
+}
+
+.table-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 140px;
+}
+
+.main-container {
+  display: flex;
+  margin: 40px 140px;
+  flex-direction: row;
+  height: calc(100vh - 280px);
+}
+
+.container-filtro {
+  width: 25%;
+  display: flex;
+  margin-right: 20px;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 18px;
+  color: #454545;
+  font-weight: bold;
+  margin-bottom: 24px;
+}
+
+.container-items {
+  width: 75%;
+  display: flex;
+  margin-left: 20px;
+  flex-direction: column;
+  height: calc(100vh - 280px);
+}
+
+.table-vendas {
+  table {
+    th {
+      color: $font-table-header;
+      background-color: $background-table-header;
+    }
+
+    tr:hover {
+      td {
+        color: white;
+        cursor: pointer;
+      }
+
+      background-color: $sgm-primary-color;
+    }
+  }
+}
+
+.venda-paginator {
+  margin-top: auto;
+
+  .teste {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

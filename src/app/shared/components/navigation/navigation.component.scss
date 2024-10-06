@@ -1,0 +1,124 @@
+@use '../../src/themes/theme' as *;
+
+.logo {
+    width: 188px;
+    height: 46px;
+}
+
+.container {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.header-container {
+    display: flex;
+    flex-direction: column;
+    background-color: $sgm-primary-color;
+}
+
+.header-up-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 30px 120px 0px 120px;
+
+    .menu-icon {
+        color: white !important;
+    }
+
+}
+
+.header-up-container-right {
+    display: flex;
+    flex-direction: row;
+}
+
+.nav-container {
+    padding-left: 20px;
+}
+
+
+.user-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.user-data {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-image {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+.user-data {
+    padding-left: 10px;
+
+    span {
+        color: white;
+    }
+}
+
+.user-name {
+    font-size: 12px;
+}
+
+.user-role {
+    font-size: 10px;
+    opacity: 60%;
+}
+
+.user-menu {
+    .mat-icon {
+        height: 16px !important;
+        width: 16px !important;
+        font-size: 16px !important;
+    }
+}
+
+.menu-span {
+    font-size: 10px;
+}
+
+.divider-container {
+    padding: 0px 120px 0px 120px;
+}
+
+.divider {
+    background-color: white !important;
+}
+
+.header-bottom-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 120px 0px 120px;
+    background-color: $sgm-accent-color;
+}
+
+h1 {
+    color: white;
+}
+
+.btn-iniciar-venda {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    color: $sgm-primary-color;
+    width: 375px;
+}
+
+.btn-text {
+    text-align: left;
+    font-weight: bold;
+}
+
+.btn-icon {
+    margin-left: auto;
+}

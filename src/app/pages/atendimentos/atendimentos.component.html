@@ -1,0 +1,415 @@
+<div class="background-container">
+    <mat-card class="route-card">
+        <mat-card-content class="route-card-content">
+            <span class="value-header">{{descAcaoAtendimento}}</span>
+            <div class="route-path-content">
+                <span>Home</span>
+                <span class="route-separator">/</span>
+                <span class="route-sub-path">{{descAcaoAtendimentoRota}}</span>
+                <span class="route-separator">/</span>
+                <span class="route-sub-path">Adicionar Itens</span>
+            </div>
+        </mat-card-content>
+    </mat-card>
+    <div class="main-container">
+        <mat-card class="header-card">
+            <mat-card-header>Cabeçalho</mat-card-header>
+            <mat-card-content>
+                <div class="top-header-content">
+                    <div class="row-top-header">
+                        <div class="label-field-start">
+                            <span class="label-header">CPF/CNPJ</span>
+                            <span class="value-header">{{cnpj_cpf_cliente}}</span>
+                        </div>
+                        <div class="label-field-start">
+                            <span class="label-header">Nº do Pedido</span>
+                            <span class="value-header">{{getIdVenda()}}</span>
+                        </div>
+                        <div class="label-field-start">
+                            <span class="label-header">Data</span>
+                            <span class="value-header">{{data_hora_abertura_pedido| date:'dd/MM/yyyy':'UTC'}}</span>
+                        </div>
+                        <div class="label-field-start">
+                            <span class="label-header">Status</span>
+                            <span class="value-header">{{status_processamento}}</span>
+                        </div>
+                    </div>
+
+                    <div class="row-top-header">
+                        <div class="label-field-start">
+                            <span class="label-header">Cliente</span>
+                            <span class="value-header-big">{{fantasia_cliente}}</span>
+                        </div>
+                    </div>
+
+                    <div class="row-top-header-align-start">
+                        <span class="id-razaosocial">{{idCliente}}</span>
+                        <span>{{razao_social}}</span>
+                    </div>
+                </div>
+                <div class="form-header-content">
+                    <form [formGroup]="atendimentoForm" #atendimentoFormNgForm="ngForm">
+                        <div class="form-atendimento">
+                            <mat-form-field appearance="fill" color="accent">
+                                <mat-label>Endereço</mat-label>
+                                <mat-select formControlName="codigo_endereco_entrega_pedido">
+                                    <mat-option *ngFor="let endereco of enderecos
+                                    " [value]="endereco.codigo_endereco">
+                                        {{ endereco.codigo_endereco }} - {{ endereco.endereco_entrega_cliente }},
+                                        {{endereco.numero_entrega_cliente}}, {{endereco.bairro_entrega_cliente}},
+                                        {{endereco.cidade_entrega_cliente}} - {{endereco.uf_entrega_cliente}},
+                                        CEP {{endereco.cep_entrega_cliente}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <div class="field-group">
+                                <mat-form-field appearance="fill" color="accent">
+                                    <mat-label>Filial</mat-label>
+                                    <mat-select formControlName="codigo_unidade_pedido"
+                                        (ngModelChange)="onFilialChange($event)">
+                                        <mat-option *ngFor="let filial of filiais
+                                        " [value]="filial.codigo_unidade">
+                                            {{ filial.codigo_unidade }} - {{ filial.razao_social_unidade }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <mat-form-field appearance="fill" color="accent">
+                                    <mat-label>Filial NF</mat-label>
+                                    <mat-select formControlName="codigo_unidade_nf_pedido">
+                                        <mat-option *ngFor="let filial of filiais
+                                        " [value]="filial.codigo_unidade">
+                                            {{ filial.codigo_unidade }} - {{ filial.razao_social_unidade }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="panel-saldo-conta-corrente-top" *ngIf="!modoFinalizarPedido">
+                                <div class="label-field-end">
+                                    <span class="label-header">Limite de Crédito</span>
+                                    <span class="value-header">{{saldo_limite_cliente |
+                                        currency}}</span>
+                                </div>
+                                <div class="label-field-end">
+                                    <span class="label-header">Valores Em Aberto</span>
+                                    <span class="value-header">{{debito_cliente | currency }}</span>
+                                </div>
+                                <div class="label-field-end">
+                                    <span class="label-header">Crédito do Cliente</span>
+                                    <span class="value-header">{{credito_pendente_cliente | currency
+                                        }}</span>
+                                </div>
+                            </div>
+                            <div class="panel-saldo-conta-corrente-bottom" *ngIf="!modoFinalizarPedido">
+                                <span class="saldo-label">Saldo Conta Corrente</span>
+                                <span class="saldo-valor">{{saldoDisponivel | currency
+                                    }}</span>
+                            </div>
+
+                            <div class="fields-after-conta-corrente">
+                                <div class="field-group">
+                                    <mat-form-field appearance="fill" color="accent">
+                                        <mat-label>Nº do Pedido Cliente</mat-label>
+                                        <input matInput formControlName="numero_pedido_cliente" type="text"
+                                            (keypress)="keyPressAlphaNumeric($event)">
+                                    </mat-form-field>
+                                    <mat-form-field appearance="fill" color="accent">
+                                        <mat-label>Origem Pedido</mat-label>
+                                        <mat-select formControlName="origem_pedido">
+                                            <mat-option *ngFor="let tipo of origempedido$ | async" [value]="tipo.id">
+                                                {{ tipo.id }} - {{ tipo.descricao }}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="field-group">
+                                    <mat-form-field appearance="fill" color="accent">
+                                        <mat-label>Tipo de Venda</mat-label>
+
+                                        <mat-select formControlName="condicao_venda_pedido"
+                                            (ngModelChange)="onTipoVendaChange($event)">
+                                            <mat-option *ngFor="let tipo of tipovenda" [value]="tipo.id">
+                                                {{ tipo.id }} - {{ tipo.tipo }}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    <mat-form-field appearance="fill" color="accent" *ngIf="exibirNumeroPedidoVenda">
+                                        <mat-label>Nº Pedido Venda</mat-label>
+                                        <input matInput formControlName="numero_pedido_venda" type="text">
+                                    </mat-form-field>
+                                </div>
+                                <div class="field-group">
+                                    <mat-form-field appearance="fill" color="accent">
+                                        <mat-label>Cobrança</mat-label>
+                                        <mat-select formControlName="codigo_cobranca_pedido"
+                                            (ngModelChange)="onCobrancaChange($event)">
+                                            <mat-option *ngFor="let tipo of tipocobranca"
+                                                [value]="tipo.codigo_cobranca">
+                                                {{ tipo.nome_cobranca }}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    <mat-form-field appearance="fill" color="accent">
+                                        <mat-label>Plano de Pagamento</mat-label>
+                                        <mat-select formControlName="codigo_plan_pagamento_pedido">
+                                            <mat-option *ngFor="let plano of planoPagamentoExibir"
+                                                [value]="plano.codigo_plano_pagamento">
+                                                <div class="option-pagamento-content">
+                                                    <span
+                                                        class="title-option-pagamento">{{plano.descricao_plano_pagamento}}</span>
+                                                    <span class="subtitle-option-pagamento"> Valor mínimo
+                                                        {{plano.valor_minimo_plano_pagamento | currency }}</span>
+                                                </div>
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="field-group">
+                                    <mat-form-field appearance="fill" color="accent">
+                                        <mat-label>Data de Entrega</mat-label>
+                                        <input matInput formControlName="data_entrega_pedido" [matDatepicker]=" picker"
+                                            [min]="minDate" [max]="maxDate">
+                                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </form>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card class="itens-card" *ngIf="!modoFinalizarPedido">
+            <div class="header-resumo-itens">
+                <mat-card-header>Resumo Itens</mat-card-header>
+                <div class="btn-adicionar-itens-container">
+                    <button class="btn-adicionar-itens" mat-fab extended (click)="onAdicionarItems()"
+                        *ngIf="!isReadOnly">
+                        <span class="btn-text">Adicionar Itens</span>
+                        <mat-icon class="btn-icon" iconPositionEnd>playlist_add</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+            <mat-card-content>
+                <div class="table-itenpedido">
+                    <table mat-table [dataSource]="dataSource" matSort [ngClass]="{'matHidden': !dataSource }">
+
+                        <ng-container matColumnDef="imgProduto">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+                            <td mat-cell *matCellDef="let itenpedido">
+                                <div class="img-thumbnail">
+                                    <!--<img [src]="getImage64(itenpedido.imgProduto)">-->
+                                </div>
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="codigo_produto">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Código</th>
+                            <td mat-cell *matCellDef="let itenpedido">{{itenpedido.codigo_produto}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="descricao_produto">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome</th>
+                            <td mat-cell *matCellDef="let itenpedido">{{itenpedido.descricao_produto}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="preco_venda">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Preço</th>
+                            <td mat-cell *matCellDef="let itenpedido">{{itenpedido.preco_venda | currency}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="quantidade">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Quantidade</th>
+                            <td mat-cell *matCellDef="let itenpedido">{{itenpedido.quantidade}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="unidade_venda">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Unidade</th>
+                            <td mat-cell *matCellDef="let itenpedido">{{itenpedido.unidade_venda}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="valor_total">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Total</th>
+                            <td mat-cell *matCellDef="let itenpedido">{{itenpedido.valor_total | currency}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="action">
+                            <th mat-header-cell *matHeaderCellDef></th>
+                            <td mat-cell *matCellDef="let itenpedido" (click)="$event.stopPropagation()">
+                                <button *ngIf="!itenpedido.codigo_pedido_rca || itenpedido.codigo_pedido_rca == 0"
+                                    mat-icon-button (click)="onExcluiItem(itenpedido)">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowClicked(row)"></tr>
+                    </table>
+                </div>
+                <mat-paginator #paginator [pageSizeOptions]="[pageSize]" [hidePageSize]="true"
+                    [ngClass]="{'matHidden': !dataSource }" [showFirstLastButtons]="true">
+                </mat-paginator>
+
+                <mat-divider class="divider"></mat-divider>
+
+                <div class="item-pedido-bottom">
+                    <div class="item-pedido-bottom-right">
+                        <mat-icon class="mat-icon-cart">shopping_cart</mat-icon>
+                        <div class="valor-total-container">
+                            <span class="valor-total-label">Valor Total Produtos</span>
+
+                            <span class="valor-total-valor">{{total_pedido | currency
+                                }}</span>
+
+                        </div>
+                    </div>
+
+                    <button class="btn-retornar" mat-fab extended (click)="onVoltar()">
+                        <span class="btn-text">Voltar</span>
+                        <mat-icon class="btn-icon" iconPositionStart>chevron_left</mat-icon>
+                    </button>
+
+                    <button class="btn-avancar-retornar" mat-fab extended (click)="onAvancar()">
+                        <span class="btn-text">Avançar</span>
+                        <mat-icon class="btn-icon" iconPositionEnd>chevron_right</mat-icon>
+                    </button>
+
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+        <div class="finalizar-pedido-container" *ngIf="modoFinalizarPedido">
+            <mat-card class="card-dados-adicionais">
+                <mat-card-header>Dados Adicionais</mat-card-header>
+                <mat-card-content>
+
+                    <form [formGroup]="dadosAdicionaisForm" #dadosAdicionaisNgForm="ngForm">
+                        <div class="dados-adicionais-fields">
+                            <mat-form-field appearance="fill" color="accent">
+                                <mat-label>Observações Entrega</mat-label>
+                                <textarea matInput formControlName="observacao_entrega_pedido"></textarea>
+                            </mat-form-field>
+                            <mat-form-field appearance="fill" color="accent">
+                                <mat-label>Observações Pedido</mat-label>
+                                <textarea matInput formControlName="observacao_pedido"></textarea>
+                            </mat-form-field>
+                        </div>
+                    </form>
+
+                </mat-card-content>
+            </mat-card>
+
+            <mat-card class="card-dados-adicionais">
+                <mat-card-header>Transportadora</mat-card-header>
+                <mat-card-content>
+                    <form [formGroup]="dadosAdicionaisForm" #dadosAdicionaisNgForm="ngForm">
+                        <div class="dados-transportadora-fields">
+                            <mat-form-field appearance="fill" color="accent" class="campo-codigo">
+                                <input matInput value="" placeholder="Código">
+                                <mat-icon matSuffix (click)="onShowTransportadora()">search</mat-icon>
+                            </mat-form-field>
+                            <mat-form-field appearance="fill" color="accent" class="campo-principal">
+                                <input matInput value="" placeholder="Nome">
+                            </mat-form-field>                          
+                            
+                        </div>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+
+            <mat-card class="card-totais">
+                <mat-card-header>Totais</mat-card-header>
+                <mat-card-content>
+                    <div class="totais-conteiner">
+
+                        <div class="col-totais">
+                            <div class="col-sub-totais">
+                                <span class="finalizar-total-label"> Saldo Disp. RCA</span>
+                                <span class="finalizar-total-valor-col1">{{saldoDisponivel | currency
+                                    }}</span>
+
+                                <span class="finalizar-total-label"> Saldo Pedido</span>
+                                <span class="finalizar-total-valor-col1">{{saldoPedido | currency
+                                    }}</span>
+
+                                <span class="finalizar-total-label"> Saldo Futuro RCA</span>
+                                <span class="finalizar-total-valor-col1">{{saldoFuturo | currency
+                                    }}</span>
+                            </div>
+                        </div>
+
+
+                        <div class="col-totais">
+
+                            <div class="col-sub-totais">
+                                <span class="finalizar-total-label"> Valor ST</span>
+                                <span class="finalizar-total-valor">{{valorST | currency }}</span>
+
+                                <span class="finalizar-total-label"> Valor IPI</span>
+                                <span class="finalizar-total-valor">{{valorIPI | currency }}</span>
+
+                                <span class="finalizar-total-label"> Valor FECP</span>
+                                <span class="finalizar-total-valor">{{valorFECP | currency }}</span>
+                            </div>
+                        </div>
+
+                        <div class="col-totais">
+                            <div class="col-sub-totais">
+                                <span class="finalizar-total-label"> Valor Pedido</span>
+                                <span class="finalizar-total-valor">{{total_pedido | currency }}</span>
+
+                                <span class="finalizar-total-label"> Valor Impostos</span>
+                                <span class="finalizar-total-valor">{{valorImpostos | currency
+                                    }}</span>
+
+                                <span class="finalizar-total-label"> Desconto</span>
+                                <span class="finalizar-total-valor">{{valorDesconto |
+                                    currency }}</span>
+                            </div>
+                        </div>
+
+                        <div class="col-finalizar">
+                            <div class="col-finalizar-valores">
+                                <span>Comissão</span>
+                                <div class="row-finalizar-valores">
+                                    <mat-icon>playlist_add_check</mat-icon>
+                                    <span>{{valorComissao | currency }}</span>
+                                </div>
+                            </div>
+                            <div class="col-finalizar-valores">
+                                <span>Valor Total</span>
+                                <div class="row-finalizar-valores">
+                                    <mat-icon>attach_money</mat-icon>
+                                    <span>{{valorTotal | currency }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="btn-finalizar-pedido-container">
+                        <div class="btn-finalizar-pedido-content">
+                            <button class="btn-finalizar-pedido" mat-fab extended *ngIf="!isReadOnly"
+                                (click)="finalizarPedido()">
+                                <span class="btn-text">Finalizar Pedido</span>
+                            </button>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+
+            <div>
+                <button class="btn-avancar-retornar" mat-fab extended (click)="onRetornar()">
+                    <span class="btn-text">Retornar</span>
+                    <mat-icon class="btn-icon">chevron_left</mat-icon>
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>

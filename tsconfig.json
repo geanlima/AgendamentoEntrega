@@ -1,0 +1,49 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "ES2022",
+    "useDefineForClassFields": false,
+    "lib": [
+      "ES2022",
+      "dom"
+    ],
+    "paths": {
+      "@pages": ["src/app/pages/export"],
+      "@env": [ "src/environments/export"],
+      "@core/auth": ["src/app/core/auth/export"],
+      "@shared/guard": ["src/app/shared/guard/export"],
+      "@shared/enums": ["src/app/shared/enums/export"],
+      "@shared/pipes": ["src/app/shared/pipes/export"],
+      "@shared/utils": [ "src/app/shared/utils/export"],
+      "@shared/models": ["src/app/shared/models/export"],
+      "@shared/modules": ["src/app/shared/modules/export"],
+      "@shared/services": ["src/app/shared/services/export"],
+      "@core/components": ["src/app/core/components/export",],
+      "@shared/resolvers": ["src/app/shared/resolvers/export"],
+      "@shared/directives": ["src/app/shared/directives/export"],
+      "@shared/components": ["src/app/shared/components/export",],
+    },
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true,
+  }
+}

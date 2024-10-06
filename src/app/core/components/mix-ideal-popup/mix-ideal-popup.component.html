@@ -1,0 +1,41 @@
+<app-popup (closeModal)="onCloseModal()" [temp]="content" [title]="'Mix do Cliente'">
+  <ng-template #content>
+    <div class="main-container">
+      <div class="table-mix-ideal">
+        <table mat-table [dataSource]="dataSource" matSort>
+          <ng-container matColumnDef="codigoproduto">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Cod. Produto</th>
+            <td mat-cell *matCellDef="let mixideal">{{mixideal.codigoproduto}}</td>
+          </ng-container>
+          <ng-container matColumnDef="descricaoproduto">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Descrição</th>
+            <td mat-cell *matCellDef="let mixideal">{{mixideal.descricaoproduto}}</td>
+          </ng-container>
+          <ng-container matColumnDef="embalagem">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Embalagem</th>
+            <td mat-cell *matCellDef="let mixideal">{{mixideal.embalagem}}</td>
+          </ng-container>
+          <ng-container matColumnDef="quantidadefaturada">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>QTD.</th>
+            <td mat-cell *matCellDef="let mixideal">{{mixideal.quantidadefaturada}}</td>
+          </ng-container>
+          <ng-container matColumnDef="ultimopreco">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Ultimo Preço</th>
+            <td mat-cell *matCellDef="let mixideal">{{mixideal.ultimopreco | currency}}</td>
+          </ng-container>
+          <ng-container matColumnDef="participacao">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Participação</th>
+            <td mat-cell *matCellDef="let mixideal">{{mixideal.participacao}} %</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+      <div class="mix-ideal-paginator">
+        <mat-paginator [hidePageSize]="true" [pageSize]="pageSize" [pageSizeOptions]="[pageSize]"
+          [ngClass]="{'matHidden': !dataSource }" [showFirstLastButtons]="true"></mat-paginator>
+      </div>
+    </div>
+  </ng-template>
+</app-popup>

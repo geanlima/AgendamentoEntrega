@@ -1,0 +1,61 @@
+<app-popup (closeModal)="onCloseModal()" [temp]="content" [title]="'Ofertas'">
+  <ng-template #content>
+    <div class="main-container">
+      <div class="header-container">
+        <div class="title">
+          <span class="item-number">
+            {{codigoProduto}}
+          </span>
+          <span class="item-name">
+            {{nomeProduto}}
+          </span>
+        </div>
+      </div>
+      <div class="table-ofertas">
+        <table mat-table [dataSource]="dataSource" matSort>
+          <ng-container matColumnDef="dataInicio" class="coluna-tabela">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Data Início</th>
+            <td mat-cell *matCellDef="let oferta" class="text-center">{{oferta.data_inicio | date:'dd/MM/yyyy':'UTC'}}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="dataFim">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Data Fim</th>
+            <td mat-cell *matCellDef="let oferta" class="text-center">{{oferta.data_fim | date:'dd/MM/yyyy':'UTC'}}</td>
+          </ng-container>
+          <ng-container matColumnDef="desconto">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Desconto</th>
+            <td mat-cell *matCellDef="let oferta" class="desconto text-right">{{oferta.percentual_desconto}}%</td>
+          </ng-container>
+          <ng-container matColumnDef="qtdMinima">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>QTD. Mínima</th>
+            <td mat-cell *matCellDef="let oferta" class="text-right">{{oferta.qtd_min_desconto }}</td>
+          </ng-container>
+          <ng-container matColumnDef="qtdMaxima">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>QTD. Máxima</th>
+            <td mat-cell *matCellDef="let oferta" class="text-right">{{oferta.qtd_maxima_pedido}}</td>
+          </ng-container>
+          <ng-container matColumnDef="aplicaDesconto">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Aplica Desconto</th>
+            <td mat-cell *matCellDef="let oferta" class="text-right">{{oferta.aplicacao_desconto == 'N' ? 'Não' : 'Sim'
+              }}
+            </td>
+          </ng-container>
+          <!-- <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let oferta">
+              <button mat-icon-button>
+                <mat-icon>edit</mat-icon>
+              </button>
+            </td>
+          </ng-container> -->
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+      <div class="oferta-paginator">
+        <mat-paginator [pageSize]="pageSize" [pageSizeOptions]="[pageSize]" [ngClass]="{'matHidden': !dataSource }"
+          [showFirstLastButtons]="true"></mat-paginator>
+      </div>
+    </div>
+  </ng-template>
+</app-popup>

@@ -1,0 +1,28 @@
+<app-popup (closeModal)="onCloseModal()" [temp]="content">
+  <ng-template #content>
+    <div class="main-container">
+      <div class="border informacao">
+        <app-info-produto *ngIf="produto" [produto]="(produto)!"></app-info-produto>
+      </div>
+      <div>
+        <div class="border descricao">
+          <app-descricao-produto *ngIf="produto" [produto]="(produto)!"></app-descricao-produto>
+        </div>
+        <div class="border validade-produto">
+          <app-validade *ngIf="produto && itemVenda" (openModalValidade)="onOpenModalValidade()" [produto]="(produto)!"
+            [itemVenda]="(itemVenda)!"></app-validade>
+        </div>
+        <div class="border filial-entrega">
+          <app-filial-retira [filiaisRetira]="filiaisRetira" [itemVenda]="itemVenda"></app-filial-retira>
+        </div>
+        <div class="border tipo-entrega" *ngIf="isVisibleTipoEntrega()">
+          <app-tipo-entrega [itemVenda]="itemVenda"></app-tipo-entrega>
+        </div>
+        <div class="border inclusao">
+          <app-inclusao-produto *ngIf="produto && itemVenda" [produto]="(produto)!" [itemVenda]="(itemVenda)!"
+            [closeModal]="(closeModal)" (openModalOfertas)="onOpenModalOfertas()"></app-inclusao-produto>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</app-popup>

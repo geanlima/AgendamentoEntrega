@@ -1,0 +1,20 @@
+@use '@angular/material' as mat;
+@use 'bahiatech' as th;
+//@use 'dellys' as th;
+
+$sgm-primary-color: th.$primary-color;
+$sgm-accent-color: th.$accent-color;
+$sgm-theme-primary: th.$primary-palette;
+$sgm-theme-accent: th.$accent-palette;
+$sgm-theme-warn: th.$warn-palette;
+$sgm-typography: th.$typography;
+
+$sgm-logo: th.$logo;
+$sgm-logo-inside: th.$logo_inside;
+$sgm-bg-image: th.$bg_image;
+
+$sgm-theme: mat.define-light-theme((color: (primary: $sgm-theme-primary,
+                accent: $sgm-theme-accent,
+                warn: $sgm-theme-warn,
+            ),
+        ));
