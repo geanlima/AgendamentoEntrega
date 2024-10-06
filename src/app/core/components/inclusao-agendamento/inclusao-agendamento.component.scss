@@ -1,0 +1,32 @@
+@use "theme" as *;
+
+
+.main-container {
+  padding: 20px 27px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 22px;
+  color: #454545;
+  font-weight: bold;
+  margin-bottom: 24px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+}
+
+.mat-form-field {
+  margin-bottom: 10px;
+}

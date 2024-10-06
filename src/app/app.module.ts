@@ -20,7 +20,7 @@ registerLocaleData(ptBr);
 @NgModule({
   declarations: [
     AppComponent,
-    FilterByPipe,
+    FilterByPipe
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,7 @@ import { Usuario } from '../models/usuario';
 import { VendaCompleta } from '../models/venda';
 import { ClienteCompleto, Parametro } from '@shared/models';
 import { PainelAtendimento } from '../models/painel-atendimento';
+import { PedidoFornecedor } from 'src/app/pages/fornecedor/pedido-fornecedor/pedidofornecedor';
 
 @Injectable({
   providedIn: 'root'
@@ -130,5 +131,11 @@ export class StorageService {
     if (!storageDictionary) return {} as PainelAtendimento;
 
     return JSON.parse(storageDictionary) as PainelAtendimento;
+  }
+
+  savePedidoFornecedor(pedidoFornecedor: PedidoFornecedor) {
+    sessionStorage.setItem('attention_panel',
+      JSON.stringify(pedidoFornecedor)
+    );
   }
 }

@@ -1,0 +1,27 @@
+<div class="main-container">
+  <div class="container">
+    <span class="title">Informações do Agendamento</span>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Pedido</mat-label>
+      <input matInput placeholder="Pedido" [(ngModel)]="agendamento.pedido" disabled>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Data do Agendamento</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="agendamento.data">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Horário</mat-label>
+      <input matInput placeholder="Horário (ex: 14:00)" [(ngModel)]="agendamento.horario">
+    </mat-form-field>
+
+    <div class="button-container">
+      <button mat-flat-button color="primary" (click)="onSave()">Salvar</button>
+      <button mat-flat-button color="warn" (click)="onClose()">Fechar</button>
+    </div>
+  </div>
+</div>

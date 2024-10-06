@@ -4,14 +4,15 @@ import { Agendamento } from '../agendamento/models/agendamento';
 import { InclusaoAgendamentoComponent } from 'src/app/core/components/inclusao-agendamento/inclusao-agendamento.component';
 import { DialogService, ShortcutService } from '@shared/services';
 import { Subscription } from 'rxjs';
+import { PedidoFornecedorComponent } from 'src/app/core/components/pedido-fornecedor/pedido-fornecedor.component';
 
 
 @Component({
-  selector: 'app-fornecedor',
-  templateUrl: './fornecedor.component.html',
-  styleUrls: ['./fornecedor.component.scss']
+  selector: 'app-agendamento',
+  templateUrl: './agendamento.component.html',
+  styleUrls: ['./agendamento.component.scss']
 })
-export class FornecedorComponent implements OnInit, OnDestroy {
+export class AgendamentoComponent implements OnInit, OnDestroy {
 
   agendamentos: Agendamento[] = [];
   
@@ -52,7 +53,20 @@ export class FornecedorComponent implements OnInit, OnDestroy {
     this.dataSource.data = this.agendamentos;
   }
 
-  
+  onAgendamentoPedido(): void {
+    const modalAgendamento = this.dialog.show(PedidoFornecedorComponent,
+      {},
+      ['override-modal-atendimento'],
+      true,
+      true,
+      '800px',
+      '1800px'
+    );
+
+    modalAgendamento.componentInstance.closeModal.subscribe(() => {
+      this.dialog.close(modalAgendamento);
+    });
+  }
 
   onIncluirAgendamento(): void {
     const modalAgendamento = this.dialog.show(InclusaoAgendamentoComponent,
@@ -69,3 +83,4 @@ export class FornecedorComponent implements OnInit, OnDestroy {
     });
   }
 }
+

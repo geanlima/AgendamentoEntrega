@@ -67,7 +67,7 @@ export class LoginFormComponent {
         .pipe(first())
         .subscribe({
           next: () => {
-            this.router.navigate(['/home/fornecedor']);  // Rota para o fornecedor
+            this.router.navigate(['/home/agendamento']);  // Rota para o fornecedor
           },
           error: (e: { message: string }) => {
             this.notificationService.showToastPosition(
@@ -85,7 +85,7 @@ export class LoginFormComponent {
         .pipe(first())
         .subscribe({
           next: () => {
-            this.router.navigate(['/home/fornecedor']);  // Rota para a empresa
+            this.router.navigate(['/home/agendamento']);  // Rota para a empresa
           },
           error: (e: { message: string }) => {
             this.notificationService.showToastPosition(

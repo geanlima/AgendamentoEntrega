@@ -8,6 +8,7 @@ import { PainelAtendimento } from '../models/painel-atendimento';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ClienteService extends BaseService {
 
   getClienteById(id: number): Observable<ClienteCompleto> {

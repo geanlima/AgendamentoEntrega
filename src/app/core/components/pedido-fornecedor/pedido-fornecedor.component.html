@@ -1,0 +1,56 @@
+<app-popup (closeModal)="onCloseModal()" [temp]="content" [title]="'Pedido de Compra'">
+  
+    <ng-template #content>
+      <div class="main-container">
+        <div class="header-container">
+          
+          <div class="search">
+            <app-search (searchChanged)="onSearchChanged($event)" [searchTerm]="searchTerm"
+              [placeholder]="'Numero do Pedido'" [label]="'Procurar Pedido'" (enterOnSearch)="onEnterOnSearch($event)"
+              [disabled]="false"></app-search>
+          </div>
+        </div>
+        <div class="table-clientes">
+          <table mat-table [dataSource]="dataSourceFornecedor" matSort>
+            <ng-container matColumnDef="numPed">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Código Pedido</th>
+              <td mat-cell *matCellDef="let pedido">{{pedido.numPed}}</td>
+            </ng-container>            
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowClickedPedFornecedor(row)"></tr>
+          </table>
+        </div>
+        <div class="atendimento-paginator">
+          <mat-paginator [hidePageSize]="true" [pageSize]="pageSize" [pageSizeOptions]="[pageSize]"
+            [ngClass]="{'matHidden': !dataSourceFornecedor }" [showFirstLastButtons]="true"></mat-paginator>
+        </div>
+      </div>
+    </ng-template>
+  </app-popup>
+  
+  <ng-template #tooltipTpl>
+    <div>
+      <mat-icon class="client_block">
+        lock
+      </mat-icon>
+      <span>
+        Cliente Bloqueado
+      </span>
+    </div>
+    <div>
+      <mat-icon class="sefaz_block">
+        lock
+      </mat-icon>
+      <span>
+        Cliente Bloqueado SEFAZ
+      </span>
+    </div>
+    <div>
+      <mat-icon class="client_block_definitive">
+        lock
+      </mat-icon>
+      <span>
+        Bloqueio Definitivo
+      </span>
+    </div>
+  </ng-template>

@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  private subs$: Subscription[] = [];
+  private readonly subs$: Subscription[] = [];
 
   constructor(
     private dialog: DialogService,

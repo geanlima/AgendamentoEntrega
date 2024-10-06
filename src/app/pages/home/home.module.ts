@@ -20,12 +20,17 @@ import {
   InclusaoProdutoComponent,
   AtendimentoPopupComponent,
   DescricaoProdutoComponent,
-  ConfigTabelaPopupComponent,
+  ConfigTabelaPopupComponent
 } from '@core/components';
 
 import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { ProcessPopupComponent } from 'src/app/core/components/process-popup/process-popup.component';
+import { InclusaoAgendamentoComponent } from 'src/app/core/components/inclusao-agendamento/inclusao-agendamento.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
+import { PedidoFornecedorComponent } from 'src/app/core/components/pedido-fornecedor/pedido-fornecedor.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +47,9 @@ import { ProcessPopupComponent } from 'src/app/core/components/process-popup/pro
     AtendimentoPopupComponent,
     DescricaoProdutoComponent,
     ConfigTabelaPopupComponent,
-    ProcessPopupComponent
+    ProcessPopupComponent,
+    InclusaoAgendamentoComponent,
+    PedidoFornecedorComponent
   ],
   imports: [
     CommonModule,
@@ -52,7 +59,10 @@ import { ProcessPopupComponent } from 'src/app/core/components/process-popup/pro
     HomeRoutingModule,
     MatPaginatorModule,
     MtxTooltipModule,
-    SharedModule
+    SharedModule,
+    MatDatepickerModule,   
+    MatInputModule,        
+    MatNativeDateModule,   
   ]
 })
 export class HomeModule { }

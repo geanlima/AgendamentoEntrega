@@ -18,6 +18,7 @@ const routes: Routes = [
       { path: 'clientes', loadChildren: () => import('../clientes/clientes.module').then(m => m.ClientesModule), },
       { path: 'empresa', loadChildren: () => import('../empresa/empresa.module').then(m => m.EmpresaModule), },
       { path: 'fornecedor', loadChildren: () => import('../fornecedor/fornecedor.module').then(m => m.FornecedorModule), },
+      { path: 'agendamento', loadChildren: () => import('../agendamento/agendamento.module').then(m => m.AgendamentoModule), },
     ]
   },
   { path: '', redirectTo: '', pathMatch: 'full' },
