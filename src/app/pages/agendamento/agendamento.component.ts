@@ -19,7 +19,7 @@ export class AgendamentoComponent implements AfterViewInit, OnDestroy {
   agendamentos: Agendamento[] = [];
   fornId: number = 0;
   
-  displayedColumns: string[] = ['id', 'pedido','data', 'horario', 'status'];
+  displayedColumns: string[] = ['id', 'pedido','data','status'];
   dataSource!: MatTableDataSource<Agendamento>;
 
   private subs$: Subscription[] = [];

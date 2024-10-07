@@ -2,8 +2,9 @@ import { AfterViewInit, Component, OnDestroy } from '@angular/core';
 import { Agendamento } from '../agendamento/models/agendamento';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
-import { DialogService, ShortcutService, StorageService } from '@shared/services';
+import { NotificationService, StorageService } from '@shared/services';
 import { AgendamentoService } from 'src/app/shared/services/agendamento.service';
+import { TypeToast } from '@shared/enums';
 
 @Component({
   selector: 'app-empresa',
@@ -15,13 +16,14 @@ export class EmpresaComponent implements OnDestroy, AfterViewInit {
   agendamentos: Agendamento[] = [];
   fornId: number = 0;
   
-  displayedColumns: string[] = ['id', 'pedido','data', 'horario', 'status'];
+  displayedColumns: string[] = ['id', 'pedido', 'data', 'status', 'acoes'];
   dataSource!: MatTableDataSource<Agendamento>;
 
   private subs$: Subscription[] = [];
   
   constructor(private agendamentoService: AgendamentoService,
-              private storageService: StorageService
+              private storageService: StorageService,
+              private _notificationService: NotificationService
   ) {
     this.dataSource = new MatTableDataSource(this.agendamentos);
     this.fornId = (this.storageService.getUsuario()).id;
@@ -51,5 +53,23 @@ export class EmpresaComponent implements OnDestroy, AfterViewInit {
     this.dataSource = new MatTableDataSource(agendamento);
   }
 
+  confirmarAgendamento(agendamento: Agendamento): void { 
+    
+    this.agendamentoService.updateAgendamento(agendamento).subscribe({
+      next: (response) => {
+        this._notificationService.showToast({
+          message: "Agendamento confirmado com sucesso",
+          typeToast: TypeToast.SUCCESS
+        });
+      },
+      error: (error) => {
+        console.error('Erro ao salvar agendamento:', error);
+      }
+    });
+  }
+
+  sugerirData(agendamento: Agendamento): void {
+    console.log('Sugerir data para agendamento:', agendamento);
+  }
   
 }

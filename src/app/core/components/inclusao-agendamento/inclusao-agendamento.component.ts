@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Inject, Output } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { TypeToast } from '@shared/enums';
+import { NotificationService } from '@shared/services';
 import { Agendamento } from 'src/app/pages/agendamento/models/agendamento';
 import { AgendamentoService } from 'src/app/shared/services/agendamento.service';
 
@@ -16,7 +18,8 @@ export class InclusaoAgendamentoComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<InclusaoAgendamentoComponent>,    
-    private _agendamentoService: AgendamentoService
+    private _agendamentoService: AgendamentoService,
+    private _notificationService: NotificationService,
 
   ) {
     this.agendamento = {
@@ -36,10 +39,18 @@ export class InclusaoAgendamentoComponent {
     };
   } 
 
-  onSave(): void {    
+  onSave(): void {        
     this._agendamentoService.saveAgendamento(this.agendamento).subscribe({
       next: (response) => {
-        this.dialogRef.close(); // Fecha o modal após salvar com sucesso
+        console.log('Agendamento salvo com sucesso:', response);
+
+        this._notificationService.showToast({
+          message: "Agendamento salvo com sucesso",
+          typeToast: TypeToast.SUCCESS
+        });
+
+        this.dialogRef.close();
+        this.closeModal.emit();
       },
       error: (error) => {
         console.error('Erro ao salvar agendamento:', error);

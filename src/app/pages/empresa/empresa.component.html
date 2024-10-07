@@ -27,18 +27,25 @@
               <td mat-cell *matCellDef="let agendamento">{{agendamento.dataAgendamento | date: 'dd/MM/yyyy'}}</td>
             </ng-container>
   
-            <!-- Coluna Horário -->
-            <ng-container matColumnDef="horario">
-              <th mat-header-cell *matHeaderCellDef>Horário</th>
-              <td mat-cell *matCellDef="let agendamento">{{agendamento.horario}}</td>
-            </ng-container>
-  
             <!-- Coluna Status -->
             <ng-container matColumnDef="status">
               <th mat-header-cell *matHeaderCellDef>Status</th>
               <td mat-cell *matCellDef="let agendamento">{{agendamento.status}}</td>
             </ng-container>
   
+            <ng-container matColumnDef="acoes">
+              <th mat-header-cell *matHeaderCellDef>Ações</th>
+              <td mat-cell *matCellDef="let agendamento">
+                <button mat-icon-button color="primary" (click)="confirmarAgendamento(agendamento)">
+                  <mat-icon>check</mat-icon> <!-- Ícone de confirmar -->
+                </button>
+                <span class="button-spacer"></span>
+                <button mat-icon-button color="accent" (click)="sugerirData(agendamento)">
+                  <mat-icon>event</mat-icon> <!-- Ícone de sugerir data -->
+                </button>
+              </td>
+            </ng-container>
+
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>

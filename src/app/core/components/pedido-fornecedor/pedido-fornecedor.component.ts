@@ -22,6 +22,7 @@ export class PedidoFornecedorComponent implements AfterViewInit, OnDestroy{
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @Output() closeModal: EventEmitter<void> = new EventEmitter<void>();
+  @Output() agendamentoInserido: EventEmitter<void> = new EventEmitter<void>();
 
   private _subs: Subscription[] = [];
 
@@ -32,18 +33,17 @@ export class PedidoFornecedorComponent implements AfterViewInit, OnDestroy{
   public searchTerm: string = '';
   public dataSource!: MatTableDataSource<Cliente>;
   public dataSourceFornecedor!: MatTableDataSource<PedidoFornecedor>;
-  public displayedColumns = ['numPed'];
+  public displayedColumns = ['numPed','qtPendente', 'volume'];
 
   constructor(
     private storageService: StorageService,
-    private _clienteService: ClienteService,
     private _fornecedorService: FornecedorService,
-    private dialog: DialogService,
-    private shortcut: ShortcutService
+    private dialog: DialogService
   ) { }
 
   ngAfterViewInit(): void {
-    this.loadFornecedor("111");
+    
+    this.loadFornecedor((this.storageService.getUsuario()).id.toString());
   }
 
 
@@ -77,7 +77,8 @@ export class PedidoFornecedorComponent implements AfterViewInit, OnDestroy{
 
     modalAgendamento.componentInstance.closeModal.subscribe(() => {
       this.dialog.close(modalAgendamento);
-    });  
+      this.agendamentoInserido.emit();
+    });
   }
 
   loadFornecedor(fornId: string): void{

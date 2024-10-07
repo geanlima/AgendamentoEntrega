@@ -14,6 +14,12 @@ export class AgendamentoService extends BaseService{
     return this.post(agendamento);
   }
 
+  updateAgendamento(agendamento: Agendamento): Observable<any> {    
+    this.url = 'schedule/';
+    agendamento.status = "Confirmado";
+    return this.putParams(agendamento, agendamento.id);;
+  }
+
   getAgendamento(fornecedor: string): Observable<Agendamento[]> {
     this.url = 'schedule/';    
     const params = `${fornecedor}`;
