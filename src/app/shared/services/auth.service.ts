@@ -37,6 +37,8 @@ export class AuthService extends BaseService {
   }
 
   signInVp4(credential: Credencial): Observable<boolean> {
+
+    console.log("credential", credential)
     this.url += "/vp4"; 
     if (this.isLoggedIn()) {
       return throwError(() => new Error('Usuário já logado.'));

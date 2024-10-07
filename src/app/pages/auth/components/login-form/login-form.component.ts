@@ -70,12 +70,14 @@ export class LoginFormComponent {
 
           if(this.tipoLogin == "F"){
             this.router.navigate(['/home/agendamento']); 
+          } else{
+            this.router.navigate(['/home/empresa']);
           }
         },
         error: (e: { message: string }) => {
           this.notificationService.showToastPosition(
             {
-              message: "CNPJ ou senha inválidos",
+              message: "usuario ou senha inválidos",
               typeToast: TypeToast.ERROR
             }, 'right'
           );

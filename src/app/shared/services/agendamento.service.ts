@@ -19,4 +19,9 @@ export class AgendamentoService extends BaseService{
     const params = `${fornecedor}`;
     return this.getMultParams<Agendamento[]>(params);
   }
+
+  getAllAgendamento(): Observable<Agendamento[]> {
+    this.url = 'schedule/resume';
+    return this.getAll<Agendamento[]>();
+  }
 }
