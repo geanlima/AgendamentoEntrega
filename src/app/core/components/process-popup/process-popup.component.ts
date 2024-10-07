@@ -66,7 +66,6 @@ export class ProcessPopupComponent implements OnInit {
       (error) => {
         // Captura e exibe a mensagem de erro da API
         pedido.status = 'Erro';
-        console.log("error", error);
         if (error.error) {
           // Captura a mensagem de erro retornada pela API
           pedido.log_resultado = error.error.mensagem || 'Erro ao processar';

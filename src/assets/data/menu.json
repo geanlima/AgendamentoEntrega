@@ -1,29 +1,8 @@
 [
   {
-    "nome": "Dashboard",
-    "rota": "dashboard",
+    "nome": "Agendamento",
+    "rota": "agendamento",
     "indice": 1,
-    "filhos": [],
-    "habilitado": true
-  },
-  {
-    "nome": "Clientes",
-    "rota": "clientes",
-    "indice": 2,
-    "filhos": [],
-    "habilitado": true
-  },
-  {
-    "nome": "Produtos",
-    "rota": "produto/consulta",
-    "indice": 3,
-    "filhos": [],
-    "habilitado": true
-  },
-  {
-    "nome": "Pedidos",
-    "rota": "pedidos",
-    "indice": 4,
     "filhos": [],
     "habilitado": true
   }

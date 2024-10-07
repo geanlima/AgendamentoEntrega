@@ -17,6 +17,7 @@ export class LoginFormComponent {
   loginForm: FormGroup;
   submitted = false;
   error = '';
+  tipoLogin = '';
 
   constructor(
     private router: Router,
@@ -51,6 +52,7 @@ export class LoginFormComponent {
   }
 
   onSubmit() {
+
     this.submitted = true;
 
     if (this.loginForm.invalid) {
@@ -59,44 +61,26 @@ export class LoginFormComponent {
 
     const credencial = new Credencial(this.loginForm.value);
     credencial.user = credencial.user.toUpperCase();
+    
+    this.authService.signInVp4(credencial)
+      .pipe(first())
+      .subscribe({
+        next: () => {
+          this.tipoLogin = (this.storageService.getUsuario()).tipo
 
-    // Verificar se o usuário é CNPJ ou nome e redirecionar para a rota correta
-    if (this.isCNPJ(credencial.user)) {
-      // CNPJ (Fornecedor) - Redireciona para o dashboard do fornecedor
-      this.authService.signIn(credencial)
-        .pipe(first())
-        .subscribe({
-          next: () => {
-            this.router.navigate(['/home/agendamento']);  // Rota para o fornecedor
-          },
-          error: (e: { message: string }) => {
-            this.notificationService.showToastPosition(
-              {
-                message: "CNPJ ou senha inválidos",
-                typeToast: TypeToast.ERROR
-              }, 'right'
-            );
-            this.loginForm.reset();
-          },
-        });
-    } else {
-      // Nome (Empresa) - Redireciona para o dashboard da empresa
-      this.authService.signIn(credencial)
-        .pipe(first())
-        .subscribe({
-          next: () => {
-            this.router.navigate(['/home/agendamento']);  // Rota para a empresa
-          },
-          error: (e: { message: string }) => {
-            this.notificationService.showToastPosition(
-              {
-                message: "Nome ou senha inválidos",
-                typeToast: TypeToast.ERROR
-              }, 'right'
-            );
-            this.loginForm.reset();
-          },
-        });
-    }
+          if(this.tipoLogin == "F"){
+            this.router.navigate(['/home/agendamento']); 
+          }
+        },
+        error: (e: { message: string }) => {
+          this.notificationService.showToastPosition(
+            {
+              message: "CNPJ ou senha inválidos",
+              typeToast: TypeToast.ERROR
+            }, 'right'
+          );
+          this.loginForm.reset();
+        },
+      });
   }
 }

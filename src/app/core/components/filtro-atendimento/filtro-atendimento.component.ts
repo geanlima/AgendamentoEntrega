@@ -284,7 +284,6 @@ export class FiltroAtendimentoComponent implements OnDestroy {
     const cloneCategoria = JSON.parse(this.clonedCategoria) as Categoria[];
     const cloneSubCategoria = JSON.parse(this.clonedSubCategoria) as SubCategoria[];
 
-    console.log('secoes', this.secoes);
 
     if (this.filtro.codigoSecao.toString() === '-1') {
       this.categorias = cloneCategoria

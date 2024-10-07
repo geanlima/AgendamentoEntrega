@@ -22,7 +22,6 @@ export class VendaService extends BaseService {
 
   updateVenda(venda: VendaCompleta): Observable<VendaInseridaNovo> {
     this.url = `Sales/`;
-    console.log("venda", venda)
     return this.putParams<VendaCompleta, VendaInseridaNovo>(venda, venda.codigo_pedido_rca.toString());
   }
 
@@ -46,7 +45,6 @@ export class VendaService extends BaseService {
     this.url = 'charge?';
     const params = `clientCode=${clientCode}&rcaCode=${rcaCode}`;
 
-    console.log(this.url, params);
     
     return this.getMultParams<TipoCobranca[]>(params);
   }

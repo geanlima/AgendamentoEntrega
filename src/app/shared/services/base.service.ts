@@ -23,7 +23,6 @@ export class BaseService {
   }
 
   putParams<T, TReturn>(objeto: T, id: number | string): Observable<TReturn> {
-    console.log("putParams - environment.apiUrl + this.url + id", environment.apiUrl + this.url + id)
     return this._httpClient.put<TReturn>(environment.apiUrl + this.url + id, objeto, this.options);
   }
 

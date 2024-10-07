@@ -62,7 +62,7 @@ import { PedidoFornecedorComponent } from 'src/app/core/components/pedido-fornec
     SharedModule,
     MatDatepickerModule,   
     MatInputModule,        
-    MatNativeDateModule,   
+    MatNativeDateModule
   ]
 })
 export class HomeModule { }

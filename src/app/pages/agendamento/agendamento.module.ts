@@ -10,4 +10,5 @@ import { AgendamentoComponent } from './agendamento.component';
   ],
   declarations: [AgendamentoComponent]
 })
+
 export class AgendamentoModule { }

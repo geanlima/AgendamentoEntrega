@@ -266,7 +266,6 @@ export class PedidosComponent implements OnDestroy {
     });
   
     dialogRef.afterClosed().subscribe(result => {
-      console.log('Popup fechado', result);
   
       this.loadVendas();
     });

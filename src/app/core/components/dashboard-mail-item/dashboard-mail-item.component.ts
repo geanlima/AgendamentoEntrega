@@ -25,7 +25,6 @@ export class DashboardMailItemComponent implements OnInit {
 
 
   CallPainelMensagens() {
-    console.log('/home/mensagens');
     this._router.navigate(['/home/mensagens', this.id]);
   }
 

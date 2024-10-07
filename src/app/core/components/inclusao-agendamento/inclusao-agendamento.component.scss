@@ -1,32 +1,93 @@
-@use "theme" as *;
-
+@use "theme" as *; // Importa o tema para uso na estilização, se necessário
 
 .main-container {
-  padding: 20px 27px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 10px 10px; // Define o preenchimento interno da área principal
+  display: flex; // Utiliza flexbox para o layout
+  justify-content: center; // Centraliza o conteúdo horizontalmente
+  align-items: flex-start; // Alinha o conteúdo no topo verticalmente
 }
 
 .container {
-  width: 400px;
-  display: flex;
-  flex-direction: column;
+  width: 100%; /* Define a largura completa do contêiner */
+  max-width: 1200px; /* Define uma largura máxima para manter o contêiner centralizado */
+  background-color: #f9f9f9; /* Cor de fundo do contêiner */
+  padding: 30px; /* Preenchimento interno para espaçar o conteúdo */
+  border-radius: 8px; /* Arredonda os cantos do contêiner */
+  
 }
 
 .title {
-  font-size: 22px;
-  color: #454545;
+  font-size: 24px;
+  color: #333;
   font-weight: bold;
-  margin-bottom: 24px;
+  margin-bottom: 20px; /* Espaçamento abaixo do título */
+  text-align: center; /* Centraliza o título */
+}
+
+.margin-top {
+  margin-top: 50px; /* Adiciona espaçamento acima do campo */
+}
+
+.form-fields {
+  display: flex; // Utiliza flexbox para organizar os campos do formulário
+  flex-wrap: wrap; // Permite que os campos do formulário sejam organizados em várias linhas
+  gap: 20px; // Espaçamento entre os campos do formulário
+}
+
+.full-width {
+  flex: 1 1 100%; // Define que os campos com essa classe ocupam toda a largura disponível
+}
+
+.half-width {
+  flex: 1 1 45%; // Define que os campos com essa classe ocupam cerca de metade da largura disponível
+}
+
+.button-container {
+  display: flex; // Utiliza flexbox para organizar os botões
+  justify-content: flex-end; // Alinha os botões à direita
+  gap: 10px; // Espaçamento entre os botões
+  margin-top: 20px; // Espaçamento acima dos botões
+}
+
+.mat-form-field {
+  width: 100%; // Garante que os campos de entrada ocupem toda a largura disponível dentro do contêiner
+}
+
+.upload-container {
+  display: flex;
+  flex-direction: column; /* Organiza os elementos em uma coluna */
+  gap: 20px; /* Espaçamento maior entre os campos de upload */
+}
+
+.upload-field {
+  display: flex;
+  flex-direction: column; /* Alinha o label e o input um abaixo do outro */
+}
+
+.upload-field label {
+  margin-bottom: 8px; /* Espaçamento entre o label e o campo de input */
+  font-size: 16px; /* Aumenta a fonte do label */
+  font-weight: bold; /* Torna o label mais legível */
+  color: #333; /* Cor mais escura para melhor contraste */
 }
 
 .button-container {
   display: flex;
-  justify-content: space-between;
-  margin-top: 24px;
+  justify-content: flex-end; /* Alinha os botões à direita */
+  gap: 15px; /* Espaçamento entre os botões */
+  margin-top: 20px; /* Espaçamento acima dos botões */
 }
 
-.mat-form-field {
-  margin-bottom: 10px;
+.styled-button {
+  padding: 10px 20px; /* Aumenta o tamanho do botão para uma área de clique maior */
+  font-size: 14px; /* Aumenta o tamanho da fonte do botão */
+  border-radius: 5px; /* Adiciona cantos arredondados para um visual mais moderno */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra sutil para destacar os botões */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Anima as mudanças de cor e sombra */
 }
+
+.styled-button:hover {
+  background-color: #0056b3; /* Cor de destaque no hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra mais forte no hover */
+}
+

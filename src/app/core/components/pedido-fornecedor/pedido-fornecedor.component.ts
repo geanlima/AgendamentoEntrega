@@ -66,14 +66,13 @@ export class PedidoFornecedorComponent implements AfterViewInit, OnDestroy{
 
   onRowClickedPedFornecedor(pedido: PedidoFornecedor) {
 
-    console.log("pedido", pedido.numPed)
     const modalAgendamento = this.dialog.show(InclusaoAgendamentoComponent,
       {pedido: pedido.numPed},
       ['override-modal-atendimento'],
       true,
       true,
-      '400px',
-      '400px'
+      '800px',
+      '1000px'
     );
 
     modalAgendamento.componentInstance.closeModal.subscribe(() => {
@@ -82,7 +81,6 @@ export class PedidoFornecedorComponent implements AfterViewInit, OnDestroy{
   }
 
   loadFornecedor(fornId: string): void{
-    console.log("fornId", fornId)
     const subs = this._fornecedorService.getPedidoFornecedor(fornId).subscribe((fornecedor) => {
 
       this.setDataSourceFornecedor(fornecedor);

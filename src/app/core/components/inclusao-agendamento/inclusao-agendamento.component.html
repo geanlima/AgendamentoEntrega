@@ -2,26 +2,70 @@
   <div class="container">
     <span class="title">Informações do Agendamento</span>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Pedido</mat-label>
-      <input matInput placeholder="Pedido" [(ngModel)]="agendamento.pedido" disabled>
-    </mat-form-field>
+    <div class="form-fields">
+      <mat-form-field appearance="outline" class="full-width margin-top">
+        <mat-label>Pedido</mat-label>
+        <input matInput placeholder="Pedido" [(ngModel)]="agendamento.numeroPedido" disabled>
+      </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Data do Agendamento</mat-label>
-      <input matInput [matDatepicker]="picker" [(ngModel)]="agendamento.data">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Data de Solicitação</mat-label>
+        <input matInput [matDatepicker]="solicitacaoPicker" [(ngModel)]="agendamento.dataSolicitacao" disabled>
+        <mat-datepicker-toggle matSuffix [for]="solicitacaoPicker"></mat-datepicker-toggle>
+        <mat-datepicker #solicitacaoPicker></mat-datepicker>
+      </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Horário</mat-label>
-      <input matInput placeholder="Horário (ex: 14:00)" [(ngModel)]="agendamento.horario">
-    </mat-form-field>
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Data do Agendamento</mat-label>
+        <input matInput [matDatepicker]="agendamentoPicker" [(ngModel)]="agendamento.dataAgendamento">
+        <mat-datepicker-toggle matSuffix [for]="agendamentoPicker"></mat-datepicker-toggle>
+        <mat-datepicker #agendamentoPicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Tipo de Carga</mat-label>
+        <mat-select [(ngModel)]="agendamento.tipoCarga">
+          <mat-option value="P">Paletizado</mat-option>
+          <mat-option value="B">Batido</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Quantidade de Volumes</mat-label>
+        <input matInput type="number" [(ngModel)]="agendamento.qtdVolumes">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half-width" *ngIf="agendamento.tipoCarga === 'P'">
+        <mat-label>Quantidade de Paletes</mat-label>
+        <input matInput type="number" [(ngModel)]="agendamento.qtdPaletes">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Peso</mat-label>
+        <input matInput type="number" [(ngModel)]="agendamento.peso" placeholder="Peso (kg)">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Número da Nota</mat-label>
+        <input matInput type="number" [(ngModel)]="agendamento.numeroNota">
+      </mat-form-field>
+
+      <div class="upload-container">
+        <div class="upload-field">
+          <label for="pdfNota">Upload PDF da Nota:</label>
+          <input id="pdfNota" type="file" (change)="onFileSelected($event, 'pdfNota')" accept="application/pdf">
+        </div>
+      
+        <div class="upload-field">
+          <label for="xmlNota">Upload XML da Nota:</label>
+          <input id="xmlNota" type="file" (change)="onFileSelected($event, 'xmlNota')" accept=".xml">
+        </div>
+      </div>
+    </div>
 
     <div class="button-container">
-      <button mat-flat-button color="primary" (click)="onSave()">Salvar</button>
-      <button mat-flat-button color="warn" (click)="onClose()">Fechar</button>
+      <button mat-flat-button color="primary" class="styled-button" (click)="onSave()">Salvar</button>
+      <button mat-flat-button color="warn" class="styled-button" (click)="onClose()">Fechar</button>
     </div>
   </div>
 </div>

@@ -1,15 +1,46 @@
 export class Agendamento {
-    id: number;    
-    data: string;   // A data pode ser uma string (no formato 'YYYY-MM-DD') ou um objeto Date
-    horario: string; // Horário no formato 'HH:mm'
-    status: string;
-    pedido: string;
+  id: number;
+  fornecedorId: number;
+  dataSolicitacao: string; // A data de solicitação no formato 'YYYY-MM-DD'
+  dataAgendamento: string; // A data de agendamento no formato 'YYYY-MM-DD'
+  tipoCarga: string; // P = Paletizado / B = Batido
+  qtdVolumes: number;
+  qtdPaletes?: number; // Opcional, habilitado apenas se tipoCarga for 'P'
+  peso: number; // Peso da carga
+  status: string; // P = Pendente / A = Agendado
+  numeroPedido: number; // Número do pedido
+  numeroNota: number; // Número da nota
+  pdfNota: string; // Arquivo PDF da nota
+  xmlNota: string; // Arquivo XML da nota
+
   
-    constructor(id: number, pedido: string, data: string, horario: string, status: string) {
-      this.id = id;
-      this.data = data;
-      this.horario = horario;
-      this.status = status;
-      this.pedido = pedido;
-    }
+  constructor(
+    id: number,
+    fornecedorId: number,
+    dataSolicitacao: string,
+    dataAgendamento: string,
+    tipoCarga: string,
+    qtdVolumes: number,
+    qtdPaletes: number | undefined,
+    peso: number,
+    status: string,
+    numeroPedido: number,
+    numeroNota: number,
+    pdfNota: string,
+    xmlNota: string
+  ) {
+    this.id = id;
+    this.fornecedorId = fornecedorId;
+    this.dataSolicitacao = dataSolicitacao;
+    this.dataAgendamento = dataAgendamento;
+    this.tipoCarga = tipoCarga;
+    this.qtdVolumes = qtdVolumes;
+    this.qtdPaletes = qtdPaletes;
+    this.peso = peso;
+    this.status = status;
+    this.numeroPedido = numeroPedido;
+    this.numeroNota = numeroNota;
+    this.pdfNota = pdfNota;
+    this.xmlNota = xmlNota;
   }
+}

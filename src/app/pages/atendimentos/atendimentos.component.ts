@@ -987,7 +987,6 @@ export class AtendimentosComponent implements OnInit, AfterViewInit, OnDestroy {
 
     
     this._storageService.saveVendaCompleta(this.vendaCompleta);
-    console.log("this.vendaCompleta", this.vendaCompleta)
     
     if(this.vendaCompleta.codigo_pedido_rca == 0){
       this.descAcaoAtendimentoRota = 'Novo Atendimento'      
@@ -1019,8 +1018,7 @@ export class AtendimentosComponent implements OnInit, AfterViewInit, OnDestroy {
           });
       });
     }else{
-      this._vendaService.updateVenda(this.vendaCompleta).pipe(
-        tap(() => console.log("chegou")),
+      this._vendaService.updateVenda(this.vendaCompleta).pipe(        
         catchError(error => {
           console.error("Erro ao atualizar a venda", error);
           this._notificationService.showToast({
@@ -1035,7 +1033,6 @@ export class AtendimentosComponent implements OnInit, AfterViewInit, OnDestroy {
       ).subscribe(
         response => {
           if (response) {
-            console.log("Resposta da atualização", response);
             this._router.navigate(['/home/dashboard']);
           }
         }

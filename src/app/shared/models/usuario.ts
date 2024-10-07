@@ -10,6 +10,7 @@ export interface Usuario {
     profile_tag: string;
     token: string;
     expiration: Date;
+    tipo: string;
 }
 
 

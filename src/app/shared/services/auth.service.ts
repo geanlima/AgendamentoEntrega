@@ -36,6 +36,25 @@ export class AuthService extends BaseService {
     );
   }
 
+  signInVp4(credential: Credencial): Observable<boolean> {
+    this.url += "/vp4"; 
+    if (this.isLoggedIn()) {
+      return throwError(() => new Error('Usuário já logado.'));
+    }
+
+    return this.post<Credencial, Usuario>(credential)
+      .pipe(
+        switchMap((usuario: Usuario) => {
+          this.storageService.saveUsuario(usuario);
+          this.storageService.saveToken(usuario.token);
+
+          
+
+          return of(true);
+        })
+    );
+  }
+
   isLoggedIn() {
     const token = this.storageService.getToken();
 

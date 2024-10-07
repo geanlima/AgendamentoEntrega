@@ -93,7 +93,6 @@ export class ClientesComponent implements OnDestroy {
   private loadClientes(): void {
 
     const subs = this._clienteService.getAllClientesFull().subscribe((clientes) => {
-      console.log("clientes", clientes)
       this.clientesCompleto = clientes;
       this.filteredClientesCompleto = this.clientesCompleto;
 

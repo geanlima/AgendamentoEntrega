@@ -10,4 +10,5 @@ import { EmpresaRoutingModule } from './empresa-routing.module';
   ],
   declarations: [EmpresaComponent]
 })
+
 export class EmpresaModule { }
