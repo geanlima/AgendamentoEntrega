@@ -6,7 +6,6 @@ import { DialogService, ShortcutService, StorageService } from '@shared/services
 import { Subscription } from 'rxjs';
 import { PedidoFornecedorComponent } from 'src/app/core/components/pedido-fornecedor/pedido-fornecedor.component';
 import { AgendamentoService } from 'src/app/shared/services/agendamento.service';
-import { Usuario } from '@shared/models';
 import { ProgressComponent } from '@shared/components';
 
 
@@ -20,13 +19,12 @@ export class AgendamentoComponent implements AfterViewInit, OnDestroy {
   agendamentos: Agendamento[] = [];
   fornId: number = 0;
   
-  displayedColumns: string[] = ['id', 'pedido','data','status'];
+  displayedColumns: string[] = ['id', 'pedido','data','status', 'acoes'];
   dataSource!: MatTableDataSource<Agendamento>;
 
   private subs$: Subscription[] = [];
   
   constructor(private dialog: DialogService,
-              private shortcut: ShortcutService,
               private agendamentoService: AgendamentoService,
               private storageService: StorageService
   ) {
@@ -89,5 +87,20 @@ export class AgendamentoComponent implements AfterViewInit, OnDestroy {
       this.dialog.close(modalAgendamento);
     });
   }
+
+  confirmarAgendamento(agendamento: Agendamento): void {
+    const progress = this.dialog.showProgress(ProgressComponent);
+
+    agendamento.status = 'Confirmado';
+    this.agendamentoService.updateAgendamento(agendamento).subscribe({
+      next: () => {        
+        this.dialog.close(progress);
+        this.loadAgendamentos();
+      },
+      error: (error) => {
+        console.error('Erro ao confirmar agendamento:', error);
+      }
+    });
+  }  
 }
 

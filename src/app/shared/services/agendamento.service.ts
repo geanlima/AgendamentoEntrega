@@ -15,8 +15,8 @@ export class AgendamentoService extends BaseService{
   }
 
   updateAgendamento(agendamento: Agendamento): Observable<any> {    
-    this.url = 'schedule/';
-    agendamento.status = "Confirmado";
+    this.url = 'schedule/';    
+    console.log("this.url", this.url)
     return this.putParams(agendamento, agendamento.id);;
   }
 

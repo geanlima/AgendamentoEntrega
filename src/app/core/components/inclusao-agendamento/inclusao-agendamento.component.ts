@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Inject, Output } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ProgressComponent } from '@shared/components';
 import { TypeToast } from '@shared/enums';
-import { NotificationService } from '@shared/services';
+import { DialogService, NotificationService, StorageService } from '@shared/services';
 import { Agendamento } from 'src/app/pages/agendamento/models/agendamento';
 import { AgendamentoService } from 'src/app/shared/services/agendamento.service';
 
@@ -14,17 +15,20 @@ export class InclusaoAgendamentoComponent {
   @Output() closeModal: EventEmitter<void> = new EventEmitter<void>(); 
 
   agendamento: Agendamento;
+  
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<InclusaoAgendamentoComponent>,    
     private _agendamentoService: AgendamentoService,
     private _notificationService: NotificationService,
+    private dialog: DialogService,
+    private storageService: StorageService
 
   ) {
     this.agendamento = {
       id: 0, // ID será gerado no backend
-      fornecedorId: 111,//this.data.fornecedorId,
+      fornecedorId: (this.storageService.getUsuario()).id,//this.data.fornecedorId,
       dataSolicitacao: this.formatDate(new Date()).toString(), // Data de solicitação como a data atual
       dataAgendamento: this.formatDate(this.calculateNextWorkingDay()).toString(), // Data de agendamento calculada
       tipoCarga: '', // Será preenchido pelo usuário (P = Paletizado / B = Batido)
@@ -35,15 +39,16 @@ export class InclusaoAgendamentoComponent {
       numeroPedido: this.data.pedido,
       numeroNota: 0, // Número da nota será preenchido posteriormente
       pdfNota: "", // Inicializa com um Blob vazio, será preenchido posteriormente
-      xmlNota: "" // Inicializa com um Blob vazio, será preenchido posteriormente
+      xmlNota: "", // Inicializa com um Blob vazio, será preenchido posteriormente
+      mostrarCalendario: false
     };
   } 
 
-  onSave(): void {        
+  onSave(): void {     
+    const progress = this.dialog.showProgress(ProgressComponent);   
     this._agendamentoService.saveAgendamento(this.agendamento).subscribe({
       next: (response) => {
-        console.log('Agendamento salvo com sucesso:', response);
-
+        this.dialog.close(progress);
         this._notificationService.showToast({
           message: "Agendamento salvo com sucesso",
           typeToast: TypeToast.SUCCESS

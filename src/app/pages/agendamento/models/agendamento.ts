@@ -12,6 +12,7 @@ export class Agendamento {
   numeroNota: number; // Número da nota
   pdfNota: string; // Arquivo PDF da nota
   xmlNota: string; // Arquivo XML da nota
+  mostrarCalendario: boolean;
 
   
   constructor(
@@ -27,7 +28,8 @@ export class Agendamento {
     numeroPedido: number,
     numeroNota: number,
     pdfNota: string,
-    xmlNota: string
+    xmlNota: string,
+    mostrarCalendario: boolean
   ) {
     this.id = id;
     this.fornecedorId = fornecedorId;
@@ -42,5 +44,6 @@ export class Agendamento {
     this.numeroNota = numeroNota;
     this.pdfNota = pdfNota;
     this.xmlNota = xmlNota;
+    this.mostrarCalendario = mostrarCalendario;
   }
 }

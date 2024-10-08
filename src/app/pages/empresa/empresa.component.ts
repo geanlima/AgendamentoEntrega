@@ -16,8 +16,9 @@ import { ProgressComponent } from '@shared/components';
 export class EmpresaComponent implements OnDestroy, AfterViewInit {
   agendamentos: Agendamento[] = [];
   fornId: number = 0;
+  isConfirmacao: boolean = true;
   
-  displayedColumns: string[] = ['id', 'pedido', 'data', 'status', 'acoes'];
+  displayedColumns: string[] = ['id', 'pedido', 'fornecedorId', 'data', 'status', 'acoes'];
   dataSource!: MatTableDataSource<Agendamento>;
 
   private subs$: Subscription[] = [];
@@ -46,34 +47,60 @@ export class EmpresaComponent implements OnDestroy, AfterViewInit {
   loadAgendamentos(): void {
     const progress = this._dialogService.showProgress(ProgressComponent);
     const subs = this.agendamentoService.getAllAgendamento().subscribe((agendamento) => {
+      agendamento.forEach(a => a.mostrarCalendario = false); // Inicializa a propriedade para controlar a visibilidade do calendário
       this.setDataSource(agendamento);
       this._dialogService.close(progress);
     });
-
+  
     this.subs$.push(subs);
-  }
+  }  
 
   private setDataSource(agendamento: Agendamento[]) {
     this.dataSource = new MatTableDataSource(agendamento);
   }
 
   confirmarAgendamento(agendamento: Agendamento): void { 
-    
+    const progress = this._dialogService.showProgress(ProgressComponent);
     this.agendamentoService.updateAgendamento(agendamento).subscribe({
       next: (response) => {
+        this._dialogService.close(progress);
+        agendamento.status = "Confirmado";
         this._notificationService.showToast({
           message: "Agendamento confirmado com sucesso",
           typeToast: TypeToast.SUCCESS
         });
+        this.loadAgendamentos();
       },
       error: (error) => {
-        console.error('Erro ao salvar agendamento:', error);
+        console.error('Erro ao confirmar agendamento:', error);
       }
     });
   }
 
-  sugerirData(agendamento: Agendamento): void {
-    console.log('Sugerir data para agendamento:', agendamento);
+  sugestaoAgendamento(agendamento: Agendamento): void { 
+    const progress = this._dialogService.showProgress(ProgressComponent);
+    agendamento.status = "Nova data sugerida";
+    this.agendamentoService.updateAgendamento(agendamento).subscribe({
+      next: (response) => {
+        this._dialogService.close(progress);
+        
+        this._notificationService.showToast({
+          message: "Nova data sugerida com sucesso",
+          typeToast: TypeToast.SUCCESS
+        });
+
+        this.loadAgendamentos();
+      },
+      error: (error) => {
+        console.error('Erro ao sugestao agendamento:', error);
+      }
+    });
+  }
+  sugerirData(agendamento: Agendamento, novaData: string): void {
+    agendamento.dataAgendamento = novaData;
+    agendamento.mostrarCalendario = false; 
+    this.sugestaoAgendamento(agendamento);
+    
   }
   
 }
