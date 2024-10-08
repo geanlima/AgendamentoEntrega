@@ -1,9 +1,3 @@
 [
-  {
-    "nome": "Agendamento",
-    "rota": "agendamento",
-    "indice": 1,
-    "filhos": [],
-    "habilitado": true
-  }
+  
 ]
