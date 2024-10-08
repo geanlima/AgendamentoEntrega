@@ -13,18 +13,28 @@
         <div class="table-clientes">
           <table mat-table [dataSource]="dataSourceFornecedor" matSort>
             <ng-container matColumnDef="numPed">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>Código Pedido</th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Número do Pedido</th>
               <td mat-cell *matCellDef="let pedido">{{pedido.numPed}}</td>
-            </ng-container>          
+            </ng-container>     
             
-            <ng-container matColumnDef="qtPendente">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>Qtd. Pendente</th>
-              <td mat-cell *matCellDef="let pedido">{{pedido.qtPendente}}</td>
+            <ng-container matColumnDef="dtemissao">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Data de Emissão</th>
+              <td mat-cell *matCellDef="let pedido">{{pedido.dtemissao}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="vlTotalLiquido">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Valor Total do Pedido</th>
+              <td mat-cell *matCellDef="let pedido">{{pedido.vlTotalLiquido}}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="vlPendente">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Valor Entregue</th>
+              <td mat-cell *matCellDef="let pedido">{{pedido.vlPendente}}</td>
             </ng-container> 
 
-            <ng-container matColumnDef="volume">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>Volumes</th>
-              <td mat-cell *matCellDef="let pedido">{{pedido.volume}}</td>
+            <ng-container matColumnDef="qtPendente">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Saldo Entregar</th>
+              <td mat-cell *matCellDef="let pedido">{{pedido.qtPendente}}</td>
             </ng-container> 
             
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

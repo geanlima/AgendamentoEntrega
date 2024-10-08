@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { PedidoFornecedorComponent } from 'src/app/core/components/pedido-fornecedor/pedido-fornecedor.component';
 import { AgendamentoService } from 'src/app/shared/services/agendamento.service';
 import { Usuario } from '@shared/models';
+import { ProgressComponent } from '@shared/components';
 
 
 @Component({
@@ -46,8 +47,10 @@ export class AgendamentoComponent implements AfterViewInit, OnDestroy {
   }
 
   loadAgendamentos(): void {
+    const progress = this.dialog.showProgress(ProgressComponent);
     const subs = this.agendamentoService.getAgendamento(this.fornId.toString()).subscribe((agendamento) => {
       this.setDataSource(agendamento);
+      this.dialog.close(progress);
     });
 
     this.subs$.push(subs);

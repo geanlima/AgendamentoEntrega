@@ -12,6 +12,7 @@ import { DialogConfirmationService } from 'src/app/shared/services/dialog-confir
 import { FornecedorService } from 'src/app/shared/services/fornecedor.service';
 import { environment } from 'src/environments/environment';
 import { InclusaoAgendamentoComponent } from '../inclusao-agendamento/inclusao-agendamento.component';
+import { ProgressComponent } from '@shared/components';
 
 @Component({
   selector: 'app-pedido-fornecedor',
@@ -33,12 +34,13 @@ export class PedidoFornecedorComponent implements AfterViewInit, OnDestroy{
   public searchTerm: string = '';
   public dataSource!: MatTableDataSource<Cliente>;
   public dataSourceFornecedor!: MatTableDataSource<PedidoFornecedor>;
-  public displayedColumns = ['numPed','qtPendente', 'volume'];
+  public displayedColumns = ['numPed', 'dtemissao', 'vlTotalLiquido', 'vlPendente', 'qtPendente'];
 
   constructor(
     private storageService: StorageService,
     private _fornecedorService: FornecedorService,
-    private dialog: DialogService
+    private dialog: DialogService,
+
   ) { }
 
   ngAfterViewInit(): void {
@@ -82,19 +84,14 @@ export class PedidoFornecedorComponent implements AfterViewInit, OnDestroy{
   }
 
   loadFornecedor(fornId: string): void{
+    const progress = this.dialog.showProgress(ProgressComponent);
     const subs = this._fornecedorService.getPedidoFornecedor(fornId).subscribe((fornecedor) => {
-
       this.setDataSourceFornecedor(fornecedor);
       this.setFilter();
+      this.dialog.close(progress);
     });
 
     this._subs.push(subs);
-  }
-
-  private setDataSource(clientes: Cliente[]) {
-    this.dataSource = new MatTableDataSource(clientes);
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
   }
 
   private setDataSourceFornecedor(fornecedor: PedidoFornecedor[]) {

@@ -39,7 +39,7 @@ export class AuthService extends BaseService {
   signInVp4(credential: Credencial): Observable<boolean> {
 
     console.log("credential", credential)
-    this.url += "/vp4"; 
+    this.url = "authentication/vp4"; 
     if (this.isLoggedIn()) {
       return throwError(() => new Error('Usuário já logado.'));
     }
@@ -49,9 +49,6 @@ export class AuthService extends BaseService {
         switchMap((usuario: Usuario) => {
           this.storageService.saveUsuario(usuario);
           this.storageService.saveToken(usuario.token);
-
-          
-
           return of(true);
         })
     );

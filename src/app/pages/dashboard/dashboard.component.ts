@@ -164,6 +164,7 @@ export class DashboardComponent implements OnDestroy, AfterViewInit {
     });
 
   }
+  
 
   private loadVendas(): void {
     const progress = this._dialogService.showProgress(ProgressComponent);

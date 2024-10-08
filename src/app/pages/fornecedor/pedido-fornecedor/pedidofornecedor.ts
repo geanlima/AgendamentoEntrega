@@ -5,6 +5,7 @@ export interface PedidoFornecedor {
     pMercadoria: number;
     pCompra: number;
     pLiquido: number;
+    dtemissao: string;
     vlTotalBruto: number;
     vlTotalLiquido: number;
     qtUnitCx: number;

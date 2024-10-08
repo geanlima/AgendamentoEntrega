@@ -2,9 +2,10 @@ import { AfterViewInit, Component, OnDestroy } from '@angular/core';
 import { Agendamento } from '../agendamento/models/agendamento';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
-import { NotificationService, StorageService } from '@shared/services';
+import { DialogService, NotificationService, StorageService } from '@shared/services';
 import { AgendamentoService } from 'src/app/shared/services/agendamento.service';
 import { TypeToast } from '@shared/enums';
+import { ProgressComponent } from '@shared/components';
 
 @Component({
   selector: 'app-empresa',
@@ -23,7 +24,8 @@ export class EmpresaComponent implements OnDestroy, AfterViewInit {
   
   constructor(private agendamentoService: AgendamentoService,
               private storageService: StorageService,
-              private _notificationService: NotificationService
+              private _notificationService: NotificationService,
+              private _dialogService: DialogService
   ) {
     this.dataSource = new MatTableDataSource(this.agendamentos);
     this.fornId = (this.storageService.getUsuario()).id;
@@ -42,8 +44,10 @@ export class EmpresaComponent implements OnDestroy, AfterViewInit {
   }
 
   loadAgendamentos(): void {
+    const progress = this._dialogService.showProgress(ProgressComponent);
     const subs = this.agendamentoService.getAllAgendamento().subscribe((agendamento) => {
       this.setDataSource(agendamento);
+      this._dialogService.close(progress);
     });
 
     this.subs$.push(subs);
